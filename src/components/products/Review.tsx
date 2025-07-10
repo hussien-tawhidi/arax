@@ -4,7 +4,7 @@ export interface ReviewType {
   username: string;
   rating: number;
   comment: string;
-  date: string;
+  date?: string;
 }
 
 interface ReviewComponentProps {
@@ -27,14 +27,16 @@ export default function Review({ review }: ReviewComponentProps) {
               }
             />
           ))}
-          <span className='text-darker-black/50 text-xs'>({review.rating})</span>
+          <span className='text-darker-black/50 text-xs'>
+            ({review.rating})
+          </span>
         </div>
       </div>
 
       <p className='text-darker-black/70 text-sm'>{review.comment}</p>
 
       <div className='text-xs text-darker-black/40 text-left'>
-        {new Date(review.date).toLocaleDateString("fa-IR")}
+        {review.date && new Date(review.date).toLocaleDateString("fa-IR")}
       </div>
     </div>
   );
