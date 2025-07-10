@@ -40,7 +40,7 @@ export default function SearchForm({
       <motion.button
         type='button'
         onClick={onClose}
-        className='absolute sm:left-2 left-1 -translate-y-1/2 top-1/2 p-1 text-dark/50 hover:text-black transition'
+        className='absolute sm:left-2 left-1 -translate-y-1/2 top-1/2 p-1 text-darker-black/50 hover:text-black transition'
         whileHover={{ scale: 1.1 }}>
         <TfiClose size={20} />
       </motion.button>
@@ -49,7 +49,7 @@ export default function SearchForm({
       <input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className='rounded-full w-full sm:px-10 sm:py-3 py-2 px-5 sm:border-2 border-1 border-transparent focus:outline-none focus:border-black/70 placeholder-dark/40 transition-all duration-300 shadow-md'
+        className='rounded-full w-full sm:px-10 sm:py-3 py-2 px-5 sm:border-2 border-1 border-transparent focus:outline-none focus:border-black/70 placeholder-darker-black/40 transition-all duration-300 shadow-md'
         placeholder='جستجو کنید ...'
         required
         type='text'
@@ -59,7 +59,7 @@ export default function SearchForm({
       {/* Search Icon */}
       <motion.button
         type='submit'
-        className='absolute sm:flex hidden right-3 -translate-y-1/2 top-1/2 p-1 text-dark/50 hover:text-black transition'
+        className='absolute sm:flex hidden right-3 -translate-y-1/2 top-1/2 p-1 text-darker-black/50 hover:text-black transition'
         whileHover={{ scale: 1.1 }}>
         <BiSearchAlt size={20} />
       </motion.button>

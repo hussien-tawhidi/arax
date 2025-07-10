@@ -132,7 +132,7 @@ export default function Subcategory({
   return (
     <div className='space-'>
       <Breadcrumbs />
-      <h1 className='text-dark/70 font-bold md:text-xl my-1'>
+      <h1 className='text-darker-black/70 font-bold md:text-xl my-1'>
         {subcategory ? "دسته‌بندی " + subcategory : productType}
       </h1>
       {subcategoryMenu && (
@@ -143,7 +143,7 @@ export default function Subcategory({
         />
       )}
       {filteredProducts.length === 0 ? (
-        <div className='col-span-full flex flex-col items-center justify-center border border-dark/10 rounded-lg p-6 bg-light/50 text-dark/60'>
+        <div className='col-span-full flex flex-col items-center justify-center border border-darker-black/10 rounded-lg p-6 bg-light/50 text-darker-black/60'>
           <svg
             className='w-12 h-12 mb-3 text-red'
             fill='none'
@@ -164,7 +164,7 @@ export default function Subcategory({
         </div>
       ) : (
         <div className='flex flex-col md:flex-row gap-4 mt-10'>
-          <div className='w-full flex md:items-start z-30 items-center md:border-0 border-b border-dark/30 justify-between md:w-1/4 md:rounded md:p-4'>
+          <div className='w-full flex md:items-start z-30 items-center md:border-0 border-b border-darker-black/30 justify-between md:w-1/4 md:rounded md:p-4'>
             {filteredProducts.length > 0 && (
               <FilterPanel
                 onlyAvailable={onlyAvailable}

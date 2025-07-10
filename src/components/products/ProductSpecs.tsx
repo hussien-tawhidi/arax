@@ -16,7 +16,9 @@ export default function ProductSpecs({ specs }: ProductSpecsProps) {
       <table className='w-full text-sm border-separate border-spacing-y-2'>
         <tbody>
           {specs.map((item, index) => (
-            <tr key={index} className='bg-dark/5 md:text-sm text-[12px]'>
+            <tr
+              key={index}
+              className='bg-darker-black/5 md:text-sm text-[12px]'>
               <th className='md:p-5 p-3 text-right w-1/4'>{item.key}</th>
               <td className='md:p-5 p-3'>{item.value}</td>
             </tr>

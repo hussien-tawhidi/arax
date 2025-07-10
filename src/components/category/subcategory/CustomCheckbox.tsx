@@ -18,7 +18,7 @@ export default function CustomCheckbox({
       <input
         type='checkbox'
         id={id}
-        className='hidden bg-dark'
+        className='hidden bg-darker-black'
         checked={checked}
         onChange={onChange}
       />
@@ -28,7 +28,7 @@ export default function CustomCheckbox({
           <polyline points='1 9 7 14 15 4'></polyline>
         </svg>
       </label>
-      <label htmlFor={id} className='text-dark/70 cursor-pointer md:text-sm text-[12px]'>
+      <label htmlFor={id} className='text-darker-black/70 cursor-pointer md:text-sm text-[12px]'>
         {label}
       </label>
     </div>

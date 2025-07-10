@@ -69,11 +69,9 @@ function AraxMagezineSlider({ products }: Props) {
               />
               <div className='absolute top-0 left-auto right-auto h-full items-center  bg-red/80 translate-x-full transition-all duration-300 group-hover:translate-x-0 flex w-full justify-center text-light'>
                 <div className='text-center flex flex-col px-4 py-7 max-w-md mx-auto'>
-                  <h2 className='text-xl font-bold mb-2'>
-                    {item.title}
-                  </h2>
-                  <p className='text-sm text-gray-600 mb-1'>{item.desc}</p>
-                  <button className='bg-light transition text-dark text-sm px-4 py-2 rounded-md'>
+                  <h2 className='text-xl font-bold mb-2'>{item.title}</h2>
+                  <p className='text-sm text-darker-black/50 mb-1'>{item.desc}</p>
+                  <button className='bg-light transition text-darker-black text-sm px-4 py-2 rounded-md'>
                     اطلاعات بیشتر
                   </button>
                 </div>

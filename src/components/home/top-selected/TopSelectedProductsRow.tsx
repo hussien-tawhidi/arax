@@ -26,7 +26,7 @@ export default function TopSelectedProductsRow({ data }: props) {
           return (
             <li
               key={index}
-              className='flex-shrink-0 relative  text-center group border-[0.1px] border-dark/5 p-3 w-[202.8px]'>
+              className='flex-shrink-0 relative  text-center group border-[0.1px] border-darker-black/5 p-3 w-[202.8px]'>
               <div className='relative'>
                 <Image
                   src={item.imageUrl[0]}
@@ -41,10 +41,10 @@ export default function TopSelectedProductsRow({ data }: props) {
                 {toPersianDigits(item.discount.toLocaleString("fa-IR"))}%
               </span>
               <div className=' mt-3'>
-                <p className='line-through text-dark/30 italic text-right'>
+                <p className='line-through text-darker-black/30 italic text-right'>
                   {toPersianDigits(item.price.toLocaleString("fa-IR"))}
                 </p>
-                <p className='text-left font-semibold text-dark/70'>
+                <p className='text-left font-semibold text-darker-black/70'>
                   {toPersianDigits(finalPrice.toLocaleString("fa-IR"))}
                 </p>
               </div>

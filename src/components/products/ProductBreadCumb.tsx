@@ -27,22 +27,22 @@ export default function ProductBreadCumb({
   product,
 }: Props) {
   return (
-    <nav className='flex flex-wrap items-center text-sm md:text-base text-dark/60 my-6 md:my-10 mb-4 space-x-1 rtl:space-x-reverse'>
+    <nav className='flex flex-wrap items-center text-sm md:text-base text-darker-black/60 my-6 md:my-10 mb-4 space-x-1 rtl:space-x-reverse'>
       <Link
         href='/'
-        className='hover:underline hover:text-dark/80 font-medium transition-colors'>
+        className='hover:underline hover:text-darker-black/80 font-medium transition-colors'>
         آراکس
       </Link>
-      <BiChevronLeft className='text-dark/40 w-4 h-4' />
+      <BiChevronLeft className='text-darker-black/40 w-4 h-4' />
 
       {category && (
         <>
           <Link
             href={`/${category.category}`}
-            className='hover:underline hover:text-dark/80 font-medium transition-colors'>
+            className='hover:underline hover:text-darker-black/80 font-medium transition-colors'>
             {category.title}
           </Link>
-          <BiChevronLeft className='text-dark/40 w-4 h-4' />
+          <BiChevronLeft className='text-darker-black/40 w-4 h-4' />
         </>
       )}
 
@@ -50,14 +50,14 @@ export default function ProductBreadCumb({
         <>
           <Link
             href={`/${category?.category}/${subcategory.subcategory}`}
-            className='hover:underline hover:text-dark/80 font-medium transition-colors'>
+            className='hover:underline hover:text-darker-black/80 font-medium transition-colors'>
             {subcategory.title}
           </Link>
-          <BiChevronLeft className='text-dark/40 w-4 h-4' />
+          <BiChevronLeft className='text-darker-black/40 w-4 h-4' />
         </>
       )}
 
-      {product && <p className='text-dark/80 font-semibold'>{product.name}</p>}
+      {product && <p className='text-darker-black/80 font-semibold'>{product.name}</p>}
     </nav>
   );
 }

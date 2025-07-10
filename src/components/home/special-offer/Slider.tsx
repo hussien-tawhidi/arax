@@ -103,7 +103,7 @@ function Slide({ products, imageBg, banner, bg, discount, special }: Props) {
                   />
                 </div>
 
-                <h2 className='mt-3 text-right text-dark/60 font-semibold text-sm line-clamp-2'>
+                <h2 className='mt-3 text-right text-darker-black/60 font-semibold text-sm line-clamp-2'>
                   {item.name.length > 15 ? (
                     <span>...{item.name.slice(0, 15)}</span>
                   ) : (
@@ -115,17 +115,17 @@ function Slide({ products, imageBg, banner, bg, discount, special }: Props) {
                 <div className='mt-2 text-sm text-right'>
                   {item.discount > 0 ? (
                     <>
-                      <div className='text-dark/40 line-through text-xs font-light'>
+                      <div className='text-darker-black/40 line-through text-xs font-light'>
                         {toPersianDigits(item.price.toLocaleString("fa-IR"))}{" "}
                         تومان
                       </div>
-                      <div className='text-dark/60 font-bold text-left'>
+                      <div className='text-darker-black/60 font-bold text-left'>
                         {toPersianDigits(finalPrice.toLocaleString("fa-IR"))}{" "}
                         تومان
                       </div>
                     </>
                   ) : (
-                    <div className='text-dark font-medium'>
+                    <div className='text-darker-black font-medium'>
                       {toPersianDigits(item.price.toLocaleString("fa-IR"))}{" "}
                       تومان
                     </div>

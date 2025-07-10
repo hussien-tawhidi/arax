@@ -14,10 +14,34 @@ export const women = {
     },
   ],
   offs: [
-    { id: 1, link: "/", image: "/images/category/women/bed.jpg" },
-    { id: 2, link: "/", image: "/images/category/women/pant.jpg" },
-    { id: 3, link: "/", image: "/images/category/women/shomiz.jpg" },
-    { id: 4, link: "/", image: "/images/category/women/top.jpg" },
+    {
+      id: 1,
+      link: "/",
+      image: "/images/category/women/bed.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 2,
+      link: "/",
+      image: "/images/category/women/pant.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 3,
+      link: "/",
+      image: "/images/category/women/shomiz.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 4,
+      link: "/",
+      image: "/images/category/women/top.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
   ],
   menu: [
     {
@@ -106,10 +130,34 @@ export const men = {
     },
   ],
   offs: [
-    { id: 1, link: "/", image: "/images/category/men/poster-1.jpg" },
-    { id: 2, link: "/", image: "/images/category/men/poster-2.jpg" },
-    { id: 3, link: "/", image: "/images/category/men/poster-3.jpg" },
-    { id: 4, link: "/", image: "/images/category/men/poster-4.jpg" },
+    {
+      id: 1,
+      link: "/",
+      image: "/images/category/men/poster-1.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 2,
+      link: "/",
+      image: "/images/category/men/poster-2.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 3,
+      link: "/",
+      image: "/images/category/men/poster-3.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 4,
+      link: "/",
+      image: "/images/category/men/poster-4.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
   ],
   menu: [
     {
@@ -191,10 +239,34 @@ export const kid = {
     },
   ],
   offs: [
-    { id: 1, link: "/", image: "/images/category/kids/admakfarv.webp" },
-    { id: 2, link: "/", image: "/images/category/kids/melorfarv.webp" },
-    { id: 3, link: "/", image: "/images/category/kids/merinofarv.webp" },
-    { id: 4, link: "/", image: "/images/category/kids/fiorfar.webp" },
+    {
+      id: 1,
+      link: "/",
+      image: "/images/category/kids/admakfarv.webp",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 2,
+      link: "/",
+      image: "/images/category/kids/melorfarv.webp",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 3,
+      link: "/",
+      image: "/images/category/kids/merinofarv.webp",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 4,
+      link: "/",
+      image: "/images/category/kids/fiorfar.webp",
+      category: "women",
+      subcategory: "bed",
+    },
   ],
   menu: [
     {
@@ -275,10 +347,34 @@ export const beauty = {
     },
   ],
   offs: [
-    { id: 1, link: "/", image: "/images/category/beauty/poster-1.jpg" },
-    { id: 2, link: "/", image: "/images/category/beauty/poster-2.jpg" },
-    { id: 3, link: "/", image: "/images/category/beauty/poster-3.jpg" },
-    { id: 4, link: "/", image: "/images/category/beauty/poster-4.jpg" },
+    {
+      id: 1,
+      link: "/",
+      image: "/images/category/beauty/poster-1.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 2,
+      link: "/",
+      image: "/images/category/beauty/poster-2.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 3,
+      link: "/",
+      image: "/images/category/beauty/poster-3.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
+    {
+      id: 4,
+      link: "/",
+      image: "/images/category/beauty/poster-4.jpg",
+      category: "women",
+      subcategory: "bed",
+    },
   ],
   menu: [
     {

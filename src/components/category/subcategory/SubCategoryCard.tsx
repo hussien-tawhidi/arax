@@ -30,7 +30,7 @@ export default function SubCategoryCard({
         {image?.[0] ? (
           <Image src={image[0]} alt={title} fill className='object-cover' />
         ) : (
-          <div className='flex items-center justify-center h-full text-dark/50 bg-light'>
+          <div className='flex items-center justify-center h-full text-darker-black/50 bg-light'>
             No Image
           </div>
         )}
@@ -43,19 +43,19 @@ export default function SubCategoryCard({
 
       {/* ✅ Product Info */}
       <div className='mt-2 px-2 md:px-3 text-right'>
-        <h3 className='text-sm font-semibold truncate text-dark/80'>{title}</h3>
+        <h3 className='text-sm font-semibold truncate text-darker-black/80'>{title}</h3>
 
         {discount ? (
           <>
-            <p className='text-dark/50 line-through font-light sm:text-sm text-[10px]'>
+            <p className='text-darker-black/50 line-through font-light sm:text-sm text-[10px]'>
               {toPersianDigits(price)} تومان
             </p>
-            <p className='text-dark/70 font-semibold text-left'>
+            <p className='text-darker-black/70 font-semibold text-left'>
               {toPersianDigits(finalPrice)} تومان
             </p>
           </>
         ) : (
-          <p className='text-dark/70 font-semibold text-left'>
+          <p className='text-darker-black/70 font-semibold text-left'>
             {toPersianDigits(price)} تومان
           </p>
         )}

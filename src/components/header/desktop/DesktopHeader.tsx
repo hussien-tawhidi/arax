@@ -50,7 +50,7 @@ export default function DesktopHeader() {
                 router.push(`/${m.category}`);
               }}
               className={`hover:text-primary  text-[16px] flex gap-1 items-center transition-colors ${
-                openIndex === i ? "text-dark" : "text-dark/60"
+                openIndex === i ? "text-darker-black" : "text-darker-black/60"
               }`}>
               {m.icon && <m.icon className='lg:flex hidden' />}
               {m.title}
@@ -85,7 +85,7 @@ export default function DesktopHeader() {
         <li className=' cursor-pointer lg:px-3 px-2'>
           <span
             onClick={() => router.push(`/contact-us`)}
-            className={`hover:text-primary  text-[16px] flex gap-1 text-dark/60 items-center transition-colors`}>
+            className={`hover:text-primary  text-[16px] flex gap-1 text-darker-black/60 items-center transition-colors`}>
             ارتباط با ما
           </span>
         </li>

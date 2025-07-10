@@ -89,7 +89,7 @@ function Accordion({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className='border border-dark/10 rounded-xl p-4'>
+    <div className='border border-darker-black/10 rounded-xl p-4'>
       <summary
         onClick={() => setOpen(!open)}
         className='cursor-pointer flex items-center justify-between font-medium text-right'>
@@ -106,7 +106,7 @@ function Accordion({
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: "auto", opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className='pt-4 text-sm text-dark/60 leading-7'>
+          className='pt-4 text-sm text-darker-black/60 leading-7'>
           {content}
         </motion.div>
       )}

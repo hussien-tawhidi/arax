@@ -58,7 +58,7 @@ export default function Search({ onClose }: { onClose: () => void }) {
   return (
     <AnimatePresence>
       <motion.div
-        className='fixed sm:inset-0 top-0 w-screen h-screen bg-dark/50 z-50 flex sm:items-center items-start justify-center'
+        className='fixed sm:inset-0 top-0 w-screen h-screen bg-darker-black/50 z-50 flex sm:items-center items-start justify-center'
         onClick={onClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -100,7 +100,7 @@ export default function Search({ onClose }: { onClose: () => void }) {
               <motion.button
                 key={i}
                 onClick={() => handleSelectResult(item)}
-                className='block w-full text-right px-4 py-2 bg-dark/10 hover:bg-dark/20 rounded transition'
+                className='block w-full text-right px-4 py-2 bg-darker-black/10 hover:bg-darker-black/20 rounded transition'
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   visible: { opacity: 1, y: 0 },
@@ -117,13 +117,13 @@ export default function Search({ onClose }: { onClose: () => void }) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}>
-              <p className='text-dark/60 mb-2'>جستجوهای اخیر:</p>
+              <p className='text-darker-black/60 mb-2'>جستجوهای اخیر:</p>
               <div className='flex flex-wrap gap-2'>
                 {recentSearches.map((item, i) => (
                   <motion.button
                     key={i}
                     onClick={() => setQuery(item)}
-                    className='bg-dark/10 hover:bg-dark/20 text-dark/80 px-3 py-1 rounded-full text-sm transition'
+                    className='bg-darker-black/10 hover:bg-darker-black/20 text-darker-black/80 px-3 py-1 rounded-full text-sm transition'
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: 10 }}

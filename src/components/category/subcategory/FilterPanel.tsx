@@ -65,7 +65,7 @@ export default function FilterPanel({
       {/* mobile filter show */}
       <div className='flex items-center md:hidden'>
         <button
-          className='flex items-center px-3 py-1.5 w-full border-l border-t border-r border-dark/30 text-dark/80 sm:text-sm text-[14px] justify-center'
+          className='flex items-center px-3 py-1.5 w-full border-l border-t border-r border-darker-black/30 text-darker-black/80 sm:text-sm text-[14px] justify-center'
           onClick={() => setShowFilter(!showFilter)}>
           <TbFilterSearch />
           <span className='ml-2'>فیلتر</span>

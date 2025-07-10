@@ -7,8 +7,8 @@ interface offs {
   id: number;
   link: string;
   image: string;
-  category: string;
-  subcategory: string;
+  category?: string;
+  subcategory?: string;
 }
 
 interface props {

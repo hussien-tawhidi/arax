@@ -34,8 +34,8 @@ const data = [
 ];
 export default function AraxMagezine() {
   return (
-    <div className='py-10 overflow-hidden border px-4 border-dark/10'>
-      <p className="text-center font-semibold text-dark/80 mb-10 text-2xl">مجله آراکس</p>
+    <div className='py-10 overflow-hidden border px-4 border-darker-black/10'>
+      <p className="text-center font-semibold text-darker-black/80 mb-10 text-2xl">مجله آراکس</p>
       <AraxMagezineSlider products={data} />
     </div>
   );

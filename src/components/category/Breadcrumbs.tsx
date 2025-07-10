@@ -40,7 +40,7 @@ export default function Breadcrumbs({ name }: { name?: string }) {
 
   return (
     <nav
-      className='text-sm breadcrumbs py-2 px-4 text-dark/60'
+      className='text-sm breadcrumbs py-2 px-4 text-darker-black/60'
       aria-label='breadcrumb'>
       <ol className='flex'>
         <li className='relative group'>
@@ -48,7 +48,7 @@ export default function Breadcrumbs({ name }: { name?: string }) {
             href={"/"}
             className='block overflow-hidden
           skew-x-[-20deg] relative
-          sm:px-4 px-3 sm:py-2 py-1 border border-dark/70'>
+          sm:px-4 px-3 sm:py-2 py-1 border border-darker-black/70'>
             <span className='block skew-x-[20deg] sm:text-[12px] text-[8px]'>
               آراکس
             </span>
@@ -66,8 +66,8 @@ export default function Breadcrumbs({ name }: { name?: string }) {
                 href={isLast ? "#" : href}
                 className={`
             block
-            sm:px-4 px-3 sm:py-2 py-1 border border-dark/70
-            ${isLast ? "bg-dark/70 text-light " : "bg-light"}
+            sm:px-4 px-3 sm:py-2 py-1 border border-darker-black/70
+            ${isLast ? "bg-darker-black/70 text-light " : "bg-light"}
             relative
             overflow-hidden
             skew-x-[-20deg]

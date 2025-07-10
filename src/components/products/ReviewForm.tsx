@@ -34,23 +34,23 @@ export default function ReviewForm({ onSubmit }: ReviewFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className='border border-dark/10 mt-5 rounded-lg p-4 space-y-4 shadow-sm'>
-      <h2 className='text-lg font-bold text-dark/80'>ثبت نظر شما</h2>
+      className='border border-darker-black/10 mt-5 rounded-lg p-4 space-y-4 shadow-sm'>
+      <h2 className='text-lg font-bold text-darker-black/80'>ثبت نظر شما</h2>
 
       <div className='flex flex-col gap-1'>
-        <label className='text-sm text-dark/60'>نام شما</label>
+        <label className='text-sm text-darker-black/60'>نام شما</label>
         <input
           type='text'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className='border-b ring-0 border-dark/30 px-3 py-2 text-sm focus:outline-none '
+          className='border-b ring-0 border-darker-black/30 px-3 py-2 text-sm focus:outline-none '
           placeholder='نام خود را وارد کنید'
           required
         />
       </div>
 
       <div className='flex flex-col gap-1'>
-        <label className='text-sm text-dark/60'>امتیاز شما</label>
+        <label className='text-sm text-darker-black/60'>امتیاز شما</label>
         <div className='flex items-center gap-1'>
           {Array.from({ length: 5 }, (_, i) => (
             <button
@@ -69,11 +69,11 @@ export default function ReviewForm({ onSubmit }: ReviewFormProps) {
       </div>
 
       <div className='flex flex-col gap-1'>
-        <label className='text-sm text-dark/60'>نظر شما</label>
+        <label className='text-sm text-darker-black/60'>نظر شما</label>
         <textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className='border rounded border-dark/30 px-3 py-2 text-sm focus:outline-none'
+          className='border rounded border-darker-black/30 px-3 py-2 text-sm focus:outline-none'
           rows={3}
           placeholder='نظر خود را وارد کنید'
           required
@@ -82,7 +82,7 @@ export default function ReviewForm({ onSubmit }: ReviewFormProps) {
 
       <button
         type='submit'
-        className='bg-dark/70 text-light py-2 rounded hover:bg-dark/80 transition w-full'>
+        className='bg-darker-black/70 text-light py-2 rounded hover:bg-darker-black/80 transition w-full'>
         ثبت نظر
       </button>
     </form>

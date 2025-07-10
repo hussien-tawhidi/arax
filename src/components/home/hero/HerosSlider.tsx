@@ -81,12 +81,12 @@ export default function HeroSlider({ data }: props) {
       {/* Navigation */}
       <button
         onClick={prevSlide}
-        className='absolute left-3 sm:flex hidden top-1/2 -translate-y-1/2 bg-light/70 hover:bg-light text-dark p-2 rounded-full shadow'>
+        className='absolute left-3 sm:flex hidden top-1/2 -translate-y-1/2 bg-light/70 hover:bg-light text-darker-black p-2 rounded-full shadow'>
         <BsArrowLeft />
       </button>
       <button
         onClick={nextSlide}
-        className='absolute right-3 top-1/2 sm:flex hidden -translate-y-1/2 bg-light/70 hover:bg-light text-dark p-2 rounded-full shadow'>
+        className='absolute right-3 top-1/2 sm:flex hidden -translate-y-1/2 bg-light/70 hover:bg-light text-darker-black p-2 rounded-full shadow'>
         <BsArrowLeft className='rotate-180' />
       </button>
       {/* Pagination Dots */}

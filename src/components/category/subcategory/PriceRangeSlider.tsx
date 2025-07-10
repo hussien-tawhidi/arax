@@ -106,16 +106,16 @@ export default function PriceRangeSlider({
   }, [isDraggingMin, isDraggingMax]);
 
   return (
-    <div className='space-y-4 border border-dark/10 rounded p-4' dir='rtl'>
-      <h3 className='font-semibold text-dark/60 mb-2'>قیمت (تومان)</h3>
+    <div className='space-y-4 border border-darker-black/10 rounded p-4' dir='rtl'>
+      <h3 className='font-semibold text-darker-black/60 mb-2'>قیمت (تومان)</h3>
 
       {/* Numeric Inputs */}
       <div className='flex flex-col items-center gap-4'>
         <div className='flex-1'>
-          <label className='text-sm text-dark/50 block mb-1'>حداقل</label>
+          <label className='text-sm text-darker-black/50 block mb-1'>حداقل</label>
           <input
             type='text'
-            className='w-full border-b border-dark/30 focus:ring-0 outline-0 ring-0 rounded p-2 text-right'
+            className='w-full border-b border-darker-black/30 focus:ring-0 outline-0 ring-0 rounded p-2 text-right'
             value={toPersianDigits(localMin)}
             onChange={(e) => {
               const englishValue = e.target.value.replace(/[۰-۹]/g, (d) =>
@@ -129,10 +129,10 @@ export default function PriceRangeSlider({
         </div>
 
         <div className='flex-1'>
-          <label className='text-sm text-dark/50 block mb-1'>حداکثر</label>
+          <label className='text-sm text-darker-black/50 block mb-1'>حداکثر</label>
           <input
             type='text'
-            className='w-full border-b rounded border-dark/30 ring-0 p-2 text-right'
+            className='w-full border-b rounded border-darker-black/30 ring-0 p-2 text-right'
             value={toPersianDigits(localMax)}
             onChange={(e) => {
               const englishValue = e.target.value.replace(/[۰-۹]/g, (d) =>

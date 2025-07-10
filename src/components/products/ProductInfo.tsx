@@ -23,13 +23,13 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   return (
     <div className='flex-1 flex flex-col space-y-4'>
       {/* Title */}
-      <h1 className='md:text-xl text-dark/70'>
+      <h1 className='md:text-xl text-darker-black/70'>
         {product.name} کد محصول: {product.productCode}
       </h1>
 
       {/* Product Code */}
-      <div className='flex items-center gap-1 text-sm text-dark/60 border-t border-dark/10 py-5'>
-        <span className='text-dark'>
+      <div className='flex items-center gap-1 text-sm text-darker-black/60 border-t border-darker-black/10 py-5'>
+        <span className='text-darker-black'>
           نظرات ({product.reviews?.length || 0})
         </span>
         {product.reviews && product.reviews.length > 0 && (
@@ -48,15 +48,15 @@ export default function ProductInfo({ product }: ProductInfoProps) {
       </div>
 
       {/* Sizes */}
-      <div className='flex items-center gap-2 py-5 border-t border-dark/20'>
-        <label className='text-dark/60 font-medium'>انتخاب سایز:</label>
+      <div className='flex items-center gap-2 py-5 border-t border-darker-black/20'>
+        <label className='text-darker-black/60 font-medium'>انتخاب سایز:</label>
         <div className='flex gap-2 flex-wrap'>
           {product.sizesAvailable.map((s) => (
             <button
               key={s}
               onClick={() => setSize(s)}
-              className={`px-2 py-0.5 border border-dark/30 rounded-md cursor-pointer transition ${
-                size === s ? "bg-dark/70 text-light" : "bg-light text-dark/40"
+              className={`px-2 py-0.5 border border-darker-black/30 rounded-md cursor-pointer transition ${
+                size === s ? "bg-darker-black/70 text-light" : "bg-light text-darker-black/40"
               }`}>
               {s}
             </button>
@@ -91,7 +91,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         }  py-3 rounded  mr-auto md:w-[50%] w-[100%]  transition justify-self-start`}>
         افزودن به سبد خرید
       </button>
-      <div className='mt-5 py-3 text-dark/70 border-t border-dark/20'>
+      <div className='mt-5 py-3 text-darker-black/70 border-t border-darker-black/20'>
         <span className='text-red'>شرایط مرجوع کردن کالا:</span> درخواست مرجوع
         کردن کالا با دلیل انصراف از خرید تنها در صورتی مورد قبول است که کالا در
         شرایط اولیه باشد و در صورت پلمپ بودن ، کالا نباید باز شده باشد.

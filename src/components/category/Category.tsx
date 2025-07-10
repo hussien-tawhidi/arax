@@ -9,6 +9,8 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import Breadcrumbs from "./Breadcrumbs";
 import { menu } from "../header/data";
+import { productsData } from "@/products";
+import { ProductType } from "../../../types/productTypes";
 
 import {
   electronics,
@@ -21,8 +23,6 @@ import {
   sport,
   women,
 } from "./data";
-import { productsData } from "@/products";
-import { ProductType } from "../../../types/productTypes";
 
 interface brands {
   src: string;
@@ -71,7 +71,9 @@ export default function Category({ category }: { category: string }) {
   const mostSales = products.filter((item) => item.sales > 270);
 
   // most discount
-  const mostDiscount = products.filter((item) => item.discount > 25||item.discount>10);
+  const mostDiscount = products.filter(
+    (item) => item.discount > 25 || item.discount > 10
+  );
 
   if (!currentData) {
     return (
@@ -85,7 +87,7 @@ export default function Category({ category }: { category: string }) {
     <div className='pb-10'>
       <div className='lg:w-[80%] w-[95%] mx-auto'>
         <Breadcrumbs name={cate?.title} />
-        <h1 className='text-dark/70 font-bold md:text-xl sm:my-3 my-1'>
+        <h1 className='text-darker-blacker-black/70 font-bold md:text-xl sm:my-3 my-1'>
           دسته‌بندی {cate?.title}
         </h1>
         <HeroSlider data={currentData.hero} />
@@ -118,7 +120,7 @@ export default function Category({ category }: { category: string }) {
         />
         {currentData.brands?.length > 0 && (
           <div className='py-10'>
-            <h4 className='text-cente my-3 py-2 md:text-xl font-bold relative text-dark/80'>
+            <h4 className='text-cente my-3 py-2 md:text-xl font-bold relative text-darker-black/80'>
               <span className='absolute bottom-0 right-0  w-[70px] h-[5px] rounded-xl bg-red'></span>
               برندهای محبوب
             </h4>

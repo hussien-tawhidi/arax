@@ -67,14 +67,14 @@ export default function PersianNumberInput({
 
   return (
     <div className='flex-1'>
-      <label className='text-sm text-dark/50 block mb-1'>{label}</label>
+      <label className='text-sm text-darker-black/50 block mb-1'>{label}</label>
       <input
         type='text'
         inputMode='numeric'
         pattern='[۰-۹]*'
         value={inputValue}
         onChange={handleChange}
-        className='w-full border border-dark/30 rounded p-2 text-right'
+        className='w-full border border-darker-black/30 rounded p-2 text-right'
         placeholder='۰'
       />
     </div>

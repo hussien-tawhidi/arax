@@ -19,14 +19,14 @@ export default function StickyCard({image,title,price}:props) {
           className='object-cover rounded-md'
           alt={title}
         />
-        <h3 className='text-dark/80 font-semibold'>{title}</h3>
+        <h3 className='text-darker-black/80 font-semibold'>{title}</h3>
       </div>
 
-      <p className='text-lg text-center w-full text-dark/70'>
+      <p className='text-lg text-center w-full text-darker-black/70'>
         {toPersianDigits(price)} تومان
       </p>
 
-      <button className=' text-dark/70 border border-dark/30 px-4 py-2 rounded-md hover:bg-dark/5 transition w-full text-center'>
+      <button className=' text-darker-black/70 border border-darker-black/30 px-4 py-2 rounded-md hover:bg-darker-black/5 transition w-full text-center'>
         خرید کنید
       </button>
     </div>

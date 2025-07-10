@@ -10,7 +10,7 @@ import { BiMailSend } from "react-icons/bi";
 
 export default function Footer() {
   return (
-    <footer className='text-dark/60 mt-10'>
+    <footer className='text-darker-black/60 mt-10'>
       <div className='max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm'>
         {/* درباره ما */}
         <div>
@@ -27,22 +27,22 @@ export default function Footer() {
           <h4 className='font-bold text-base mb-4'>لینک‌های مهم</h4>
           <ul className='space-y-2'>
             <li>
-              <a href='#' className='hover:text-dark transition'>
+              <a href='#' className='hover:text-darker-black transition'>
                 خانه
               </a>
             </li>
             <li>
-              <a href='#' className='hover:text-dark transition'>
+              <a href='#' className='hover:text-darker-black transition'>
                 محصولات
               </a>
             </li>
             <li>
-              <a href='#' className='hover:text-dark transition'>
+              <a href='#' className='hover:text-darker-black transition'>
                 سوالات متداول
               </a>
             </li>
             <li>
-              <a href='#' className='hover:text-dark transition'>
+              <a href='#' className='hover:text-darker-black transition'>
                 تماس با ما
               </a>
             </li>
@@ -80,7 +80,7 @@ export default function Footer() {
       </div>
 
       {/* کپی‌رایت */}
-      <div className='text-center text-xs py-4 border-t border-dark/20 text-dark/70'>
+      <div className='text-center text-xs py-4 border-t border-darker-black/20 text-darker-black/70'>
         © {new Date().getFullYear()} کلیه حقوق این وب‌سایت متعلق به فروشگاه
         آراکس است.
       </div>

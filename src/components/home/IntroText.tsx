@@ -9,7 +9,7 @@ export default function IntroText() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.2 }}
       viewport={{ once: true }}
-      className='leading-relaxed text-justify w-[90%] text-dark/80 mx-auto py-10 text-sm sm:text-base text-tusi space-y-4'>
+      className='leading-relaxed text-justify w-[90%] text-darker-black/80 mx-auto py-10 text-sm sm:text-base text-tusi space-y-4'>
       <p className='text-lg font-bold text-tusi'>فروشگاه اینترنتی آراکس</p>
       <p>
         ما، تنها یک فروشگاه اینترنتی نیستیم — ما همراه روزهای خاص و لحظات

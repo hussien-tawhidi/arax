@@ -32,7 +32,7 @@ export default function ProductImages({ images }: ProductImagesProps) {
             key={img}
             onClick={() => setSelectedImage(img)}
             className={`rounded p-1 transition ring-offset-2 ${
-              selectedImage === img ? "ring-1 ring-dark/50" : ""
+              selectedImage === img ? "ring-1 ring-darker-black/50" : ""
             }`}>
             <Image
               src={img}

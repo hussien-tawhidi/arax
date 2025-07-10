@@ -30,7 +30,7 @@ export default function SortDropdown({ sortOption, setSortOption }: Props) {
     <div className='w-full relative'>
       {/* Desktop buttons */}
       <button
-        className='md:hidden flex justify-center items-center px-3 py-1.5 w-full border-l text-center border-t border-dark/30 text-dark/80 sm:text-sm text-[14px]'
+        className='md:hidden flex justify-center items-center px-3 py-1.5 w-full border-l text-center border-t border-darker-black/30 text-darker-black/80 sm:text-sm text-[14px]'
         onClick={() => setShow(!show)}>
         <PiSortAscendingLight />
         <p>مرتب‌سازی</p>
@@ -44,7 +44,7 @@ export default function SortDropdown({ sortOption, setSortOption }: Props) {
             className={`px-3 mb-1 py-1 text-sm ${
               sortOption === option.value
                 ? "font-semibold border-red text-red"
-                : "text-dark/70"
+                : "text-darker-black/70"
             }`}>
             {option.label}
           </button>
@@ -55,7 +55,7 @@ export default function SortDropdown({ sortOption, setSortOption }: Props) {
       <div
         className={
           show
-            ? "block absolute top-full left-0 right-0 bg-light border border-dark/30 w-full"
+            ? "block absolute top-full left-0 right-0 bg-light border border-darker-black/30 w-full"
             : "hidden"
         }>
         <div className='flex md:flex-row flex-col gap-2 flex-wrap md:border-b w-full'>
@@ -67,7 +67,7 @@ export default function SortDropdown({ sortOption, setSortOption }: Props) {
               className={`px-3 mb-1 py-1 text-sm ${
                 sortOption === option.value
                   ? "font-semibold border-red text-red"
-                  : "text-dark/70"
+                  : "text-darker-black/70"
               }`}>
               {option.label}
             </button>

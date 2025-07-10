@@ -35,7 +35,7 @@ export default function Submenu({
         {itemsToShow.map((item,i) => (
           <li
             key={i}
-            className='text-dark/60 text-[13px] hover:text-dark transition-colors cursor-pointer'
+            className='text-darker-black/60 text-[13px] hover:text-darker-black transition-colors cursor-pointer'
             tabIndex={0}>
             {item.title}
           </li>
@@ -45,7 +45,7 @@ export default function Submenu({
       {submenu.items.length > 7 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          className='mt-1 text-primary text-xs font-semibold hover:underline text-dark/60 '>
+          className='mt-1 text-primary text-xs font-semibold hover:underline text-darker-black/60 '>
           {showAll ? (
             <MdKeyboardArrowDown className='rotate-180' />
           ) : (

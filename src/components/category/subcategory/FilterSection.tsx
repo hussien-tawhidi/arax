@@ -31,18 +31,18 @@ export default function FilterSection({
   if (!allItems.length) return null;
 
   return (
-    <div className='border md:px-3 px-2 md:py-2 py-1 rounded border-dark/20'>
+    <div className='border md:px-3 px-2 md:py-2 py-1 rounded border-darker-black/20'>
       {/* Header */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='flex items-center justify-between text-dark/70 w-full hover:bg-light/5 transition'>
+        className='flex items-center justify-between text-darker-black/70 w-full hover:bg-light/5 transition'>
         <span className='md:text-md text-[12px]'>{title}</span>
         <BiChevronLeft
           className={`w-5 ${
             isOpen
               ? "-rotate-90 transition-all duration-300"
               : "rotate-0 transition-all duration-300"
-          } h-5 text-dark/40`}
+          } h-5 text-darker-black/40`}
         />
       </button>
 

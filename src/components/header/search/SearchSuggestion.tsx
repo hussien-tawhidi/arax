@@ -66,7 +66,7 @@ export default function SearchSuggestion() {
           <motion.button
             key={index}
             variants={itemVariants}
-            className='bg-dark/5 hover:bg-dark/30 text-dark/80 px-4 py-1 rounded-full text-sm transition shadow-sm'>
+            className='bg-darker-black/5 hover:bg-darker-black/30 text-darker-black/80 px-4 py-1 rounded-full text-sm transition shadow-sm'>
             {item.term}
           </motion.button>
         ))}

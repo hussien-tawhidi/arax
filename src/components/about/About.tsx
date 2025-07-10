@@ -48,7 +48,7 @@ export default function About() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className='rounded-xl shadow p-6 leading-7 text-dark/70'>
+        className='rounded-xl shadow p-6 leading-7 text-darker-black/70'>
         <h2 className='text-2xl font-bold mb-4'>درباره فروشگاه آراکس</h2>
         <p>
           فروشگاه اینترنتی آراکس با هدف ارائه تجربه‌ای لذت‌بخش از خرید آنلاین،
@@ -61,7 +61,9 @@ export default function About() {
 
       {/* خدمات آراکس */}
       <div>
-        <h3 className='text-xl font-semibold mb-6 text-dark/80'>خدمات ما</h3>
+        <h3 className='text-xl font-semibold mb-6 text-darker-black/80'>
+          خدمات ما
+        </h3>
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
           {services.map((item, i) => (
             <motion.div
@@ -70,12 +72,12 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className='p-5 border border-dark/30 rounded-xl shadow hover:shadow-md transition'>
+              className='p-5 border border-dadarker-blackk/30 rounded-xl shadow hover:shadow-md transition'>
               <div className='flex items-center gap-3 mb-3'>
                 <item.icon className='text-red w-6 h-6' />
                 <h4 className='text-base font-semibold'>{item.title}</h4>
               </div>
-              <p className='text-sm text-dark/50'>{item.description}</p>
+              <p className='text-sm text-darker-black/50'>{item.description}</p>
             </motion.div>
           ))}
         </div>

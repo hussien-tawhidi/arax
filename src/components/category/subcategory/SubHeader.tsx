@@ -41,7 +41,7 @@ export default function SubHeader({
         {header?.items.map((item, index) => (
           <div key={index} className='px-1 p-8 h-full'>
             <div
-              className='shadow-xl text-dark/80 py-1 rounded-lg h-[15vh]'
+              className='shadow-xl text-darker-black/80 py-1 rounded-lg h-[15vh]'
               onClick={() =>
                 router.push(`/${category}/${subCatefory}/${item.productType}`)
               }>

@@ -44,8 +44,8 @@ export default function RootLayout({
       <head>
         <link rel='icon' href='/logo.ico' sizes='any' />
       </head>
-      <body className='antialiased bg-light text-darker'>
-        <main className='min-h-screen bg-light text-dark'>
+      <body className='antialiased bg-light text-darker-black'>
+        <main className='min-h-screen bg-light text-darker-black'>
           <Header />
           <div className='md:pb-0 pb-20'>
             {children}

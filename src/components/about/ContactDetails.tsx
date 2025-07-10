@@ -18,7 +18,7 @@ export default function ContactDetails() {
       className='shadow rounded-xl p-5 text-sm sm:text-base leading-7 space-y-6'>
       <h2 className='text-lg font-bold border-b pb-2'>ارتباط با آراکس</h2>
 
-      <div className='space-y-2 text-dark/70'>
+      <div className='space-y-2 text-darker-black/70'>
         <div className='flex items-center gap-2'>
           <MdPhone className='text-red w-5 h-5' />
           <span>{toPersianDigits("021-3456789")}</span>
