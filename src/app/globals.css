@@ -1,4 +1,10 @@
 @import "tailwindcss";
+@import "../app/font/styles/wazir-font.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+@import "./style/breadcrumb.css";
+@import "./style/CustomCheckbox.css";
+@import "./style/categoryLoaderData.css";
 
 :root {
   --background: #ffffff;
@@ -22,5 +28,22 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Vazir", Arial, sans-serif;
+}
+
+@theme {
+  --color-red: #9f1c32;
+  --color-light: #f5f5f5;
+  --color-dark: #121212;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.slick-dots li.slick-active div {
+  @apply bg-light w-6 h-1.5 border border-light;
 }
