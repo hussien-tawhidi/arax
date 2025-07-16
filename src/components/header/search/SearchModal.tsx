@@ -11,16 +11,11 @@ interface ProductResult {
   price: number;
 }
 
-interface GroupedResults {
-  [category: string]: ProductResult[];
-}
-
 interface SearchModalProps {
   query: string;
   setQuery: (q: string) => void;
   recentSearches: string[];
   results: ProductResult[];
-  groupedByCategory: GroupedResults;
   loading: boolean;
   error: string | null;
   hasMore: boolean;
@@ -37,7 +32,7 @@ export default function SearchModal({
   setQuery,
   recentSearches,
   results,
-  groupedByCategory,
+
   loading,
   error,
   hasMore,
@@ -117,32 +112,7 @@ export default function SearchModal({
             )}
           </motion.div>
 
-          {/* Grouped Categories */}
-          {Object.entries(groupedByCategory)
-            .map(([category, items]) => (
-              <div key={category} className='mb-4'>
-                <h3 className='font-bold text-base text-darker-black mb-2'>
-                  {category}
-                </h3>
-                <motion.div className='space-y-2'>
-                  {items.map((item, i) => (
-                    <motion.button
-                      key={i}
-                      onClick={() => onSelectResult(item.name)}
-                      className='block w-full text-right px-4 py-2 bg-darker-black/10 hover:bg-darker-black/20 rounded transition text-sm'
-                      variants={{
-                        hidden: { opacity: 0, y: 10 },
-                        visible: { opacity: 1, y: 0 },
-                      }}>
-                      <div className='font-semibold'>{item.name}</div>
-                      <div className='text-darker-black/70 text-xs'>
-                        {item.brand} — ${item.price}
-                      </div>
-                    </motion.button>
-                  ))}
-                </motion.div>
-              </div>
-            ))}
+       
 
           {/* Recent Searches */}
           {results.length === 0 && recentSearches.length > 0 && (

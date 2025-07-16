@@ -14,6 +14,7 @@ export default function SubCategoryData({
 }) {
   const [data, setData] = useState<ProductType[]>();
   const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     const fetchProductDetails = async () => {
       setLoading(true);
@@ -31,7 +32,14 @@ export default function SubCategoryData({
     };
     fetchProductDetails();
   }, [subcategory]);
-
+  
+  if (!data) {
+    return (
+      <div className='text-center text-red-600 py-10 font-bold'>
+        دسته‌بندی یافت نشد!
+      </div>
+    );
+  }
   return (
     <Subcategory
       subcategory={subcategory}

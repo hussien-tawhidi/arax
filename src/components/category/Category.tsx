@@ -23,6 +23,7 @@ import {
   women,
 } from "./data";
 import CategoryMenu from "./CategoryMenu";
+import axios from "axios";
 
 interface brands {
   src: string;
@@ -43,6 +44,8 @@ const categoriesData = {
 
 export default function Category({ category }: { category: string }) {
   const [randomProducts, setRandomProducts] = useState<ProductType[]>([]);
+  const [product, setProduct] = useState<ProductType[]>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const currentData = useMemo(
     () => categoriesData[category as keyof typeof categoriesData],
@@ -50,9 +53,22 @@ export default function Category({ category }: { category: string }) {
   );
 
   const cate = menu.find((item) => item.category === category);
-  console.log("🚀 ~ Category ~ cate:", cate?.submenus);
 
-  const products = productsData.filter((item) => item.category === cate?.title);
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get("/api/products");
+        setProduct(data);
+        console.log("🚀 ~ getData ~ data:", data);
+      } catch (error) {
+        console.log("🚀 ~ getData ~ error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, []);
 
   // get rondom data
   useEffect(() => {
@@ -69,10 +85,10 @@ export default function Category({ category }: { category: string }) {
   }, [cate]);
 
   // most sales
-  const mostSales = products.filter((item) => item.sales > 270);
+  const mostSales = product?.filter((item) => item.sales > 270);
 
   // most discount
-  const mostDiscount = products.filter(
+  const mostDiscount = product?.filter(
     (item) => item.discount > 25 || item.discount > 10
   );
 
@@ -93,23 +109,22 @@ export default function Category({ category }: { category: string }) {
         </h1>
         <HeroSlider data={currentData.hero} />
         {/* <Menu data={cate?.submenus} /> */}
-       <div className='lg:pt-32 pt-16 flex items-center justify-center'>
-      <ul className='hide-scrollbar w-full flex md:gap-16 gap-10 justify-center mx-auto overflow-x-auto whitespace-nowrap px-4'>
-
-          {cate?.submenus.map((item, i) => (
-            <CategoryMenu
-            key={i}
-            title={item.title}
-            image={item.image}
-            category={category}
-            subcategory={item.subcategory}
-            />
-          ))}
+        <div className='lg:pt-32 pt-16 flex items-center justify-center'>
+          <ul className='hide-scrollbar w-full flex md:gap-16 gap-10 justify-center mx-auto overflow-x-auto whitespace-nowrap px-4'>
+            {cate?.submenus.map((item, i) => (
+              <CategoryMenu
+                key={i}
+                title={item.title}
+                image={item.image}
+                category={category}
+                subcategory={item.subcategory}
+              />
+            ))}
           </ul>
         </div>
 
         {/* most discount */}
-        <Slide products={mostDiscount} discount />
+        <Slide products={mostDiscount} discount loading={loading} />
         <BestOffs data={currentData.offs} />
         <div className='my-10'>
           <Banner
@@ -120,6 +135,7 @@ export default function Category({ category }: { category: string }) {
         {/* most sales */}
         <Slide
           products={mostSales}
+          loading={loading}
           // banner='/images/category/women/poster-2.jpg'
           special
         />
@@ -131,6 +147,7 @@ export default function Category({ category }: { category: string }) {
         )}
         <Slide
           products={randomProducts}
+          loading={loading}
           banner='/images/category/women/poster-3.jpg'
           special
         />

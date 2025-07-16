@@ -100,16 +100,6 @@ export default function Search({ onClose }: SearchProps) {
     return () => clearTimeout(handler);
   }, [query]);
 
-  const groupedByCategory = results.reduce<Record<string, ProductResult[]>>(
-    (acc, product) => {
-      if (!acc[product.category]) {
-        acc[product.category] = [];
-      }
-      acc[product.category].push(product);
-      return acc;
-    },
-    {}
-  );
   const handleSearchSubmit = (val: string) => {
     saveToRecentSearches(val);
     router.push(`/search?query=${encodeURIComponent(val)}`);
@@ -121,7 +111,6 @@ export default function Search({ onClose }: SearchProps) {
       setQuery={setQuery}
       recentSearches={recentSearches}
       results={results}
-      groupedByCategory={groupedByCategory}
       loading={loading}
       error={error}
       hasMore={hasMore}
