@@ -12,12 +12,13 @@ import OffsBanner from "@/components/home/OffsBanner";
 import ShoesBanners from "@/components/home/ShoesBanners";
 import SpecialOffer from "@/components/home/special-offer/SpecialOffer";
 import TopSelectedProducts from "@/components/home/top-selected/TopSelectedProducts";
+
 export default async function Home() {
   return (
     <main className=''>
       <HeroSlider data={heroSlides} />
       <div className='lg:w-[80%] w-[95%] mx-auto'>
-        <Menu data={menu.slice(0, 8)} />
+        <Menu data={menu}/>
         <SpecialOffer />
         <BestOffs data={homeOffsPoste} />
         <OffsBanner />

@@ -1,6 +1,4 @@
 "use client";
-
-import { productsData } from "@/products";
 import { menu } from "../header/data";
 import ProductBreadCumb from "./ProductBreadCumb";
 import ProductImages from "./ProductImages";
@@ -9,28 +7,66 @@ import ProductSpecs from "./ProductSpecs";
 import dynamic from "next/dynamic";
 import Review, { ReviewType } from "./Review";
 import StickyCard from "./StickyCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReviewForm from "./ReviewForm";
+import axios from "axios";
+import { ProductType } from "../../../types/productTypes";
+import ProductDetailsLoader from "./ProductDetailsLoader";
+
 const Slide = dynamic(() => import("../home/special-offer/Slider"), {
-  ssr: false, // 👈 disables SSR
+  ssr: false,
 });
+
 export default function ProductDetail({
   productCode,
 }: {
   productCode: string;
 }) {
-  const product = productsData.find((item) => item.productCode === productCode);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [productDetail, setProductDetail] = useState<ProductType>();
+  const [sameProduct, setSameProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState<ReviewType[]>([]);
+  console.log("🚀 ~ reviews:", reviews);
 
   const addReview = (newReview: ReviewType) => {
     setReviews((prev) => [newReview, ...prev]);
   };
-  const suggestion = productsData.filter(
-    (item) => item.category === product?.category
-  );
 
-  if (!product) {
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get("/api/products");
+        const found = data.find(
+          (item: ProductType) => item.productCode === productCode
+        );
+        setProductDetail(found);
+
+        if (found) {
+          setSameProducts(
+            data.filter((item: ProductType) => item.category === found.category)
+          );
+        } else {
+          setSameProducts([]);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProductDetails();
+  }, [productCode]);
+
+  if (loading) {
+    return (
+      <div className='max-w-6xl mx-auto p-4'>
+        <ProductDetailsLoader />
+      </div>
+    );
+  }
+
+  if (!productDetail) {
     return (
       <div className='max-w-6xl mx-auto p-4 text-center text-red'>
         محصولی با این کد یافت نشد.
@@ -38,25 +74,23 @@ export default function ProductDetail({
     );
   }
 
-  const category = menu.find((item) => item.title === product.category);
-
+  const category = menu.find((item) => item.title === productDetail.category);
   const subcategory = category?.submenus.find(
-    (item) => item.title === product.subcategory
+    (item) => item.title === productDetail.subcategory
   );
 
   const specs = [
-    { key: "برند", value: product.brand },
-    { key: "جنس", value: product.material },
-    { key: "رنگ‌ها", value: product.colorsAvailable?.join(" / ") },
-    { key: "طرح", value: product.pattern },
-    { key: "رده سنی", value: product.ageRange },
-    { key: "جنسیت", value: product.gender },
-    { key: "توضیحات", value: product.description },
+    { key: "برند", value: productDetail.brand },
+    { key: "جنس", value: productDetail.material },
+    { key: "رنگ‌ها", value: productDetail.colorsAvailable?.join(" / ") },
+    { key: "طرح", value: productDetail.pattern },
+    { key: "رده سنی", value: productDetail.ageRange },
+    { key: "جنسیت", value: productDetail.gender },
+    { key: "توضیحات", value: productDetail.description },
   ].filter((item) => item.value);
 
   return (
-    <div className=' md:w-[90%] w-[98%] mx-auto p-4 font-sans'>
-      {/* Breadcrumb */}
+    <div className='md:w-[90%] w-[98%] mx-auto p-4 font-sans'>
       <ProductBreadCumb
         category={
           category
@@ -68,33 +102,31 @@ export default function ProductDetail({
             ? { subcategory: subcategory.subcategory, title: subcategory.title }
             : undefined
         }
-        product={{ name: product.name }}
+        product={{ name: productDetail.name }}
       />
 
       <div className='flex flex-col md:flex-row gap-6'>
-        {/* Images */}
-        <ProductImages images={product.imageUrl ?? []} />
-        <ProductInfo product={product} />
+        <ProductImages images={productDetail.imageUrl ?? []} />
+        <ProductInfo product={productDetail} />
       </div>
-      <div className=''>
-        <Slide products={suggestion.slice(0, 12)} special />
-      </div>
-      {/* Details */}
+
+      <Slide products={sameProduct.slice(0, 12)} special />
+
       <div className='relative'>
         <div className='flex gap-3'>
           <div className='md:w-[70%] w-full'>
             <ProductSpecs specs={specs} />
             <ReviewForm onSubmit={addReview} />
-
-            {product.reviews.map((item) => (
-              <Review key={item.id} review={item} />
-            ))}
+            {productDetail.reviews &&
+              productDetail.reviews.map((item, index) => (
+                <Review key={index} review={item} />
+              ))}
           </div>
           <div className='w-[30%] md:block hidden h-full sticky top-0 right-0 left-0'>
             <StickyCard
-              image={product.imageUrl[0]}
-              price={product.price}
-              title={product.name}
+              image={productDetail.imageUrl?.[0]}
+              price={productDetail.price}
+              title={productDetail.name}
             />
           </div>
         </div>

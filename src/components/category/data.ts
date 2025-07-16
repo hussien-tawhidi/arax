@@ -43,48 +43,7 @@ export const women = {
       subcategory: "bed",
     },
   ],
-  menu: [
-    {
-      id: 1,
-      title: "تیشرت و پولوشیرت",
-      image: "/images/category/women/t-shirt.png",
-    },
-    {
-      id: 3,
-      title: "شال و روسری",
-      image: "/images/category/women/shall.png",
-    },
-    {
-      id: 4,
-      title: "شومیز",
-      image: "/images/category/women/shomiz.png",
-    },
-    {
-      id: 5,
-      title: "شلوار",
-      image: "/images/category/women/pant.png",
-    },
-    {
-      id: 6,
-      title: "لباس زیر و راحتی",
-      image: "/images/category/women/bed.png",
-    },
-    {
-      id: 7,
-      title: "کفش",
-      image: "/images/category/women/shoes.png",
-    },
-    {
-      id: 8,
-      title: "کیف",
-      image: "/images/category/women/b.png",
-    },
-    {
-      id: 9,
-      title: "اکسسوریس",
-      image: "/images/category/women/ac.webp",
-    },
-  ],
+
   banners: [
     {
       imagelg: "/images/category/women/first-banner-lg.jpg",
@@ -159,44 +118,7 @@ export const men = {
       subcategory: "bed",
     },
   ],
-  menu: [
-    {
-      id: 1,
-      title: "تیشرت و پولوشیرت",
-      image: "/images/category/men/shirt.jpg",
-    },
-    {
-      id: 3,
-      title: "شلوار",
-      image: "/images/category/men/pants.jpg",
-    },
-    {
-      id: 4,
-      title: "لباس راحتی و زیر",
-      image: "/images/category/men/short.jpeg",
-    },
-    {
-      id: 5,
-      title: "کیف",
-      image: "/images/category/men/bag.jpg",
-    },
 
-    {
-      id: 7,
-      title: "کفش",
-      image: "/images/category/men/shoes.webp",
-    },
-    {
-      id: 8,
-      title: "کیف",
-      image: "/images/category/women/b.png",
-    },
-    {
-      id: 9,
-      title: "اکسسوریس",
-      image: "/images/category/men/glass.jpg",
-    },
-  ],
   banners: [
     {
       imagelg: "/images/category/men/first-banner-lg.jpg",
@@ -268,39 +190,7 @@ export const kid = {
       subcategory: "bed",
     },
   ],
-  menu: [
-    {
-      id: 1,
-      title: "لباس بچگانه",
-      image: "/images/category/kids/boy.webp",
-    },
-    {
-      id: 2,
-      title: "لباس دخترانه",
-      image: "/images/category/kids/girl.jpg",
-    },
-    {
-      id: 3,
-      title: "ست ",
-      image: "/images/category/kids/package.jpg",
-    },
-    {
-      id: 4,
-      title: "ملزومات",
-      image: "/images/category/kids/things.jpg",
-    },
 
-    {
-      id: 5,
-      title: "اسباب بازی",
-      image: "/images/category/kids/game.jpg",
-    },
-    {
-      id: 6,
-      title: "نوزاد",
-      image: "/images/category/kids/born.jpeg",
-    },
-  ],
   banners: [
     {
       imagelg: "/images/category/kids/second-banner-lg.webp",
@@ -376,44 +266,7 @@ export const beauty = {
       subcategory: "bed",
     },
   ],
-  menu: [
-    {
-      id: 1,
-      title: "لوازم ارایشی",
-      image: "/images/category/beauty/beauty.jpg",
-    },
-    {
-      id: 2,
-      title: "مراقبت از پوست",
-      image: "/images/category/beauty/skin-health.jpg",
-    },
-    {
-      id: 3,
-      title: "لوازم شخصی برقی",
-      image: "/images/category/beauty/personal.jpg",
-    },
-    {
-      id: 4,
-      title: "مراقبت از مو",
-      image: "/images/category/beauty/shampoo.jpg",
-    },
 
-    {
-      id: 5,
-      title: "عطر و ادکلن",
-      image: "/images/category/beauty/perfum.jpg",
-    },
-    {
-      id: 6,
-      title: "مکمل های غذایی",
-      image: "/images/category/beauty/food.jpg",
-    },
-    {
-      id: 7,
-      title: "بهداشت زناشویی",
-      image: "/images/category/beauty/couple.jpeg",
-    },
-  ],
   banners: [
     {
       imagelg: "/images/category/beauty/second-banner-lg.jpg",
@@ -486,34 +339,6 @@ export const applliance = {
       image: "/images/category/home-applliance/poster-4.jpg",
     },
   ],
-  menu: [
-    {
-      id: 1,
-      title: "آشپز خانه",
-      image: "/images/category/home-applliance/kitchen.webp",
-    },
-    {
-      id: 2,
-      title: "دیکوراتیو",
-      image: "/images/category/home-applliance/decore.jpg",
-    },
-    {
-      id: 3,
-      title: "سرو و غذا",
-      image: "/images/category/home-applliance/serve.jpg",
-    },
-    {
-      id: 4,
-      title: "خواب و حمام",
-      image: "/images/category/home-applliance/bed.jpg",
-    },
-
-    {
-      id: 5,
-      title: "برای حیوانات خانگی",
-      image: "/images/category/home-applliance/pet.webp",
-    },
-  ],
   banners: [
     {
       imagelg: "/images/category/home-applliance/second-banner-lg.jpg",
@@ -560,28 +385,6 @@ export const electronics = {
       id: 4,
       link: "/",
       image: "/images/category/electronic/poster-4.jpg",
-    },
-  ],
-  menu: [
-    {
-      id: 1,
-      title: "لوازم جانبی",
-      image: "/images/category/electronic/access.jpg",
-    },
-    {
-      id: 2,
-      title: "گوشی مبایل",
-      image: "/images/category/electronic/mobile.jpg",
-    },
-    {
-      id: 3,
-      title: "لپتاپ",
-      image: "/images/category/electronic/laptop.webp",
-    },
-    {
-      id: 4,
-      title: "ساعت هوشمند",
-      image: "/images/category/electronic/watch.jpg",
     },
   ],
   banners: [
@@ -700,38 +503,7 @@ export const supermarket = {
       image: "/images/category/supermaket/poster4.webp",
     },
   ],
-  menu: [
-    {
-      id: 1,
-      title: "کالاهای اساسی و خواروبار",
-      image: "/images/category/supermaket/rice.jpg",
-    },
-    {
-      id: 2,
-      title: "نوشیدنی گرم و سرد",
-      image: "/images/category/supermaket/drink.jpg",
-    },
-    {
-      id: 3,
-      title: "شیرینی و تنقلات",
-      image: "/images/category/supermaket/sweet.jpg",
-    },
-    {
-      id: 4,
-      title: "قهوه",
-      image: "/images/category/supermaket/coffee.jpg",
-    },
-    {
-      id: 5,
-      title: "کنسر اماده ",
-      image: "/images/category/supermaket/concer.webp",
-    },
-    {
-      id: 6,
-      title: "بهداشت و شستوشو",
-      image: "/images/category/supermaket/hand.jpg",
-    },
-  ],
+
   banners: [
     {
       imagelg: "/images/category/supermaket/first-banner-lg.jpg",
@@ -776,43 +548,7 @@ export const gifts = {
       image: "/images/category/gift/shal.webp",
     },
   ],
-  menu: [
-    {
-      id: 1,
-      title: "ست هدیه",
-      image: "/images/category/gift/set.webp",
-    },
-    {
-      id: 2,
-      title: "زیورآلات زنانه",
-      image: "/images/category/gift/jewelery.webp",
-    },
-    {
-      id: 3,
-      title: "ساعت",
-      image: "/images/category/gift/watch.webp",
-    },
-    {
-      id: 4,
-      title: "عینک",
-      image: "/images/category/gift/glass.webp",
-    },
-    {
-      id: 5,
-      title: "کیف",
-      image: "/images/category/gift/bag.webp",
-    },
-    {
-      id: 6,
-      title: "عطر و ادکلن",
-      image: "/images/category/gift/perfum.webp",
-    },
-    {
-      id: 7,
-      title: "جعبه کادویی",
-      image: "/images/category/gift/box.webp",
-    },
-  ],
+
   banners: [
     {
       imagelg: "/images/category/gift/first-banner-lg.webp",

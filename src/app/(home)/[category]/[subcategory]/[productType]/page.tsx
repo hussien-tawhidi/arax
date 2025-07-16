@@ -1,4 +1,4 @@
-import ProductType from "@/components/category/subcategory/product-type/ProductTypeData";
+import ProductTypeComp from "@/components/category/subcategory/product-type/ProductTypeData";
 import { menu } from "@/components/header/data";
 
 // Page component
@@ -6,7 +6,7 @@ export default async function ProductTypePage({
   params,
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 any) {
-  const { category, subcategory, productType } = params;
+  const { category, subcategory, productType } = await params;
 
   // Find category
   const categoryData = menu.find((item) => item.category === category);
@@ -27,7 +27,7 @@ any) {
   return (
     <div className='pb-10'>
       <div className='lg:w-[80%] w-[95%] mx-auto'>
-        <ProductType productType={productTypeData.title} />
+        <ProductTypeComp productType={productTypeData.title} />
       </div>
     </div>
   );

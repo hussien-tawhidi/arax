@@ -25,6 +25,7 @@ export default function ProductSpecs({ specs }: ProductSpecsProps) {
           ))}
         </tbody>
       </table>
+      
     </div>
   );
 }

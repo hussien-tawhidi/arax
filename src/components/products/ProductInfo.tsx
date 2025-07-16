@@ -21,7 +21,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
   const [size, setSize] = useState<string>("");
 
   return (
-    <div className='flex-1 flex flex-col space-y-4'>
+    <div className='flex-2/3 flex flex-col space-y-4'>
       {/* Title */}
       <h1 className='md:text-xl text-darker-black/70'>
         {product.name} کد محصول: {product.productCode}

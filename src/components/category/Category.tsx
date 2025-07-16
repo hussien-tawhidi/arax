@@ -1,7 +1,6 @@
 "use client";
 
 import HeroSlider from "../home/hero/HerosSlider";
-import Menu from "../home/menu/Menu";
 import Slide from "../home/special-offer/Slider";
 import BestOffs from "../home/BestOffs";
 import Banner from "./Banner";
@@ -23,6 +22,7 @@ import {
   sport,
   women,
 } from "./data";
+import CategoryMenu from "./CategoryMenu";
 
 interface brands {
   src: string;
@@ -50,6 +50,7 @@ export default function Category({ category }: { category: string }) {
   );
 
   const cate = menu.find((item) => item.category === category);
+  console.log("🚀 ~ Category ~ cate:", cate?.submenus);
 
   const products = productsData.filter((item) => item.category === cate?.title);
 
@@ -91,7 +92,22 @@ export default function Category({ category }: { category: string }) {
           دسته‌بندی {cate?.title}
         </h1>
         <HeroSlider data={currentData.hero} />
-        <Menu data={currentData.menu} />
+        {/* <Menu data={cate?.submenus} /> */}
+       <div className='lg:pt-32 pt-16 flex items-center justify-center'>
+      <ul className='hide-scrollbar w-full flex md:gap-16 gap-10 justify-center mx-auto overflow-x-auto whitespace-nowrap px-4'>
+
+          {cate?.submenus.map((item, i) => (
+            <CategoryMenu
+            key={i}
+            title={item.title}
+            image={item.image}
+            category={category}
+            subcategory={item.subcategory}
+            />
+          ))}
+          </ul>
+        </div>
+
         {/* most discount */}
         <Slide products={mostDiscount} discount />
         <BestOffs data={currentData.offs} />

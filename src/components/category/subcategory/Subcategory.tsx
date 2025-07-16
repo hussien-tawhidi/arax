@@ -8,16 +8,19 @@ import { usePathname } from "next/navigation";
 import { menu } from "@/components/header/data";
 import SubCategoryCard from "./SubCategoryCard";
 import { ProductType } from "../../../../types/productTypes";
+import SkeltonCard from "@/components/home/special-offer/SkeltonCard";
 export default function Subcategory({
   subcategory,
   subcategoryMenu,
   productsData,
   productType,
+  loading,
 }: {
   productType?: string;
   subcategory?: string;
   subcategoryMenu?: boolean;
-  productsData: ProductType[];
+  loading?: boolean;
+  productsData?: ProductType[];
 }) {
   // Sort option state
   const [sortOption, setSortOption] = useState<
@@ -43,66 +46,70 @@ export default function Subcategory({
   ]);
 
   // All filter options extracted from productsData (using Set to get unique values)
-  const allBrands = Array.from(new Set(productsData.map((p) => p.brand)));
+  const allBrands = Array.from(new Set(productsData?.map((p) => p.brand)));
   const allMaterials = Array.from(
-    new Set(productsData.map((p) => p.material))
+    new Set(productsData?.map((p) => p.material))
   ).filter(Boolean);
   const allAgeRanges = Array.from(
-    new Set(productsData.map((p) => p.ageRange))
+    new Set(productsData?.map((p) => p.ageRange))
   ).filter(Boolean);
 
   const allGenders = Array.from(
-    new Set(productsData.map((p) => p.gender))
+    new Set(productsData?.map((p) => p.gender))
   ).filter(Boolean);
-  const allTypes = Array.from(new Set(productsData.map((p) => p.type))).filter(
+  const allTypes = Array.from(new Set(productsData?.map((p) => p.type))).filter(
     Boolean
   );
   const allPatterns = Array.from(
-    new Set(productsData.map((p) => p.pattern))
+    new Set(productsData?.map((p) => p.pattern))
   ).filter(Boolean);
   const allSizes = Array.from(
-    new Set(productsData.flatMap((p) => p.sizesAvailable))
+    new Set(productsData?.flatMap((p) => p.sizesAvailable))
   ).filter(Boolean);
 
   // Filtering products by subcategory and all selected filters
-  const filteredProducts = productsData
-    .filter((item) => !onlyAvailable || item.stock > 0)
-    .filter(
-      (item) =>
-        selectedBrands.length === 0 || selectedBrands.includes(item.brand)
-    )
-    .filter(
-      (item) =>
-        selectedMaterials.length === 0 ||
-        selectedMaterials.includes(item.material)
-    )
-    .filter(
-      (item) =>
-        selectedAgeRanges.length === 0 ||
-        selectedAgeRanges.includes(item.ageRange)
-    )
-    .filter(
-      (item) =>
-        selectedGenders.length === 0 || selectedGenders.includes(item.gender)
-    )
-    .filter(
-      (item) => selectedTypes.length === 0 || selectedTypes.includes(item.type)
-    )
-    .filter(
-      (item) =>
-        selectedPatterns.length === 0 || selectedPatterns.includes(item.pattern)
-    )
-    .filter(
-      (item) =>
-        selectedSizes.length === 0 ||
-        item.sizesAvailable.some((size) => selectedSizes.includes(size))
-    )
-    .filter(
-      (item) => item.price >= priceRange[0] && item.price <= priceRange[1]
-    );
+  const filteredProducts =
+    productsData &&
+    productsData
+      .filter((item) => !onlyAvailable || item.stock > 0)
+      .filter(
+        (item) =>
+          selectedBrands.length === 0 || selectedBrands.includes(item.brand)
+      )
+      .filter(
+        (item) =>
+          selectedMaterials.length === 0 ||
+          selectedMaterials.includes(item.material)
+      )
+      .filter(
+        (item) =>
+          selectedAgeRanges.length === 0 ||
+          selectedAgeRanges.includes(item.ageRange)
+      )
+      .filter(
+        (item) =>
+          selectedGenders.length === 0 || selectedGenders.includes(item.gender)
+      )
+      .filter(
+        (item) =>
+          selectedTypes.length === 0 || selectedTypes.includes(item.type)
+      )
+      .filter(
+        (item) =>
+          selectedPatterns.length === 0 ||
+          selectedPatterns.includes(item.pattern)
+      )
+      .filter(
+        (item) =>
+          selectedSizes.length === 0 ||
+          item.sizesAvailable.some((size) => selectedSizes.includes(size))
+      )
+      .filter(
+        (item) => item.price >= priceRange[0] && item.price <= priceRange[1]
+      );
 
   // Sorting filtered products
-  filteredProducts.sort((a, b) => {
+  filteredProducts?.sort((a, b) => {
     switch (sortOption) {
       case "cheapest":
         return a.price - b.price;
@@ -142,7 +149,7 @@ export default function Subcategory({
           subCatefory={segments[1]}
         />
       )}
-      {filteredProducts.length === 0 ? (
+      {filteredProducts?.length === 0 ? (
         <div className='col-span-full flex flex-col items-center justify-center border border-darker-black/10 rounded-lg p-6 bg-light/50 text-darker-black/60'>
           <svg
             className='w-12 h-12 mb-3 text-red'
@@ -163,9 +170,9 @@ export default function Subcategory({
           <div className='loader'></div>
         </div>
       ) : (
-        <div className='flex flex-col md:flex-row gap-4 mt-10'>
-          <div className='w-full flex md:items-start z-30 items-center md:border-0 border-b border-darker-black/30 justify-between md:w-1/4 md:rounded md:p-4'>
-            {filteredProducts.length > 0 && (
+        <div className='flex flex-col md:flex-row gap-4 md:mt-10'>
+          <div className='w-full flex md:items-start mb-5 z-30 items-center md:border-0 border-b border-darker-black/30 justify-between md:w-1/4 md:rounded md:p-4'>
+            {filteredProducts && filteredProducts.length > 0 && (
               <FilterPanel
                 onlyAvailable={onlyAvailable}
                 setOnlyAvailable={setOnlyAvailable}
@@ -209,17 +216,19 @@ export default function Subcategory({
                 setSortOption={setSortOption}
               />
             </div>
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-              {filteredProducts.map((item) => (
-                <SubCategoryCard
-                  key={item.productCode}
-                  productCode={item.productCode}
-                  discount={item.discount}
-                  image={item.imageUrl} // فقط اولین تصویر
-                  title={item.name}
-                  price={item.price}
-                />
-              ))}
+            <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4'>
+              {loading
+                ? Array.from({ length: 8 }).map((_, i) => <SkeltonCard key={i}/>)
+                : filteredProducts?.map((item) => (
+                    <SubCategoryCard
+                      key={item.productCode}
+                      productCode={item.productCode}
+                      discount={item.discount}
+                      image={item.imageUrl}
+                      title={item.name}
+                      price={item.price}
+                    />
+                  ))}
             </div>
           </div>
         </div>

@@ -1,44 +1,71 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import SearchForm from "./SearchForm";
-import SearchSuggestion from "./SearchSuggestion";
+import { ProductResult, SearchProps } from "./types";
+import SearchModal from "./SearchModal";
+import { useRouter } from "next/navigation";
 
-export default function Search({ onClose }: { onClose: () => void }) {
+export default function Search({ onClose }: SearchProps) {
   const [query, setQuery] = useState("");
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
-  const [results, setResults] = useState<string[]>([]);
+  const [results, setResults] = useState<ProductResult[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
-  // Load recent searches from localStorage
-  useEffect(() => {
-    const saved = localStorage.getItem("recentSearches");
-    if (saved) setRecentSearches(JSON.parse(saved));
-  }, []);
+  const router = useRouter();
 
-  const saveToRecentSearches = (term: string) => {
-    const updated = [term, ...recentSearches.filter((q) => q !== term)].slice(
-      0,
-      5
-    );
-    localStorage.setItem("recentSearches", JSON.stringify(updated));
-    setRecentSearches(updated);
+  // Fetch from your real Mongo-powered API
+  const fetchResults = async (term: string, pageNum = 1) => {
+    if (pageNum === 1) {
+      setResults([]);
+      setHasMore(true);
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(
+        `/api/search?query=${encodeURIComponent(term)}&page=${pageNum}&limit=10`
+      );
+      if (!res.ok) throw new Error("Server error");
+
+      const data = await res.json();
+      if (pageNum === 1) {
+        setResults(data.results);
+      } else {
+        setResults((prev) => [...prev, ...data.results]);
+      }
+
+      setHasMore(data.results.length > 0);
+    } catch (err) {
+      console.error(err);
+      setError("محصول دریافت نشد لطفا دوباره تلاش کنید");
+      if (pageNum === 1) setResults([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  // Load recent searches
   useEffect(() => {
-    if (query.trim()) {
-      setResults([
-        `${query} محصول ۱`,
-        `${query} محصول ۲`,
-        `${query} برند معروف`,
-        `دسته بندی ${query}`,
-      ]);
-    } else {
-      setResults([]);
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("recentSearches");
+      if (saved) setRecentSearches(JSON.parse(saved));
     }
-  }, [query]);
+  }, []);
 
+  // Lock body scroll
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  // Close on outside click
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (formRef.current && !formRef.current.contains(e.target as Node)) {
@@ -49,96 +76,67 @@ export default function Search({ onClose }: { onClose: () => void }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  const handleSelectResult = (term: string) => {
-    saveToRecentSearches(term);
-    console.log("Selected:", term);
-    onClose();
+  // Save recent searches
+  const saveToRecentSearches = (term: string) => {
+    setRecentSearches((prev) => {
+      const updated = [term, ...prev.filter((q) => q !== term)].slice(0, 5);
+      localStorage.setItem("recentSearches", JSON.stringify(updated));
+      return updated;
+    });
   };
 
+  // search
+  useEffect(() => {
+    if (!query.trim()) {
+      setResults([]);
+      return;
+    }
+
+    const handler = setTimeout(() => {
+      setPage(1);
+      fetchResults(query, 1);
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [query]);
+
+  const groupedByCategory = results.reduce<Record<string, ProductResult[]>>(
+    (acc, product) => {
+      if (!acc[product.category]) {
+        acc[product.category] = [];
+      }
+      acc[product.category].push(product);
+      return acc;
+    },
+    {}
+  );
+  const handleSearchSubmit = (val: string) => {
+    saveToRecentSearches(val);
+    router.push(`/search?query=${encodeURIComponent(val)}`);
+    onClose();
+  };
   return (
-    <AnimatePresence>
-      <motion.div
-        className='fixed sm:inset-0 top-0 w-screen h-screen bg-darker-black/50 z-50 flex sm:items-center items-start justify-center'
-        onClick={onClose}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}>
-        <motion.div
-          onClick={(e) => e.stopPropagation()}
-          ref={formRef}
-          className='md:w-[50%] sm:w-[90%] w-full bg-light sm:mt-0 pt-5 sm:rounded-xl md:p-10 sm:p-5 p-2'
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
-          transition={{ duration: 0.3 }}>
-          <SearchForm
-            query={query}
-            setQuery={setQuery}
-            onSubmit={(val) => {
-              saveToRecentSearches(val);
-              console.log("Search submitted:", val);
-              onClose();
-            }}
-            onClose={onClose}
-          />
-
-          {/* Results */}
-          <motion.div
-            className='mt-4 space-y-2'
-            initial='hidden'
-            animate='visible'
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.1,
-                  delayChildren: 0.2,
-                },
-              },
-            }}>
-            {results.map((item, i) => (
-              <motion.button
-                key={i}
-                onClick={() => handleSelectResult(item)}
-                className='block w-full text-right px-4 py-2 bg-darker-black/10 hover:bg-darker-black/20 rounded transition'
-                variants={{
-                  hidden: { opacity: 0, y: 10 },
-                  visible: { opacity: 1, y: 0 },
-                }}>
-                {item}
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Recent Searches */}
-          {recentSearches.length > 0 && (
-            <motion.div
-              className='mt-6'
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}>
-              <p className='text-darker-black/60 mb-2'>جستجوهای اخیر:</p>
-              <div className='flex flex-wrap gap-2'>
-                {recentSearches.map((item, i) => (
-                  <motion.button
-                    key={i}
-                    onClick={() => setQuery(item)}
-                    className='bg-darker-black/10 hover:bg-darker-black/20 text-darker-black/80 px-3 py-1 rounded-full text-sm transition'
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + i * 0.1 }}>
-                    {item}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-
-          <SearchSuggestion />
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+    <SearchModal
+      query={query}
+      setQuery={setQuery}
+      recentSearches={recentSearches}
+      results={results}
+      groupedByCategory={groupedByCategory}
+      loading={loading}
+      error={error}
+      hasMore={hasMore}
+      page={page}
+      onClose={onClose}
+      onSubmit={handleSearchSubmit}
+      onSelectResult={(term) => {
+        saveToRecentSearches(term);
+        onClose();
+      }}
+      onLoadMore={(nextPage) => {
+        setPage(nextPage);
+        fetchResults(query, nextPage);
+      }}
+      formRef={formRef}
+    />
   );
 }

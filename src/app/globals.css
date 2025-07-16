@@ -47,3 +47,15 @@ body {
 .slick-dots li.slick-active div {
   @apply bg-light w-6 h-1.5 border border-light;
 }
+/* for search result srcoll UI */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 3px;
+}

@@ -13,7 +13,7 @@ export default function ProductImages({ images }: ProductImagesProps) {
   );
 
   return (
-    <div className='flex-1'>
+    <div className='flex-1/2'>
       {/* Main Image */}
       <div className='rounded'>
         <Image

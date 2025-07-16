@@ -1,30 +1,44 @@
 import mongoose, { Schema, Document, model, models } from "mongoose";
-
-const imageSchema = new mongoose.Schema({
-  url: { type: String, required: true },
-  public_id: { type: String, required: true },
-});
+import { IReview } from "./productReview";
 
 export interface IProduct extends Document {
   name: string;
   description: string;
-  sku: string;
+  sku?: string;
   price: number;
   category: string;
-  subcategories: string;
+  subcategory: string;
+  type: string;
+  productCode: string;
+  ageRange?: string;
+  gender?: string;
+  pattern?: string;
   stock: number;
-  images: { public_id: string; url: string }[];
-  brand: string;
+  views?: number;
+  imageUrl: string[];
+  brand?: string;
+  material?: string;
   discount?: number;
-  ratings: number;
-  numReviews: number;
-  isFeatured: boolean;
-  color?: string[];
-  size?: string[];
+  ratings?: number;
+  sales?: number;
+  numReviews?: number;
+  colorsAvailable?: string[];
+  sizesAvailable?: string[];
   weight?: number;
   dimensions?: { width: number; height: number; depth: number };
   warranty?: string;
+  reviews?: IReview[];
 }
+const reviewSchema = new mongoose.Schema(
+  {
+    username: { type: String, required: true },
+    profileImage: { type: String },
+    rating: { type: Number, required: true, min: 0, max: 5 },
+    comment: { type: String, required: true },
+    date: { type: Date, default: Date.now },
+  },
+  { _id: true }
+);
 
 const ProductSchema = new Schema<IProduct>(
   {
@@ -40,6 +54,14 @@ const ProductSchema = new Schema<IProduct>(
       required: true,
       trim: true,
     },
+    material: {
+      type: String,
+      trim: true,
+    },
+    pattern: {
+      type: String,
+      trim: true,
+    },
     price: {
       type: Number,
       required: true,
@@ -51,9 +73,17 @@ const ProductSchema = new Schema<IProduct>(
       required: true,
       trim: true,
     },
-    subcategories: {
+    subcategory: {
       type: String,
       required: true,
+      trim: true,
+    },
+    type: {
+      type: String,
+      trim: true,
+    },
+    productCode: {
+      type: String,
       trim: true,
     },
     stock: {
@@ -61,20 +91,38 @@ const ProductSchema = new Schema<IProduct>(
       required: true,
       min: 0,
     },
-    images: [imageSchema],
-
+    imageUrl: {
+      type: [String],
+    },
     brand: {
       type: String,
-      required: true,
+      default: "اراکس",
+    },
+    ageRange: {
+      type: String,
+      default: "همه",
+    },
+    gender: {
+      type: String,
+      default: "همه",
     },
     sku: {
       type: String,
-      required: true,
     },
     discount: {
       type: Number,
       min: 0,
       max: 100,
+      default: 0,
+    },
+    views: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
+    sales: {
+      type: Number,
+      min: 0,
       default: 0,
     },
     ratings: {
@@ -87,17 +135,11 @@ const ProductSchema = new Schema<IProduct>(
       type: Number,
       default: 0,
     },
-    isFeatured: {
-      type: Boolean,
-      default: false,
+    colorsAvailable: {
+      type: [String],
+      default: [],
     },
-    color: [
-      {
-        name: { type: String, required: true, trim: true },
-        hex: { type: String, required: true, trim: true },
-      },
-    ],
-    size: {
+    sizesAvailable: {
       type: [String], // Example: ["S", "M", "L", "XL"]
       default: [],
     },
@@ -112,12 +154,18 @@ const ProductSchema = new Schema<IProduct>(
     warranty: {
       type: String, // Example: "1 year"
     },
+    reviews: [reviewSchema],
   },
   { timestamps: true }
 );
 
 // 🔹 Indexing for search performance
-ProductSchema.index({ name: "text", category: "text", brand: "text" });
+ProductSchema.index({
+  name: "text",
+  category: "text",
+  brand: "text",
+  type: "text",
+});
 
 const Product = models.Product || model<IProduct>("Product", ProductSchema);
 export default Product;

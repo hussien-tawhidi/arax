@@ -1,21 +1,17 @@
-import {  CiGift, CiShoppingBasket } from "react-icons/ci";
-import { FaMapMarkedAlt } from "react-icons/fa";
-import { FaSprayCanSparkles } from "react-icons/fa6";
-import { LiaChildSolid } from "react-icons/lia";
-import { LuTvMinimal } from "react-icons/lu";
-import { PiDressThin, PiLampLight, PiShirtFolded } from "react-icons/pi";
-
 export const menu = [
   // women
   {
     title: "زنانه",
-    icon: PiDressThin,
+    icon: "PiDressThin",
     category: "women",
     image: "/images/home-menu/cloth.jpg",
     submenus: [
+      // clothes
       {
         title: "لباس زنانه",
         subcategory: "women-clothes",
+        image: "/images/category/women/pant.png",
+
         items: [
           {
             title: "شلوار جین",
@@ -104,9 +100,11 @@ export const menu = [
           },
         ],
       },
+      // bed and relax
       {
         title: "لباس زیر و راحتی",
         subcategory: "underwear",
+        image: "/images/category/women/bed.png",
         items: [
           {
             title: "سوتین",
@@ -145,8 +143,10 @@ export const menu = [
           },
         ],
       },
+      // shoes
       {
         title: "کفش زنانه",
+        image: "/images/category/women/shoes.png",
         subcategory: "shoes",
         items: [
           {
@@ -191,8 +191,10 @@ export const menu = [
           },
         ],
       },
+      // bag
       {
         title: "کیف زنانه",
+        image: "/images/category/women/b.png",
         subcategory: "bag",
         items: [
           {
@@ -227,8 +229,10 @@ export const menu = [
           },
         ],
       },
+      // accessories
       {
         title: "اکسسوری زنانه",
+        image: "/images/category/women/ac.webp",
         subcategory: "accessories",
         items: [
           {
@@ -274,68 +278,82 @@ export const menu = [
   {
     title: "مردانه",
     category: "men",
-    icon: PiShirtFolded,
+    icon: "PiShirtFolded",
     image: "/images/home-menu/men.jpg",
     submenus: [
+      // clothes
       {
         title: "پوشاک مردانه",
+        image: "/images/category/men/pants.jpg",
         subcategory: "men-clothes",
         items: [
+          // shirt
           {
             title: "پیراهن مردانه",
             image: "/images/menu/men/clothes/shirt.png",
             productType: "shirt",
           },
+          // t-short and polo shirt
           {
             title: "تیشرت و پولوشرت",
             image: "/images/menu/men/clothes/t-shirt.png",
             productType: "tshirt-polo",
           },
+          // hody
           {
             title: "هودی و سویشرت",
             image: "/images/menu/men/clothes/hodi.png",
             productType: "hoodie-sweatshirt",
           },
+          // sweater-knit
           {
             title: "پلیور مردانه",
             image: "/images/menu/men/clothes/p.png",
             productType: "sweater-knit",
           },
+          // jacket-vest
           {
             title: "کت و جلیقه",
             image: "/images/menu/men/clothes/coat.png",
             productType: "jacket-vest",
           },
+          // coat
           {
             title: "کاپشن و پالتو و بارانی",
             image: "/images/menu/men/clothes/caption.png",
             productType: "coat",
           },
+          // pants
           {
             title: "شلوار مردانه",
             image: "/images/menu/men/clothes/pant.png",
             productType: "pants",
           },
+          // jean-pant
           {
             title: "شلوار جین مردانه",
             image: "/images/menu/men/clothes/jean.png",
             productType: "jeans",
           },
+          // shalwarek
           {
             title: "شلوارک مردانه",
             image: "/images/menu/men/clothes/shalwarek.png",
             productType: "shorts",
           },
+          // underwear
           {
             title: "لباس زیر مردانه",
             image: "/images/menu/men/clothes/short.png",
             productType: "underwear",
           },
+          // bed and relax clothes
           {
             title: "لباس راحتی مردانه",
             image: "/images/menu/men/clothes/bed.png",
             productType: "lounge",
           },
+          // cloth set
           {
             title: "ست لباس مردانه",
             image: "/images/menu/men/clothes/set.png",
@@ -343,8 +361,10 @@ export const menu = [
           },
         ],
       },
+      // shoes
       {
         title: "کفش مردانه",
+        image: "/images/category/men/shoes.webp",
         subcategory: "shoes",
         items: [
           {
@@ -399,8 +419,10 @@ export const menu = [
           },
         ],
       },
+      // bag
       {
         title: "کیف مردانه",
+        image: "/images/category/men/bag.jpg",
         subcategory: "bag",
         items: [
           {
@@ -440,8 +462,10 @@ export const menu = [
           },
         ],
       },
+      // accessories
       {
         title: "اکسسوری مردانه",
+        image: "/images/category/men/glass.jpg",
         subcategory: "accessories",
         items: [
           {
@@ -486,8 +510,10 @@ export const menu = [
           },
         ],
       },
+      // sport
       {
         title: "ورزش و اسپورت",
+        image: "/images/category/men/short.jpeg",
         subcategory: "sport",
         items: [
           {
@@ -559,11 +585,13 @@ export const menu = [
   {
     title: "بچگانه",
     category: "kid",
-    icon: LiaChildSolid,
+    icon: "LiaChildSolid",
     image: "/images/home-menu/kid.jpg",
     submenus: [
+      // girl
       {
         title: "دخترانه",
+        image: "/images/category/kids/girl.jpg",
         subcategory: "girl",
         items: [
           {
@@ -623,8 +651,10 @@ export const menu = [
           },
         ],
       },
+      // boy
       {
         title: "پسرانه",
+        image: "/images/category/kids/boy.webp",
         subcategory: "boy",
         items: [
           {
@@ -674,8 +704,10 @@ export const menu = [
           },
         ],
       },
+      // newborn
       {
         title: "نوزاد",
+        image: "/images/category/kids/born.jpeg",
         subcategory: "new-born",
         items: [
           {
@@ -700,8 +732,10 @@ export const menu = [
           },
         ],
       },
+      // kids needed
       {
         title: "ملزومات کودک",
+        image: "/images/category/kids/things.jpg",
         subcategory: "kid-accessories",
         items: [
           {
@@ -726,8 +760,10 @@ export const menu = [
           },
         ],
       },
+      // game and entertianment
       {
         title: "بازی و سرگرمی",
+        image: "/images/category/kids/game.jpg",
         subcategory: "games",
         items: [
           {
@@ -763,12 +799,14 @@ export const menu = [
   {
     title: "آرایشی و بهداشتی",
     category: "beauty",
-    icon: FaSprayCanSparkles,
+    icon: "FaSprayCanSparkles",
     image: "/images/home-menu/beauty.jpg",
     submenus: [
+      // face beauty
       {
         title: "آرایش صورت",
         subcategory: "beautician",
+        image: "/images/menu/beauty/face/bbcream.png",
         items: [
           {
             title: "کرم پودر",
@@ -822,8 +860,10 @@ export const menu = [
           },
         ],
       },
+      // eye beauty
       {
         title: "آرایش چشم",
+        image: "/images/menu/beauty/eye-beauty/re.png",
         subcategory: "eye",
         items: [
           {
@@ -868,8 +908,10 @@ export const menu = [
           },
         ],
       },
+      // lip beauty
       {
         title: "آرایش لب",
+        image: "/images/menu/beauty/lips-beauty/t.png",
         subcategory: "lips",
         items: [
           {
@@ -904,7 +946,9 @@ export const menu = [
           },
         ],
       },
+      // finger beauty
       {
+        image: "/images/menu/beauty/finger/l.png",
         title: "آرایش ناخن",
         subcategory: "ankles",
         items: [
@@ -920,7 +964,9 @@ export const menu = [
           },
         ],
       },
+      // beauty things
       {
+        image: "/images/category/beauty/beauty.jpg",
         title: "ابزار و لوازم آرایشی",
         subcategory: "beauty-accessories",
         items: [
@@ -946,8 +992,10 @@ export const menu = [
           },
         ],
       },
+      // skin care
       {
         title: "مراقبت پوست",
+        image: "/images/category/beauty/skin-health.jpg",
         subcategory: "skin-care",
         items: [
           {
@@ -987,8 +1035,10 @@ export const menu = [
           },
         ],
       },
+      // heair care
       {
         title: "مراقبت مو",
+        image: "/images/category/beauty/shampoo.jpg",
         subcategory: "hair-care",
         items: [
           {
@@ -1013,8 +1063,10 @@ export const menu = [
           },
         ],
       },
+      // body and health care
       {
         title: "بهداشت و مراقبت بدن",
+        image: "/images/category/beauty/couple.jpeg",
         subcategory: "body-care",
         items: [
           {
@@ -1034,8 +1086,10 @@ export const menu = [
           },
         ],
       },
+      // personal care
       {
         title: "بهداشت شخصی",
+        image: "/images/category/beauty/personal.jpg",
         subcategory: "personal-care",
         items: [
           {
@@ -1062,10 +1116,12 @@ export const menu = [
     title: "لوازم خانه",
     category: "applliance",
     image: "/images/home-menu/applliance.jpg",
-    icon: PiLampLight,
+    icon: "PiLampLight",
     submenus: [
+      // home  applliance
       {
         title: "لوازم خانگی برقی",
+        image: "/images/menu/home-applliance/electronic/cooler.png",
         subcategory: "home-applliance",
         items: [
           {
@@ -1160,8 +1216,10 @@ export const menu = [
           },
         ],
       },
+      // kitchen
       {
         title: "آشپزخانه و سرو",
+        image: "/images/menu/home-applliance/kitchen/dish.png",
         subcategory: "kitchen",
         items: [
           {
@@ -1197,9 +1255,11 @@ export const menu = [
           },
         ],
       },
+      // decoretive
       {
         title: "دکوراتیو و مبلمان",
         subcategory: "decoretives",
+        image: "/images/menu/home-applliance/furniture-and-decore/king.png",
         items: [
           {
             title: "مبلمان راحتی",
@@ -1241,7 +1301,9 @@ export const menu = [
           },
         ],
       },
+      // bed and bath
       {
+        image: "/images/menu/home-applliance/bed/h.png",
         title: "خواب و حمام",
         subcategory: "bed-and-bath",
         items: [
@@ -1272,8 +1334,10 @@ export const menu = [
           },
         ],
       },
+      // home keeper
       {
         title: "ابزارآلات و خانه‌داری",
+        image: "/images/menu/home-applliance/things/d.png",
         subcategory: "home-things",
         items: [
           {
@@ -1300,10 +1364,12 @@ export const menu = [
     title: "الکترونیک",
     category: "electronics",
     image: "/images/home-menu/tech.jpg",
-    icon: LuTvMinimal,
+    icon: "LuTvMinimal",
     submenus: [
+      // accessories
       {
         title: "لوازم دیجیتال و جانبی",
+        image: "/images/category/electronic/access.jpg",
         subcategory: "accessories",
         items: [
           {
@@ -1353,7 +1419,9 @@ export const menu = [
           },
         ],
       },
+      // phone
       {
+        image: "/images/category/electronic/mobile.jpg",
         subcategory: "smart-phones",
         title: "گوشی موبایل",
         items: [
@@ -1409,8 +1477,10 @@ export const menu = [
           },
         ],
       },
+      // laptop and tablet
       {
         title: "لپ‌تاپ و تبلت",
+        image: "/images/category/electronic/laptop.webp",
         subcategory: "laptops-and-tablets",
         items: [
           {
@@ -1425,7 +1495,9 @@ export const menu = [
           },
         ],
       },
+      // console game
       {
+        image: "/images/menu/degital/console/console.png",
         title: "کنسول و بازی",
         subcategory: "consoles",
         items: [
@@ -1446,8 +1518,10 @@ export const menu = [
           },
         ],
       },
+      // smart watches
       {
         title: "ساعت و مچ‌بند هوشمند",
+        image: "/images/category/electronic/watch.jpg",
         subcategory: "watches",
         items: [
           {
@@ -1462,7 +1536,9 @@ export const menu = [
           },
         ],
       },
+      // media
       {
+        image: "/images/menu/degital/media/monitor.png",
         title: "صوتی و تصویری",
         subcategory: "medias",
         items: [
@@ -1490,10 +1566,12 @@ export const menu = [
     title: "سفر و ورزش",
     category: "sport",
     image: "/images/home-menu/trape.jpg",
-    icon: FaMapMarkedAlt,
+    icon: "FaMapMarkedAlt",
     submenus: [
       {
         title: "پوشاک و کفش ورزشی",
+        image: "/images/category/sport/women.webp",
+
         subcategory: "clothes-shoes",
         items: [
           {
@@ -1565,6 +1643,7 @@ export const menu = [
       },
       {
         title: "لوازم ورزش",
+        image: "/images/category/sport/access.webp",
         subcategory: "things",
         items: [
           {
@@ -1596,9 +1675,11 @@ export const menu = [
     title: "سوپرمارکت",
     category: "supermarket",
     image: "/images/home-menu/supermarket.jpg",
-    icon: CiShoppingBasket,
+    icon: "CiShoppingBasket",
     submenus: [
+      // basic
       {
+        image: "/images/category/supermaket/rice.jpg",
         title: "کالاهای اساسی و خواربار",
         subcategory: "base-products",
         items: [
@@ -1654,8 +1735,10 @@ export const menu = [
           },
         ],
       },
+      // drinking
       {
         title: "نوشیدنی‌ها و تنقلات",
+        image: "/images/category/supermaket/drink.jpg",
         subcategory: "drinking",
         items: [
           {
@@ -1725,7 +1808,9 @@ export const menu = [
           },
         ],
       },
+      // diary
       {
+        image: "/images/menu/supermarket/protin/milk.png",
         title: "لبنیات و پروتئینی",
         subcategory: "dairy",
         items: [
@@ -1796,8 +1881,10 @@ export const menu = [
           },
         ],
       },
+      // cleaner
       {
         title: "بهداشت و شوینده",
+        image: "/images/category/supermaket/hand.jpg",
         subcategory: "cleaners",
         items: [
           {
@@ -1837,7 +1924,9 @@ export const menu = [
           },
         ],
       },
+      // for kids
       {
+        image: "/images/menu/supermarket/kid-needed/s.png",
         title: "ملزومات خوردنی کودک",
         subcategory: "kids-accessories",
         items: [
@@ -1858,7 +1947,9 @@ export const menu = [
           },
         ],
       },
+      // others
       {
+        image: "/images/category/supermaket/coffee.jpg",
         title: "سایر",
         subcategory: "othes",
         items: [
@@ -1879,8 +1970,9 @@ export const menu = [
   // gifts
   {
     title: "هدیه",
+    image: "/images/home-menu/gift.webp",
     category: "gifts",
-    icon: CiGift,
+    icon: "CiGift",
     submenus: [],
   },
 ];

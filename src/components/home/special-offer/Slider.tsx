@@ -5,24 +5,18 @@ import Slider from "react-slick";
 import { toPersianDigits } from "@/utils/priceConverter";
 import { useRouter } from "next/navigation";
 import { ProductType } from "../../../../types/productTypes";
-
-// interface Product {
-//   name: string;
-//   imageUrl: string[];
-//   price: number;
-//   discount: number;
-// }
-
+import SkeltonCard from "./SkeltonCard";
 interface Props {
-  products: ProductType[];
+  products?: ProductType[];
   imageBg?: string;
   banner?: string;
   bg?: string;
   discount?: boolean;
   special?: boolean;
+  loading?: boolean;
 }
 
-function Slide({ products, imageBg, banner, bg, discount, special }: Props) {
+function Slide({ products, imageBg, banner, bg, discount, special,loading }: Props) {
   const router = useRouter();
 
   const settings = {
@@ -67,11 +61,22 @@ function Slide({ products, imageBg, banner, bg, discount, special }: Props) {
       },
     ],
   };
-
+  if (loading) {
+    return (
+      <div className={`relative py-5 rounded-xl ${bg}`}>
+        <Slider {...settings}>
+          {Array.from({ length: 6 }).map((_, idx) => (
+            <SkeltonCard key={idx} />
+          ))}
+        </Slider>
+      </div>
+    );
+  }
+  
   return (
     <div className={`relative py-5 rounded-xl ${bg}`}>
       <Slider {...settings}>
-        {products.map((item, index) => {
+        {products?.map((item, index) => {
           const discountAmount = (item.price * item.discount) / 100;
           const finalPrice = item.price - discountAmount;
 

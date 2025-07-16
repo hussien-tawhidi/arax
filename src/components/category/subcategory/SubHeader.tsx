@@ -27,10 +27,9 @@ export default function SubHeader({
     slidesToScroll: 3,
     responsive: [
       { breakpoint: 1280, settings: { slidesToShow: 10 } },
-      { breakpoint: 1024, settings: { slidesToShow: 8 } },
-      { breakpoint: 768, settings: { slidesToShow: 5 } },
-      { breakpoint: 500, settings: { slidesToShow: 4 } },
-      { breakpoint: 400, settings: { slidesToShow: 3 } },
+      { breakpoint: 1024, settings: { slidesToShow: 5 } },
+      { breakpoint: 768, settings: { slidesToShow: 3 } },
+      { breakpoint: 400, settings: { slidesToShow: 2 } },
     ],
   };
   const router = useRouter();
@@ -40,19 +39,18 @@ export default function SubHeader({
       <Slider {...settings}>
         {header?.items.map((item, index) => (
           <div key={index} className='px-1 p-8 h-full'>
-            <div
-              className='shadow-xl text-darker-black/80 py-1 rounded-lg h-[15vh]'
-              onClick={() =>
-                router.push(`/${category}/${subCatefory}/${item.productType}`)
-              }>
+            <div className='shadow-xl text-darker-black/80 py-1 rounded-lg overflow-hidden'>
               <Image
                 src={item.image}
                 alt={item.title}
                 width={60}
+                onClick={() =>
+                  router.push(`/${category}/${subCatefory}/${item.productType}`)
+                }
                 height={60}
-                className='object-cover w-14 h-14 mx-auto border'
+                className='object-cover w-full h-[16vh] mx-auto border bg-pink-300'
               />
-              <p className='font-medium sm:text-[12px] text-[10px] pb-2 text-center'>
+              <p className='font-medium text-nowrap sm:text-[12px] text-[10px] pb-2 text-center'>
                 {item.title}
               </p>
             </div>

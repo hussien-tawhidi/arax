@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import Subcategory from "./Subcategory";
-import { productsData } from "@/products";
+import { ProductType } from "../../../../types/productTypes";
+import axios from "axios";
 
 export default function SubCategoryData({
   subcategory,
@@ -8,13 +11,33 @@ export default function SubCategoryData({
 }: {
   subcategory?: string;
   subcategoryMenu: boolean;
-  }) {
-  const data = productsData.filter((item) => item.subcategory === subcategory);
+}) {
+  const [data, setData] = useState<ProductType[]>();
+  const [loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get("/api/products");
+
+        setData(
+          data.filter((item: ProductType) => item.subcategory === subcategory)
+        );
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProductDetails();
+  }, [subcategory]);
+
   return (
     <Subcategory
       subcategory={subcategory}
       productsData={data}
       subcategoryMenu={subcategoryMenu}
+      loading={loading}
     />
   );
 }

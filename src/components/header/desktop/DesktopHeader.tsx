@@ -5,7 +5,25 @@ import { menu } from "../data";
 import { AnimatePresence, motion } from "framer-motion";
 import Submenu from "../menus/SubMenu";
 import { useRouter } from "next/navigation";
+import { CiGift, CiShoppingBasket } from "react-icons/ci";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { FaSprayCanSparkles } from "react-icons/fa6";
+import { LiaChildSolid } from "react-icons/lia";
+import { LuTvMinimal } from "react-icons/lu";
+import { PiDressThin, PiLampLight, PiShirtFolded } from "react-icons/pi";
 
+const iconMap = {
+  PiDressThin: <PiDressThin />,
+  PiShirtFolded: <PiShirtFolded />,
+  LiaChildSolid: <LiaChildSolid />,
+  FaSprayCanSparkles: <FaSprayCanSparkles />,
+  PiLampLight: <PiLampLight />,
+  LuTvMinimal: <LuTvMinimal />,
+  FaMapMarkedAlt: <FaMapMarkedAlt />,
+  CiShoppingBasket: <CiShoppingBasket />,
+  CiGift: <CiGift />,
+}as const;
+type IconKeys = keyof typeof iconMap;
 export default function DesktopHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -33,12 +51,12 @@ export default function DesktopHeader() {
     <nav className='relative z-40' aria-label='Primary navigation'>
       {/* Desktop Menu */}
       <ul
-        className='hidden md:flex text-sm font-medium justify-center mx-auto py-5'
+        className='hidden md:flex text-sm whitespace-nowrap overflow-hidden font-medium justify-center mx-auto py-5'
         onMouseLeave={handleMouseLeave}>
         {menu.map((m, i) => (
           <li
             key={i}
-            className=' cursor-pointer lg:px-3 px-2'
+            className=' cursor-pointer lg:px-3 px-1'
             onMouseEnter={() => handleMouseEnter(i)}
             onFocus={() => setOpenIndex(i)}
             onBlur={() => setOpenIndex(null)}
@@ -52,7 +70,7 @@ export default function DesktopHeader() {
               className={`hover:text-primary  text-[16px] flex gap-1 items-center transition-colors ${
                 openIndex === i ? "text-darker-black" : "text-darker-black/60"
               }`}>
-              {m.icon && <m.icon className='lg:flex hidden' />}
+              {iconMap[m.icon as IconKeys] ?? null}
               {m.title}
             </span>
 

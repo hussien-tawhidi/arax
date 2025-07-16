@@ -12,6 +12,8 @@ export default function TopHeader() {
   const [search, setSearch] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
+  
   // Close search on outside click
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -45,7 +47,7 @@ export default function TopHeader() {
           <button
             aria-label='جستجو'
             onClick={() => setSearch((prev) => !prev)}
-            className='p-2 rounded border border-darker-black/50 transition hover:scale-105 active:scale-95 focus:outline-none'>
+            className='p-2 rounded border border-darker-black/20 transition hover:scale-105 active:scale-95 focus:outline-none'>
             <CiSearch className='md:text-2xl sm:text-xl text-darker-black/80' />
           </button>
         </div>
@@ -59,7 +61,7 @@ export default function TopHeader() {
           </button>
 
           <button
-            className='border border-darker-black/50 text-darker-black/80 px-4 py-1 rounded transition hover:scale-105 active:scale-95'
+            className=' text-darker-black/80 px-4 py-1 rounded transition hover:scale-105 active:scale-95'
             aria-label='ورود یا ثبت‌نام'>
             ورود / ثبت نام
           </button>
