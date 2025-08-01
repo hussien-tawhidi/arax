@@ -15,7 +15,7 @@ export default function UpdateProduct({ id }: { id: string }) {
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState<File | string | null>(null);
+  const [image, setImage] = useState<File  | null>(null);
   const [categoryId, setCategoryId] = useState("");
   const [categories, setCategories] = useState<any[]>([]);
 
