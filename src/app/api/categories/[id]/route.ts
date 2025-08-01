@@ -74,7 +74,8 @@ export async function PUT(req: NextRequest, { params }: Params) {
     );
   }
 }
-export async function GET(req: NextRequest, { params }: Params) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function GET(req: NextRequest, { params }: any) {
   const id = await params.id;
   await dbConnect();
 
