@@ -4,13 +4,8 @@ import { dbConnect } from "@/libs/db";
 import Discount from "@/models/Discount";
 import { NextRequest, NextResponse } from "next/server";
 
-type Params = {
-  params: {
-    id: string;
-  };
-};
 
-export async function DELETE(req: NextRequest, { params }: Params) {
+export async function DELETE(req: NextRequest, { params }: any) {
   const id = await params.id;
 
   await dbConnect();
@@ -31,7 +26,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
   }
 }
 
-export async function PUT(req: NextRequest, { params }: Params) {
+export async function PUT(req: NextRequest, { params }: any) {
   console.log("🚀 ~ PUT ~ params:", params)
   const id = await params.id;
   const data = await req.json();
@@ -71,7 +66,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
   }
 }
 
-export async function GET(req: NextRequest, { params }: Params) {
+export async function GET(req: NextRequest, { params }: any) {
   console.log("🚀 ~ GET ~ params:", params);
   const param = await params;
   const id = param.id;

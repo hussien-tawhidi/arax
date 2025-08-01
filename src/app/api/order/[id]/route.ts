@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function GET(Request: NextRequest, { params }:any) {
-  console.log("🚀 ~ GET ~ params:", params)
+ 
   const { id } =await params;
   await dbConnect();
   try {

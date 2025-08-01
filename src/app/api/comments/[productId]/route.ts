@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { dbConnect } from "@/libs/db";
@@ -5,7 +6,7 @@ import Comments from "@/models/Comments";
 
 export async function GET(
   req: Request,
-  { params }: { params: { productId: string } }
+  { params }: any
 ) {
   await dbConnect();
 
@@ -35,7 +36,7 @@ export async function GET(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { productId: string } }
+  { params }: any
 ) {
   console.log("🚀 ~ PUT ~ params:", params);
   const id = await params.productId;
@@ -55,7 +56,7 @@ export async function DELETE(
 
 export async function PUT(
   req: Request,
-  { params }: { params: { productId: string } }
+  { params }: any
 ) {
   const id = await params.productId;
   const data = await req.json();

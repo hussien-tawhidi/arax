@@ -1,15 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { dbConnect } from "@/libs/db";
 import User from "@/models/User";
 import { saveUploadedFile } from "@/utils/uploadImage";
 import { NextRequest, NextResponse } from "next/server";
 
-type Params = {
-  params: {
-    id: string;
-  };
-};
-
-export async function DELETE(req: NextRequest, { params }: Params) {
+export async function DELETE(req: NextRequest, { params }: any) {
   const id = await params.id;
 
   await dbConnect();
@@ -34,7 +29,7 @@ export async function DELETE(req: NextRequest, { params }: Params) {
   }
 }
 
-export async function PUT(req: NextRequest, { params }: Params) {
+export async function PUT(req: NextRequest, { params }: any) {
   const id = await params.id;
 
   await dbConnect();
@@ -80,7 +75,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
   }
 }
 
-export async function GET(req: NextRequest, { params }: Params) {
+export async function GET(req: NextRequest, { params }: any) {
   const id = await params.id;
   await dbConnect();
 
