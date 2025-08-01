@@ -4,6 +4,28 @@ import User from "@/models/User";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+// Define your user type
+interface User {
+  id: string;
+  phone: string;
+  name?: string | null;
+  email?: string | null;
+  role: string;
+}
+
+// Extend the default session user type
+declare module "next-auth" {
+  interface Session {
+    user: User;
+  }
+
+  // Also extend the User type in next-auth
+  interface User {
+    role: string;
+    phone: string;
+  }
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsProvider({
@@ -55,13 +77,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        token.id = (user as any).id;
+        token.id = user.id;
         token.name = user.name;
         token.email = user.email;
-        token.role = user.role as string;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        token.phone = (user as any).phone;
+        token.role = user.role;
+        token.phone = user.phone;
       }
       return token;
     },
@@ -69,10 +89,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
-        session.user.name = token.name as string;
+        session.user.name = token.name;
         session.user.email = token.email as string;
         session.user.role = token.role as string;
-        (session.user as any).phone = token.phone as string;
+        session.user.phone = token.phone as string;
       }
       return session;
     },
