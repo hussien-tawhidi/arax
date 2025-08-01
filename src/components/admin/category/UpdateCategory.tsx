@@ -45,6 +45,7 @@ export default function EditCategoryForm({ id }: { id: string }) {
           },
         });
       } catch (err) {
+        console.log("🚀 ~ fetchCategory ~ err:", err)
         alert("❌ خطا در دریافت اطلاعات دسته‌بندی.");
       } finally {
         setLoading(false);
@@ -73,6 +74,7 @@ export default function EditCategoryForm({ id }: { id: string }) {
       await axios.put(`/api/categories/${id}`, form);
       alert("✅ دسته‌بندی با موفقیت ویرایش شد.");
     } catch (err) {
+      console.log("🚀 ~ handleSubmit ~ err:", err)
       alert("❌ خطا در ویرایش دسته‌بندی.");
     }
   };
