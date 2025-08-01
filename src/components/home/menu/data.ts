@@ -1,0 +1,55 @@
+export const homeMenu = [
+  {
+    id: 1,
+    image: "/images/home-menu/cloth.jpg",
+    title: "زنانه",
+    link: "/",
+    category: "women",
+  },
+  {
+    id: 2,
+    image: "/images/home-menu/men.jpg",
+    title: "مردانه",
+    link: "/",
+    category: "men",
+  },
+  {
+    id: 3,
+    image: "/images/home-menu/kid.jpg",
+    title: "بچگانه",
+    link: "/",
+    category: "kids",
+  },
+  {
+    id: 4,
+    image: "/images/home-menu/supermarket.jpg",
+    title: "سوپرمارکت",
+    link: "/",
+    category: "supermarket",
+  },
+  {
+    id: 5,
+    image: "/images/home-menu/beauty.jpg",
+    title: "آرایشی و بهداشتی",
+    link: "/",
+    category: "",
+  },
+  {
+    id: 6,
+    image: "/images/home-menu/applliance.jpg",
+    title: "لوازم خانگی",
+    link: "/",
+  },
+  {
+    id: 7,
+    image: "/images/home-menu/tech.jpg",
+    title: "لوازم الکترونیکی",
+    link: "/",
+  },
+  {
+    id: 8,
+    image: "/images/home-menu/trape.jpg",
+    title: "ورزش و سفر",
+    link: "/",
+  },
+];

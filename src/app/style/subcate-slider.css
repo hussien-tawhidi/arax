@@ -1,0 +1,3 @@
+.slick-dots li.slick-active div {
+  @apply bg-darker-black w-6 h-1.5 border border-darker-black;
+}

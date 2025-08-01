@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "./style/font/styles/wazir-font.css";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+@import "./style/breadcrumb.css";
+@import "./style/CustomCheckbox.css";
+@import "./style/categoryLoaderData.css";
+@import "./style/status-checkbox.css";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Vazir", Arial, sans-serif;
+}
+
+@theme {
+  --color-red: #9f1c32;
+  --color-green: #096630;
+  --color-orange: #bc650e;
+  --color-light: #f5f5f5;
+  --color-darker-black: #121212;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.slick-dots li.slick-active div {
+  @apply bg-light w-6 h-1.5 border border-light;
+}
+/* for search result srcoll UI */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+/* Example for a custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Adjust as needed */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray track */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* Dark gray thumb */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker gray on hover */
+}
+
+/* For Firefox (basic styling) */
+.custom-scrollbar {
+  scrollbar-width: thin; /* "auto" or "none" */
+  scrollbar-color: #888 #f1f1f1; /* thumb color track color */
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}
