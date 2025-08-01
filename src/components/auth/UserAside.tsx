@@ -30,10 +30,7 @@ export default function UserAside() {
           <p className='text-lg font-bold text-darker-black/80'>
             {session?.user?.name}
           </p>
-          <p className='text-darker-black/50 text-sm'>
-            {/* @ts-expect-error this is next-auth error */}
-            {session?.user?.phone}
-          </p>
+          <p className='text-darker-black/50 text-sm'>{session?.user?.phone}</p>
           <p className='text-[12px] text-darker-black/50'>
             {session?.user?.email && session?.user?.email?.length > 15 ? (
               <span>...{session?.user?.email?.slice(0, 15)}</span>
