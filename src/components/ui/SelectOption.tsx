@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { IoIosArrowDown, IoIosSearch } from "react-icons/io";
 
 interface OptionType {
-  id: number|string;
+  id: number;
   name: string;
   slug: string;
   province_id?: number;
