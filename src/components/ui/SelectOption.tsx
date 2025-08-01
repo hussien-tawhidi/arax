@@ -22,7 +22,6 @@ interface Props {
   disabled?: boolean;
 }
 
-
 export default function SelectOption({
   label,
   options,
