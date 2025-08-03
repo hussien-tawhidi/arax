@@ -57,7 +57,6 @@ export default function Orders() {
     fetchOrders();
   }, []);
 
-  // Filter orders by active tab status
   const filteredOrders = orders.filter(
     (order) => order.status === tabs[activeTab].status
   );
@@ -72,13 +71,12 @@ export default function Orders() {
   };
 
   return (
-    <div className='flex flex-col md:flex-row gap-6'>
-      {/* Main content */}
-      <main className='flex-1 rounded shadow p-4'>
+    <div className='flex flex-col gap-6 px-4 py-6'>
+      <main className='flex-1 rounded'>
         <h1 className='text-lg font-bold mb-4'>سفارش‌های من</h1>
 
         {/* Tabs */}
-        <div className='flex gap-4 border-b mb-4 text-sm'>
+        <div className='flex flex-wrap gap-4 mb-4 text-sm'>
           {tabs.map((tab, i) => (
             <button
               key={i}
@@ -86,15 +84,15 @@ export default function Orders() {
               className={`pb-2 ${
                 activeTab === i
                   ? "border-b-2 border-red text-red font-semibold"
-                  : "text-gray-500"
+                  : "text-darker-black/70"
               }`}>
               {tab.label}
             </button>
           ))}
         </div>
 
-        {/* Table Header */}
-        <div className='grid grid-cols-4 text-sm text-gray-600 border-b py-2 font-medium'>
+        {/* Table Header (Desktop Only) */}
+        <div className='hidden md:grid grid-cols-4 text-sm text-darker-black/70 border-b py-2 font-medium'>
           <span>شماره سفارش</span>
           <span>تاریخ ثبت</span>
           <span>مبلغ کل</span>
@@ -103,35 +101,60 @@ export default function Orders() {
 
         {/* Loading */}
         {loading && (
-          <div className='text-center py-10 text-gray-400'>
+          <div className='text-center py-10 text-darker-black/50'>
             در حال بارگذاری...
           </div>
         )}
 
         {/* Error */}
-        {error && <div className='text-center py-10 text-red-500'>{error}</div>}
+        {error && <div className='text-center py-10 text-red'>{error}</div>}
 
-        {/* Orders List */}
+        {/* No Orders */}
         {!loading && !error && filteredOrders.length === 0 && (
-          <div className='text-center text-gray-400 py-10'>
+          <div className='text-center text-darker-black/50 py-10'>
             <p>محتوایی جهت نمایش موجود نیست.</p>
           </div>
         )}
 
-        {!loading && !error && filteredOrders.length > 0 && (
-          <>
-            {filteredOrders.map((order) => (
-              <div
-                key={order._id}
-                className='grid grid-cols-4 text-sm py-2 border-b items-center'>
-                <span>{order._id&& order._id.slice(-6).toUpperCase()}</span>
-                <span>{formatDate(order.createdAt)}</span>
-                <span>{formatPrice(order.totalPrice)}</span>
-                <span className='capitalize'>{order.status}</span>
+        {/* Orders List */}
+        {!loading &&
+          !error &&
+          filteredOrders.length > 0 &&
+          filteredOrders.map((order) => (
+            <div
+              key={order._id}
+              className='grid grid-cols-1 md:grid-cols-4 border-b border-darker-black/10 text-sm py-4 md:py-2 gap-y-2 md:gap-0 text-darker-black/60'>
+              {/* Mobile View */}
+              <div className='md:hidden'>
+                <p className='text-xs text-darker-black/50 mb-1'>شماره سفارش</p>
+                <p>{order._id?.slice(-6).toUpperCase()}</p>
               </div>
-            ))}
-          </>
-        )}
+              <div className='md:hidden'>
+                <p className='text-xs text-darker-black/50 mb-1'>تاریخ ثبت</p>
+                <p>{formatDate(order.createdAt)}</p>
+              </div>
+              <div className='md:hidden'>
+                <p className='text-xs text-darker-black/50 mb-1'>مبلغ کل</p>
+                <p>{formatPrice(order.totalPrice)}</p>
+              </div>
+              <div className='md:hidden'>
+                <p className='text-xs text-darker-black/50 mb-1'>وضعیت</p>
+                <p className='capitalize'>{order.status}</p>
+              </div>
+
+              {/* Desktop View */}
+              <span className='hidden md:block'>
+                {order._id?.slice(-6).toUpperCase()}
+              </span>
+              <span className='hidden md:block'>
+                {formatDate(order.createdAt)}
+              </span>
+              <span className='hidden md:block'>
+                {formatPrice(order.totalPrice)}
+              </span>
+              <span className='hidden md:block capitalize'>{order.status}</span>
+            </div>
+          ))}
       </main>
     </div>
   );

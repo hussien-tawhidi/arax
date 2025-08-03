@@ -8,6 +8,7 @@ export interface CartItem {
   image: string[];
   color: { name: string; hex: string }[];
   discountPrice: number;
+  productCode?:string
 }
 
 interface CartState {

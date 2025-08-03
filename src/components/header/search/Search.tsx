@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ProductResult, SearchProps } from "./types";
 import SearchModal from "./SearchModal";
 import { useRouter } from "next/navigation";
+import { ProductResult, SearchProps } from "../../../../types/Search";
 
 export default function Search({ onClose }: SearchProps) {
   const [query, setQuery] = useState("");
@@ -11,16 +11,12 @@ export default function Search({ onClose }: SearchProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
   const router = useRouter();
 
   // Fetch from your real Mongo-powered API
   const fetchResults = async (term: string, pageNum = 1) => {
     if (pageNum === 1) {
       setResults([]);
-      setHasMore(true);
     }
 
     setLoading(true);
@@ -39,7 +35,6 @@ export default function Search({ onClose }: SearchProps) {
         setResults((prev) => [...prev, ...data.results]);
       }
 
-      setHasMore(data.results.length > 0);
     } catch (err) {
       console.error(err);
       setError("محصول دریافت نشد لطفا دوباره تلاش کنید");
@@ -93,7 +88,6 @@ export default function Search({ onClose }: SearchProps) {
     }
 
     const handler = setTimeout(() => {
-      setPage(1);
       fetchResults(query, 1);
     }, 300);
 
@@ -113,17 +107,11 @@ export default function Search({ onClose }: SearchProps) {
       results={results}
       loading={loading}
       error={error}
-      hasMore={hasMore}
-      page={page}
       onClose={onClose}
       onSubmit={handleSearchSubmit}
       onSelectResult={(term) => {
         saveToRecentSearches(term);
         onClose();
-      }}
-      onLoadMore={(nextPage) => {
-        setPage(nextPage);
-        fetchResults(query, nextPage);
       }}
       formRef={formRef}
     />

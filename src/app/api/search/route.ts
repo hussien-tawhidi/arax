@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     const results = await Product.find({
       name: { $regex: query, $options: "i" },
     })
-      .select("name category brand price -_id")
+      .select("name category brand imageUrl price productCode  _id")
       .lean();
 
     return NextResponse.json({ results });

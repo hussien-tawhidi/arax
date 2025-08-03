@@ -8,6 +8,9 @@ import Image from "next/image";
 import AddToCartButton from "../ui/AddToCartButton";
 import { PiShoppingBagThin } from "react-icons/pi";
 import { content, features } from "./data";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { decreaseQty, increaseQty } from "@/store/slice/cartSlice";
 
 interface ProductInfoProps {
   product: ProductType;
@@ -15,7 +18,9 @@ interface ProductInfoProps {
 
 export default function ProductInfo({ product }: ProductInfoProps) {
   const [size, setSize] = useState<string>("");
-
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const existItem = cartItems.find((item) => item._id === product._id);
+  const dispatch = useDispatch();
   return (
     <div className='flex-2/3 flex flex-col space-y-4'>
       {/* Title */}
@@ -106,17 +111,42 @@ export default function ProductInfo({ product }: ProductInfoProps) {
           </div>
         ))}
       </div>
-      <AddToCartButton
-        Icon={PiShoppingBagThin}
-        _id={product._id}
-        discountPrice={10}
-        image={product.imageUrl}
-        name={product.name}
-        price={product.price}
-        text='افزودن به سبد خرید'
-        className='bg-red text-light w-full px-5 py-2 rounded-md flex items-center justify-center'
-        color={[{ name: "black", hex: "#000" }]}
-      />
+      {existItem ? (
+        <div className='flex justify-center'>
+          <div className='bg-light flex gap-3 border px-5 rounded-2xl text-darker-black/70 items-center'>
+            <button
+              className='text-lg text-darker-black/70 hover:text-black px-2 py-1 transition active:scale-95'
+              aria-label='کاهش تعداد'
+              onClick={() => dispatch(decreaseQty(existItem._id))}
+              disabled={existItem.quantity == 1}>
+              -
+            </button>
+            <span className='text-sm font-medium w-6 text-center select-none'>
+              {existItem.quantity}
+            </span>
+            <button
+              className='text-lg text-darker-black/70 disabled:cursor-not-allowed hover:text-black px-2 py-1 transition active:scale-95'
+              aria-label='افزایش تعداد'
+              onClick={() => dispatch(increaseQty(existItem._id))}
+              disabled={existItem.quantity === product.stock}>
+              +
+            </button>
+          </div>
+        </div>
+      ) : (
+        <AddToCartButton
+          Icon={PiShoppingBagThin}
+          _id={product._id}
+          discountPrice={10}
+          image={product.imageUrl}
+          productCode={product.productCode}
+          name={product.name}
+          price={product.price}
+          text='افزودن به سبد خرید'
+          className='bg-red text-light w-full px-5 py-2 rounded-md flex items-center justify-center'
+          color={[{ name: "black", hex: "#000" }]}
+        />
+      )}
       <div className='mt-5 py-3 text-darker-black/70 border-t border-darker-black/20'>
         <span className='text-red'>شرایط مرجوع کردن کالا:</span> درخواست مرجوع
         کردن کالا با دلیل انصراف از خرید تنها در صورتی مورد قبول است که کالا در

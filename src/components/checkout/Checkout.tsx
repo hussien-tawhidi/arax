@@ -3,14 +3,15 @@
 import { useState } from "react";
 import AddressForm from "./AddressForm";
 import DeliveryOptions from "./DeliveryOptions";
-import OrderSummary from "../cart/OrderSummary";
 import PaymentMethods from "./PaymentMethod";
 import StepHeader from "./StepHeader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { provinces } from "../../../data/provinces";
 import { cities } from "../../../data/cities";
 import { useToast } from "../ToastContext";
+import OrderSummary from "./OrderSummary";
+import { clearCart } from "@/store/slice/cartSlice";
 export default function Checkout() {
   const [loading, setLoading] = useState(false);
   const [province, setProvince] = useState(0);
@@ -42,57 +43,57 @@ export default function Checkout() {
   const proveName = provinces.find((prov) => prov.id === province);
   const cityName = cities.find((prov) => prov.id === city);
 
- const handleSubmit = async () => {
-   setLoading(true);
-   try {
-     const orderData = {
-       province: proveName?.name,
-       city: cityName?.name,
-       address,
-       houseNumber,
-       unit,
-       name,
-       phone,
-       selectedDelivery,
-       selectedPayment,
-       totalPrice,
-       deliveryCost,
-       code,
-       applied,
-       cartItems,
-     };
+  const dispatch = useDispatch();
 
-     const res = await fetch("/api/order", {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify(orderData),
-     });
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const orderData = {
+        province: proveName?.name,
+        city: cityName?.name,
+        address,
+        houseNumber,
+        unit,
+        name,
+        phone,
+        selectedDelivery,
+        selectedPayment,
+        totalPrice,
+        deliveryCost,
+        code,
+        applied,
+        cartItems,
+      };
 
-     if (!res.ok) {
-       const errorData = await res.json().catch(() => null);
-       addToast(errorData?.error || "خطا در ثبت سفارش", "error");
-       return;
-     }
+      const res = await fetch("/api/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
 
-     const result = await res.json();
-     console.log("✅ API Result:", result);
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => null);
+        addToast(errorData?.error || "خطا در ثبت سفارش", "error");
+        return;
+      }
 
-     if (!result.success) {
-       addToast("خطا در ثبت سفارش", "error");
-       return;
-     }
+      const result = await res.json();
+      if (!result.success) {
+        addToast("خطا در ثبت سفارش", "error");
+        return;
+      }
 
-     addToast("سفارش شما موفقانه ثبت شد", "success");
-   } catch (error) {
-     console.error("❌ API Error:", error);
-     addToast("خطا در ارتباط به سرور", "error");
-   } finally {
-     setLoading(false);
-   }
- };
-
+      addToast("سفارش شما موفقانه ثبت شد", "success");
+      dispatch(clearCart());
+    } catch (error) {
+      console.error("❌ API Error:", error);
+      addToast("خطا در ارتباط به سرور", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className='max-w-7xl mx-auto px-4 py-6 space-y-6 relative'>

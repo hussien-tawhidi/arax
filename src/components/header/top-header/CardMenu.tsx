@@ -32,72 +32,83 @@ export default function CardMenu() {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}>
       {/* Cart Items Popover */}
-      {isHovering && cartItems.length > 0 && (
+      {isHovering && (
         <div className='absolute left-0 top-4 z-50 w-[400px] bg-light shadow-lg rounded-lg border border-darker-black/20 overflow-hidden animate-fadeIn'>
-          <div
-            className='p-3 font-medium text-light text-center bg-red/90 hover:bg-red transition-all cursor-pointer'
-            onClick={() => router.push("/cart")}>
-            مشاهده سبد خرید
-          </div>
-          <div className='p-3 font-medium flex justify-between text-darker-black text-center bg-darker-black/5 cursor-pointer'>
-            <span> مجموع: </span>
-            {cartItems
-              .reduce(
-                (total, item) => total + item.price * (item.quantity || 1),
-                0
-              )
-              .toLocaleString("fa-IR")}
-            تومان
-          </div>
-
-          <div className='max-h-60 overflow-y-auto w-full scrollbar-thin '>
-            {cartItems.map((item) => (
+          {cartItems.length > 0 ? (
+            <>
               <div
-                key={item._id}
-                className='p-3 border-b flex gap-x-3 w-full border-darker-black/10 last:border-0 hover:bg-darker-black/5'>
-                <div className='flex-shrink-0 w-12 h-12 relative'>
-                  <Image
-                    src={item.image[0] || "/images/placeholder.png"}
-                    alt={item.name}
-                    fill
-                    className='object-cover rounded'
-                  />
-                </div>
-                <div className='flex-1'>
-                  <p className='flex justify-between text-sm font-medium'>
-                    <span className='truncate'>{item.name}</span>
-                  </p>
-                  {item.price && (
-                    <p className='text-[10px] text-darker-black/50 mt-1'>
-                      تومان{" "}
-                      {toPersianDigits(item.price.toLocaleString("fa-IR"))}
-                    </p>
-                  )}
-                </div>
-
-                <div className='flex items-center gap-2 mt-2'>
-                  <div className='border border-darker-black/20 rounded-md'>
-                    <button
-                      onClick={() => dispatch(decreaseQty(item._id))}
-                      className='px-2 py-1 rounded text-sm'>
-                      -
-                    </button>
-                    <span className='text-sm'>{item.quantity}</span>
-                    <button
-                      onClick={() => dispatch(increaseQty(item._id))}
-                      className='px-2 py-1 rounded text-sm'>
-                      +
-                    </button>
-                  </div>
-                  <button
-                    onClick={() => dispatch(removeFromCart(item._id))}
-                    className='text-red'>
-                    <AiOutlineDelete />
-                  </button>
-                </div>
+                className='p-3 font-medium text-light text-center bg-red/90 hover:bg-red transition-all cursor-pointer'
+                onClick={() => router.push("/cart")}>
+                مشاهده سبد خرید
               </div>
-            ))}
-          </div>
+              <div className='p-3 font-medium flex justify-between text-darker-black text-center bg-darker-black/5 cursor-pointer'>
+                <span> مجموع: </span>
+                {cartItems
+                  .reduce(
+                    (total, item) => total + item.price * (item.quantity || 1),
+                    0
+                  )
+                  .toLocaleString("fa-IR")}{" "}
+                تومان
+              </div>
+
+              <div className='max-h-60 overflow-y-auto w-full scrollbar-thin'>
+                {cartItems.map((item) => (
+                  <div
+                    key={item._id}
+                    className='p-3 border-b flex gap-x-3 w-full border-darker-black/10 last:border-0 hover:bg-darker-black/5'>
+                    <div
+                      className='flex-shrink-0 w-12 h-12 relative'
+                      onClick={() =>
+                        router.push(`/products/${item.productCode}`)
+                      }>
+                      <Image
+                        src={item.image[0] || "/images/placeholder.png"}
+                        alt={item.name}
+                        fill
+                        className='object-cover rounded'
+                      />
+                    </div>
+                    <div className='flex-1'>
+                      <p className='flex justify-between text-sm font-medium'>
+                        <span className='truncate'>{item.name}</span>
+                      </p>
+                      {item.price && (
+                        <p className='text-[10px] text-darker-black/50 mt-1'>
+                          تومان{" "}
+                          {toPersianDigits(item.price.toLocaleString("fa-IR"))}
+                        </p>
+                      )}
+                    </div>
+                    <div className='flex items-center gap-2 mt-2'>
+                      <div className='border border-darker-black/20 rounded-md'>
+                        <button
+                          onClick={() => dispatch(decreaseQty(item._id))}
+                          className='px-2 py-1 rounded text-sm'>
+                          -
+                        </button>
+                        <span className='text-sm'>{item.quantity}</span>
+                        <button
+                          onClick={() => dispatch(increaseQty(item._id))}
+                          className='px-2 py-1 rounded text-sm'>
+                          +
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => dispatch(removeFromCart(item._id))}
+                        className='text-red'>
+                        <AiOutlineDelete />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className='text-center max-h-60 text-darker-black/70 p-6 text-sm'>
+              🛒 سبد خرید شما خالی است
+            </div>
+          )}
         </div>
       )}
 

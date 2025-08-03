@@ -28,8 +28,7 @@ export default function SubHeader({
     responsive: [
       { breakpoint: 1280, settings: { slidesToShow: 10 } },
       { breakpoint: 1024, settings: { slidesToShow: 5 } },
-      { breakpoint: 768, settings: { slidesToShow: 3 } },
-      { breakpoint: 400, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 4 } },
     ],
   };
   const router = useRouter();
@@ -48,7 +47,7 @@ export default function SubHeader({
                   router.push(`/${category}/${subCatefory}/${item.productType}`)
                 }
                 height={60}
-                className='object-cover w-full h-[16vh] mx-auto border bg-pink-300'
+                className='object-cover w-full h-full mx-auto border bg-pink-300'
               />
               <p className='font-medium text-nowrap sm:text-[12px] text-[10px] pb-2 text-center'>
                 {item.title}

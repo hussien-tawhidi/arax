@@ -15,6 +15,7 @@ interface AddToCartButtonProps {
   type?: "submit" | "reset" | "button" | undefined;
   className?: string;
   text?: string;
+  productCode?: string;
 }
 
 const AddToCartButton = ({
@@ -26,6 +27,7 @@ const AddToCartButton = ({
   color,
   price,
   discountPrice,
+  productCode,
   className = "",
   text,
 }: AddToCartButtonProps) => {
@@ -45,6 +47,7 @@ const AddToCartButton = ({
         image,
         color,
         discountPrice,
+        productCode,
       })
     );
     addToast(`${name} به سبد خرید اضافه شد`, "success");
