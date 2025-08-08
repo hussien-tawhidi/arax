@@ -35,7 +35,7 @@ export default function MobileHeader() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [search]);
   return (
-    <div className='fixed z-[999] bottom-0 left-0 right-0 pb-5 bg-light'>
+    <div className='fixed z-[999] bottom-0 left-0 right-0 bg-light'>
       {/* Background bar */}
     
         <ul className='flex justify-between sm:w-[90%] w-[95%] mx-auto py-3 border-t border-darker-black/30 relative'>

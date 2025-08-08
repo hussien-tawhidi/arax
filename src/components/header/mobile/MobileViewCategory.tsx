@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { GrView } from "react-icons/gr";
+import MobileImage from "./MobileImage";
 
 interface MenuItemTypes {
   image: string;
@@ -33,18 +33,7 @@ export default function MobileViewCategory({
       whileTap={{ scale: 0.95 }}
       onClick={handleClick}>
       {/* Background Image with improved loading */}
-      <Image
-        src={image || "/placeholder.jpg"}
-        alt={title || "Category"}
-        fill
-        sizes='(max-width: 768px) 100vw, 50vw'
-        className='object-cover transition-transform duration-500 hover:scale-105'
-        quality={85}
-        priority
-        placeholder='blur'
-        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
-      />
-
+      <MobileImage src={image} alt={title} />
       {/* Gradient overlay for better text visibility */}
       <div className='absolute inset-0 bg-gradient-to-t from-darker-black/60 via-darker-black/20 to-transparent' />
 

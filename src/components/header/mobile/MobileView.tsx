@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { menu } from "../data";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { LiaArrowLeftSolid } from "react-icons/lia";
 import Link from "next/link";
+import MobileImage from "./MobileImage";
 
 export default function MobileView() {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function MobileView() {
         <Link href={"/"}>
           <LiaArrowLeftSolid className='' />
         </Link>
-        <p className='font-semibold'>دسته‌بندی‌ها </p>
+        <p className='font-semibold text-xl'>دسته‌بندی‌ها </p>
       </div>
       {menu.map((m, i) => (
         <motion.div
@@ -48,23 +48,13 @@ export default function MobileView() {
           whileHover={{ scale: 0.98 }}
           whileTap={{ scale: 0.95 }}>
           {/* Banner Image with improved loading */}
-          <Image
-            src={m.image || "/fallback.jpg"}
-            alt={m.title || "Category"}
-            fill
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            className='object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-110'
-            priority={i < 3}
-            quality={85}
-            placeholder='blur'
-            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
-          />
+          <MobileImage src={m.image} alt={m.title} priority={i < 3} />
 
           {/* Improved gradient overlay */}
-          <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent' />
+          <div className='absolute inset-0 bg-gradient-to-t from-darker-black/80 via-darker-black/40 to-transparent' />
 
           {/* Enhanced text container */}
-          <div className='absolute bottom-0 left-0 right-0 p-5 text-white space-y-2'>
+          <div className='absolute bottom-0 left-0 right-0 p-5 text-light space-y-2'>
             <motion.h2
               className='text-xl md:text-2xl font-bold tracking-tight drop-shadow-lg'
               initial={{ y: 20, opacity: 0 }}
@@ -86,7 +76,7 @@ export default function MobileView() {
           </div>
 
           {/* Pulse effect on hover */}
-          <div className='absolute inset-0 hidden group-hover:block animate-pulse opacity-10 bg-white pointer-events-none'></div>
+          <div className='absolute inset-0 hidden group-hover:block animate-pulse opacity-10 bg-light pointer-events-none'></div>
         </motion.div>
       ))}
     </motion.div>
