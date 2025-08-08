@@ -92,7 +92,7 @@ export default function Search({ onClose }: SearchProps) {
           // fallback to title comparison if no _id
           return q.title.toLowerCase() !== item.title!.toLowerCase();
         }),
-      ].slice(0, 5);
+      ].slice(0, 10);
 
       localStorage.setItem("recentSearches", JSON.stringify(updated));
       return updated;

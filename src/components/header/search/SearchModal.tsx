@@ -6,6 +6,7 @@ import SearchSuggestion from "./SearchSuggestion";
 import SearchResultItem from "./SearchResultItem";
 import { SearchModalProps } from "../../../../types/Search";
 import Image from "next/image";
+import LoadingMessage from "@/components/ui/Loader";
 
 export default function SearchModal({
   query,
@@ -49,9 +50,7 @@ export default function SearchModal({
           </div>
 
           {/* Loading / Error */}
-          {loading && (
-            <p className='text-darker-black/60 mt-4'>در حال جستجو...</p>
-          )}
+          {loading && <LoadingMessage />}
           {error && <p className='text-red-500 mt-4'>{error}</p>}
 
           {/* Results */}
