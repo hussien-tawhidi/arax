@@ -145,6 +145,15 @@ export default function RegisterForm() {
                   icon={<IoPhonePortraitOutline />}
                 />
                 <SubmitButton loading={loading} title='ثبت نام' />
+                <p className='text-center text-sm flex flex-col gap-2 mt-3 text-darker-black/60'>
+                  اگه حساب کاربری دارید وارد اینجا کلیک کنید
+                  <button
+                    type='button'
+                    onClick={() => router.push("/user/login")}
+                    className='text-red hover:underline font-semibold'>
+                    ورود
+                  </button>
+                </p>
               </form>
             ) : (
               <form onSubmit={handleVerifyOtp}>

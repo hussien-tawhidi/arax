@@ -84,49 +84,65 @@ export default function LoginForm() {
   };
   return (
     <div className='flex justify-center items-center h-[70vh]'>
-      <div className=''>
-        <div className='flex justify-center border border-red/30 rounded-xl '>
-          <div>
-            <div className='grid md:grid-cols-2 p-5'>
-              <Image
-                width={300}
-                height={300}
-                className='object-cover'
-                src='/images/register.webp'
-                alt='ثبت نام'
-              />
-              <div className='flex items-center justify-center'>
-                <div className=''>
-                  <h2
-                    className='text-center mb-4 fw-bolder'
-                    style={{ color: "#212529" }}>
-                    ورود به سیستم
-                  </h2>
-                  {error && <ErrorMsg text={error} />}
-                  {success && <SuccessMsg text={success} />}
-                  {step === 1 && (
-                    <form onSubmit={handleSendOtp}>
-                      <Input
-                        type='text'
-                        placeholder='شماره مبایل خودرا وارد کنید'
-                        value={phone}
-                        setValue={setPhone}
-                      />
-                      <SubmitButton loading={loading} title='ورود' />
-                    </form>
-                  )}
-                  {step === 2 && (
-                    <form onSubmit={handleLogin}>
-                      <Input
-                        type='text'
-                        placeholder='کد تایید را وارد'
-                        value={otp}
-                        setValue={setOtp}
-                      />
-                      <SubmitButton loading={loading} title='تایید کد' />
-                    </form>
-                  )}
-                </div>
+      <div className='flex justify-center border border-red/30 rounded-xl'>
+        <div>
+          <div className='grid md:grid-cols-2 p-5'>
+            {/* Image Section */}
+            <Image
+              width={300}
+              height={300}
+              className='object-cover'
+              src='/images/register.webp'
+              alt='ثبت نام'
+            />
+
+            {/* Form Section */}
+            <div className='flex items-center justify-center'>
+              <div>
+                <h2
+                  className='text-center mb-4 font-bold'
+                  style={{ color: "#212529" }}>
+                  ورود به سیستم
+                </h2>
+
+                {error && <ErrorMsg text={error} />}
+                {success && <SuccessMsg text={success} />}
+
+                {/* Step 1: Phone input */}
+                {step === 1 && (
+                  <form onSubmit={handleSendOtp} className='space-y-4'>
+                    <Input
+                      type='text'
+                      placeholder='شماره مبایل خودرا وارد کنید'
+                      value={phone}
+                      setValue={setPhone}
+                    />
+                    <SubmitButton loading={loading} title='ورود' />
+
+                    {/* Register link */}
+                    <p className='text-center text-sm text-darker-black/60'>
+                      حساب کاربری ندارید؟{" "}
+                      <button
+                        type='button' onClick={()=>router.push("/user/register")}
+                        className='text-red hover:underline font-semibold'>
+                        ثبت نام
+                      </button>
+                    </p>
+                  </form>
+                )}
+
+                {/* Step 2: OTP input */}
+                {step === 2 && (
+                  <form onSubmit={handleLogin} className='space-y-4'>
+                    <Input
+                      type='text'
+                      placeholder='کد تایید را وارد کنید'
+                      value={otp}
+                      setValue={setOtp}
+                    />
+                    <SubmitButton loading={loading} title='تایید کد' />
+                  </form>
+                )}
               </div>
             </div>
           </div>
