@@ -51,8 +51,10 @@ export default function MobileView() {
           <MobileImage src={m.image} alt={m.title} priority={i < 3} />
 
           {/* Improved gradient overlay */}
-          <div className='absolute inset-0 bg-gradient-to-t from-[#121212]/80 via-[#121212]/40 to-transparent' />
-
+          <div
+            className='absolute inset-0 bg-gradient-to-t from-[#121212]/80 via-[#121212]/40 to-transparent z-10 pointer-events-none'
+            style={{ WebkitMaskImage: "-webkit-radial-gradient(white, black)" }} // fixes some mobile rendering issues
+          />
           {/* Enhanced text container */}
           <div className='absolute bottom-0 left-0 right-0 p-5 text-light space-y-2'>
             <motion.h2

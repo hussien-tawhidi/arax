@@ -69,7 +69,7 @@ function Slide({ products, imageBg, banner, bg, discount, special,loading }: Pro
   }
   
   return (
-    <div className={`relative py-5 rounded-xl ${bg}`}>
+    <div className={`relative sm:py-5 pb-5 pt-2 rounded-xl ${bg}`}>
       <Slider {...settings}>
         {products?.map((item, index) => {
           const discountAmount = (item.price * item.discount) / 100;
