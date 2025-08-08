@@ -30,14 +30,17 @@ export async function DELETE(req: NextRequest, { params }: any) {
 }
 
 export async function PUT(req: NextRequest, { params }: any) {
-  const id = await params.id;
-
+  const param = await params;
+  const id = await param.id;
   await dbConnect();
 
   try {
     const formdata = await req.formData();
     console.log("🚀 ~ PUT ~ formdata:", formdata);
     const userName = formdata.get("userName")?.toString();
+    const gender = formdata.get("gender")?.toString();
+    const bio = formdata.get("bio")?.toString();
+    const birthday = formdata.get("birthday")?.toString();
     const userEmail = formdata.get("userEmail")?.toString();
     const userPhone = formdata.get("userPhone")?.toString();
     const role = formdata.get("role")?.toString();
@@ -54,6 +57,9 @@ export async function PUT(req: NextRequest, { params }: any) {
       id,
       {
         name: userName,
+        gender: gender,
+        bio: bio,
+        birthday: birthday,
         email: userEmail,
         phone: userPhone,
         role,
@@ -76,12 +82,12 @@ export async function PUT(req: NextRequest, { params }: any) {
 }
 
 export async function GET(req: NextRequest, { params }: any) {
-  const id = await params.id;
+  const param = await params;
+  const id = await param.id;
   await dbConnect();
 
   try {
     const user = await User.findById(id);
-
     if (!user) {
       return NextResponse.json({ message: "کاربر پیدا نشد" }, { status: 404 });
     }

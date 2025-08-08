@@ -1,7 +1,5 @@
-import React from 'react'
+import UserBankInfo from "@/components/auth/bank-account/UserBankInfo";
 
 export default function bankInfoPage() {
-  return (
-    <div>bankInfoPage</div>
-  )
+  return <UserBankInfo />;
 }

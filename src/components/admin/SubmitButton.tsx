@@ -10,6 +10,7 @@ interface SubmitButtonProps {
   type?: "submit" | "reset" | "button" | undefined;
   className?: string;
   disabled?: boolean;
+  onclick?: () => void;
 }
 
 export default function SubmitButton({
@@ -19,9 +20,11 @@ export default function SubmitButton({
   type = "submit",
   className = "",
   disabled = false,
+  onclick,
 }: SubmitButtonProps) {
   return (
     <button
+      onClick={onclick}
       type={type}
       disabled={disabled || loading}
       className={`w-full bg-red text-light py-2 px-5 rounded-lg transition disabled:opacity-70 ${className}`}>

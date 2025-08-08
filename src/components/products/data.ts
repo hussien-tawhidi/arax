@@ -2,7 +2,6 @@ export const content = [
   { image: "/images/icon/size-guid.png", title: "راهنمای سایز" },
   { image: "/arax-logo.png", title: "250 امتیاز با خرید ای محصول" },
   { image: "/images/icon/part.png", title: "پرداخت در 4 قسط" },
-  { image: "/images/icon/loved.png", title: "افزدودن به لیست خرید ها" },
 ];
 
 export const features = [

@@ -9,7 +9,6 @@ export async function GET(Request: NextRequest, { params }:any) {
   await dbConnect();
   try {
     const product = await Product.findById(id);
-    console.log("🚀 ~ GET ~ product:", product)
     return NextResponse.json(product, { status: 200 });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error:any) {

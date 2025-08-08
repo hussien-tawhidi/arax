@@ -1,7 +1,5 @@
-import React from 'react'
+import Tickets from "@/components/auth/Tickets";
 
 export default function ticketsPage() {
-  return (
-    <div>ticketsPage</div>
-  )
+  return <Tickets />;
 }

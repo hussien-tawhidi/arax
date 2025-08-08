@@ -10,7 +10,12 @@ import { PiShoppingBagThin } from "react-icons/pi";
 import { content, features } from "./data";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { decreaseQty, increaseQty } from "@/store/slice/cartSlice";
+
+import {
+  addToFavorites,
+  decreaseQty,
+  increaseQty,
+} from "@/store/slice/cartSlice";
 
 interface ProductInfoProps {
   product: ProductType;
@@ -110,6 +115,31 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             <p className='md:text-md text-sm'>{item.title}</p>
           </div>
         ))}
+        <button
+          onClick={() =>
+            dispatch(
+              addToFavorites({
+                _id: product._id,
+                name: product.name,
+                price: product.price,
+                quantity: 1,
+                image: product.imageUrl,
+                color: [{ name: "", hex: "" }],
+                discountPrice: product.discount,
+                productCode: product.productCode,
+              })
+            )
+          }
+          className='flex items-center md:gap-3 gap-1.5'>
+          <Image
+            src={"/images/icon/loved.png"}
+            width={30}
+            height={30}
+            className='object-cover'
+            alt=''
+          />
+          <p className='md:text-md text-sm'>افزدودن به لیست علاقمندی ها</p>
+        </button>
       </div>
       {existItem ? (
         <div className='flex justify-center'>

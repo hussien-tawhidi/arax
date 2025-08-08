@@ -1,7 +1,6 @@
 import {
   FaClipboardList,
   FaHeart,
-  FaMapMarkerAlt,
   FaComment,
   FaTicketAlt,
   FaCreditCard,
@@ -23,11 +22,6 @@ export const userMenuItems = [
     title: "حساب کاربری",
     href: "/profile",
     icon: BiUser,
-  },
-  {
-    title: "نشانی‌ها",
-    href: "/addresses",
-    icon: FaMapMarkerAlt,
   },
   {
     title: "نظرات ثبت شده",

@@ -98,8 +98,8 @@ export default function ProductReviewForm({
         {error && <ErrorMsg text={error} />}
         {success && <SuccessMsg text={success} />}
         <button
-          disabled={loading}
-          className='text-darker-black/60 w-full justify-center border border-darker-black/70 py-2 px-4 rounded-xl transition-all duration-300 hover:bg-darker-black/70 flex items-center my-2 text-sm hover:text-light'>
+          disabled={loading || !comment.length || !title.length}
+          className='text-darker-black/60 disabled:cursor-not-allowed w-full justify-center border border-darker-black/70 py-2 px-4 rounded-xl transition-all duration-300 hover:bg-darker-black/70 flex items-center my-2 text-sm hover:text-light'>
           <IoAddSharp />
           {loading ? "...در حال ارسال" : "ارسال نظر"}
         </button>

@@ -4,6 +4,7 @@ import { Types } from "mongoose";
 export interface IUser {
   _id?: Types.ObjectId; // Mongoose document id (optional because before creation)
   name: string;
+  gender?: string;
   email?: string;
   phone: string;
   isActive?: boolean;
@@ -13,6 +14,7 @@ export interface IUser {
   addresses?: string[];
   avatar?: string;
   createdAt?: Date;
+  birthday?: Date;
   updatedAt?: Date;
 }
 
@@ -61,6 +63,12 @@ const userSchema = new Schema<IUser>(
     avatar: {
       type: String,
       default: "/avatar.png",
+    },
+    gender: {
+      type: String,
+    },
+    birthday: {
+      type: Date,
     },
   },
   { timestamps: true }

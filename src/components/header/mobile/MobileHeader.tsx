@@ -25,30 +25,30 @@ export default function MobileHeader() {
           onClick={() =>
             router.push(`/user/${session ? session.user?.id : "login"}`)
           }>
-          <RiUser3Line className='text-[30px]' />
+          <RiUser3Line className='sm:text-[30px] text-[20px]' />
           <p>اراکس من</p>
         </li>
 
         <li
           className='flex-1 flex items-center text-sm flex-col sm:text-xl text-darker-black/60 gap-1.5'
           onClick={() => router.push("/mobile-view")}>
-          <RiMenuSearchLine className='text-[30px]' />
+          <RiMenuSearchLine className='sm:text-[30px] text-[20px]' />
           <p>دسته‌بندی‌ها</p>
         </li>
 
         <li
           onClick={() => router.push("/")}
           className='flex-1 flex items-center text-sm flex-col sm:text-xl text-darker-black/60 gap-1.5'>
-          <BiHomeSmile className='text-[30px]' />
+          <BiHomeSmile className='sm:text-[30px] text-[20px]' />
           <p>خانه</p>
         </li>
 
         <li
           onClick={() => router.push("/cart")}
           className='flex-1 flex items-center relative flex-col text-sm sm:text-xl text-darker-black/60 gap-1.5'>
-          <TfiShoppingCartFull className='text-[30px]' />
+          <TfiShoppingCartFull className='sm:text-[30px] text-[20px]' />
           {mounted && (
-            <span className='absolute -top-2 -right-0 bg-darker-black w-8 rounded-full flex items-center justify-center h-8 text-light'>
+            <span className='absolute -top-2 right-3 bg-darker-black sm:w-8 w-6 sm:h-8 h-6 rounded-full flex items-center justify-center text-light'>
               {cartItems.length}
             </span>
           )}

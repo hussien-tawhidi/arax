@@ -28,38 +28,40 @@ export default function UserMenu({ id }: { id?: string }) {
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
-            className='absolute left-0 mt-4 top-0 w-64 bg-light shadow-xl rounded-xl p-4 z-50 text-sm'>
-            <p className='text-darker-black/60 mb-2 text-[12px]'>کاربر عزیز</p>
+            className='absolute left-0 mt-4 top-0 w-64 bg-light shadow-xl rounded-xl overflow-hidden z-50 text-sm'>
+            <p className='text-darker-black/60 mb-2 text-[12px] px-1.5'>
+              کاربر عزیز
+            </p>
             <ul className='space-y-2 text-darker-black/60 '>
               <li
-                className='flex items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
+                className='flex px-4 items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
                 onClick={() => router.push(`/user/${id}`)}>
-                <BiUser /> حساب کاربری مشتری
+                <BiUser className='text-xl' /> حساب کاربری مشتری
               </li>
               <li
-                className='flex items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
+                className='flex px-4 items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
                 onClick={() => router.push(`/user/${id}`)}>
-                <BiPackage /> سفارش‌ها
+                <BiPackage className='text-xl' /> سفارش‌ها
               </li>
               <li
-                className='flex items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
+                className='flex px-4 items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
                 onClick={() => router.push(`/user/${id}/bank-info`)}>
-                <BiWallet /> اعتبار کیف پول
+                <BiWallet className='text-xl' /> اعتبار کیف پول
               </li>
               <li
-                className='flex items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
+                className='flex px-4 items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
                 onClick={() => router.push(`/user/${id}/arax-city`)}>
-                <FaCoins className='text-red' /> شهر آراکس
+                <FaCoins className='text-red text-xl' /> شهر آراکس
               </li>
               <li
-                className='flex items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
+                className='flex px-4 items-center gap-2 hover:bg-darker-black/5 p-2 rounded cursor-pointer'
                 onClick={() => router.push(`/user/${id}/wishlist`)}>
-                <BiHeart /> لیست علاقه‌مندی‌ها
+                <BiHeart className='text-xl' /> لیست علاقه‌مندی‌ها
               </li>
               <li
-                className='flex items-center gap-2 hover:bg-red hover:text-light p-2 rounded cursor-pointer text-red border-t pt-2 mt-2'
+                className='flex px-4 items-center gap-2 bg-red text-light hover:text-red p-2 cursor-pointer hover:bg-light border-t pt-2 mt-2'
                 onClick={() => signOut()}>
-                <BiLogOut /> خروج از حساب کاربری
+                <BiLogOut className='text-xl' /> خروج از حساب کاربری
               </li>
             </ul>
           </motion.div>

@@ -55,7 +55,6 @@ export default function RootLayout({
                 <Header />
                 <div className='md:pb-0 pb-20'>
                   {children}
-
                   <Footer />
                 </div>
               </main>

@@ -1,7 +1,4 @@
-import React from 'react'
-
+import Favourites from "@/components/auth/Favourites";
 export default function wishlistPage() {
-  return (
-    <div>wishlistPage</div>
-  )
+  return <Favourites />;
 }

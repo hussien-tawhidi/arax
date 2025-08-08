@@ -11,6 +11,7 @@ interface User {
   name?: string | null;
   email?: string | null;
   role: string;
+  
 }
 
 // Extend the default session user type

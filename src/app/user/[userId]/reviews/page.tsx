@@ -1,7 +1,7 @@
-import React from 'react'
+import UserReviews from "@/components/auth/UserReviews";
+import { auth } from "../../../../../auth";
 
-export default function reviewsPage() {
-  return (
-    <div>reviewsPage</div>
-  )
+export default async function reviewsPage() {
+  const session = await auth();
+  return <UserReviews id={session?.user.id} />;
 }
