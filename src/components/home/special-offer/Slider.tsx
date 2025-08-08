@@ -17,7 +17,15 @@ interface Props {
   loading?: boolean;
 }
 
-function Slide({ products, imageBg, banner, bg, discount, special,loading }: Props) {
+function Slide({
+  products,
+  imageBg,
+  banner,
+  bg,
+  discount,
+  special,
+  loading,
+}: Props) {
   const router = useRouter();
 
   const settings = {
@@ -67,7 +75,7 @@ function Slide({ products, imageBg, banner, bg, discount, special,loading }: Pro
       </div>
     );
   }
-  
+
   return (
     <div className={`relative sm:py-5 pb-5 pt-2 rounded-xl ${bg}`}>
       <Slider {...settings}>
@@ -103,30 +111,39 @@ function Slide({ products, imageBg, banner, bg, discount, special,loading }: Pro
                   />
                 </div>
 
-                <h2 className='mt-3 text-right text-darker-black/60 font-semibold text-sm line-clamp-2'>
+                <h2 className='sm:mt-3 mt-1 text-right text-darker-black/60 font-semibold text-sm line-clamp-2'>
                   {item.name.length > 15 ? (
-                    <span className="whitespace-nowrap">...{item.name.slice(0, 12)}</span>
+                    <span className='whitespace-nowrap'>
+                      ...{item.name.slice(0, 12)}
+                    </span>
                   ) : (
                     item.name
                   )}
                 </h2>
 
                 {/* Pricing */}
-                <div className='mt-2 text-sm text-right'>
+                <div className='sm:mt-2 text-sm text-right'>
                   {item.discount > 0 ? (
                     <>
-                      <div className='text-darker-black/40 line-through text-xs font-light'>
-                        {toPersianDigits(item.price.toLocaleString("fa-IR"))}{" "}
+                      <div className='text-darker-black/40 flex justify-between line-through text-xs font-light'>
+                        <p>
+                          {toPersianDigits(item.price.toLocaleString("fa-IR"))}
+                        </p>
                         تومان
                       </div>
-                      <div className='text-darker-black/60 font-bold text-left'>
-                        {toPersianDigits(finalPrice.toLocaleString("fa-IR"))}{" "}
+                      <div className='text-darker-black/60 flex justify-between font-bold text-left'>
+                        <p>
+                          {" "}
+                          {toPersianDigits(finalPrice.toLocaleString("fa-IR"))}
+                        </p>
                         تومان
                       </div>
                     </>
                   ) : (
-                    <div className='text-darker-black font-medium'>
-                      {toPersianDigits(item.price.toLocaleString("fa-IR"))}{" "}
+                    <div className='text-darker-black flex justify-between font-medium'>
+                      <p>
+                        {toPersianDigits(item.price.toLocaleString("fa-IR"))}
+                      </p>
                       تومان
                     </div>
                   )}
