@@ -40,6 +40,13 @@ body {
   --color-light: #f5f5f5;
   --color-darker-black: #121212;
 }
+.gradient-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(18, 18, 18, 0.9) 100%);
+  background: -webkit-linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(18, 18, 18, 0.9) 100%);
+  background: -moz-linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(18, 18, 18, 0.9) 100%);
+  -webkit-transform: translateZ(0); /* iOS fix */
+}
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
