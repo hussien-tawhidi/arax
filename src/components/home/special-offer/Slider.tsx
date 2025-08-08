@@ -105,7 +105,7 @@ function Slide({ products, imageBg, banner, bg, discount, special,loading }: Pro
 
                 <h2 className='mt-3 text-right text-darker-black/60 font-semibold text-sm line-clamp-2'>
                   {item.name.length > 15 ? (
-                    <span>...{item.name.slice(0, 15)}</span>
+                    <span className="whitespace-nowrap">...{item.name.slice(0, 12)}</span>
                   ) : (
                     item.name
                   )}
