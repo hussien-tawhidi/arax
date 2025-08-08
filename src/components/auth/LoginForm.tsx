@@ -10,6 +10,7 @@ import { signIn, useSession } from "next-auth/react";
 import SubmitButton from "../admin/SubmitButton";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { IoPhonePortraitOutline } from "react-icons/io5";
 
 export default function LoginForm() {
   const [phone, setPhone] = useState("");
@@ -116,6 +117,7 @@ export default function LoginForm() {
                       placeholder='شماره مبایل خودرا وارد کنید'
                       value={phone}
                       setValue={setPhone}
+                      icon={<IoPhonePortraitOutline />}
                     />
                     <SubmitButton loading={loading} title='ورود' />
 
@@ -123,7 +125,8 @@ export default function LoginForm() {
                     <p className='text-center text-sm text-darker-black/60'>
                       حساب کاربری ندارید؟{" "}
                       <button
-                        type='button' onClick={()=>router.push("/user/register")}
+                        type='button'
+                        onClick={() => router.push("/user/register")}
                         className='text-red hover:underline font-semibold'>
                         ثبت نام
                       </button>

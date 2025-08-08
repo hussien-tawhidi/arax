@@ -5,6 +5,7 @@ import SearchForm from "./SearchForm";
 import SearchSuggestion from "./SearchSuggestion";
 import SearchResultItem from "./SearchResultItem";
 import { SearchModalProps } from "../../../../types/Search";
+import Image from "next/image";
 
 export default function SearchModal({
   query,
@@ -23,7 +24,7 @@ export default function SearchModal({
       <motion.div
         role='dialog'
         aria-modal='true'
-        className='fixed inset-0 w-screen h-screen bg-darker-black/50 z-50 flex items-start justify-center'
+        className='fixed inset-0 w-screen h-screen bg-darker-black/50 z-[9999] flex items-start justify-center'
         onClick={onClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -84,27 +85,45 @@ export default function SearchModal({
           </motion.div>
 
           {/* Recent Searches */}
-          {results.length === 0 && recentSearches.length > 0 && (
+          {recentSearches.length > 0 && results.length === 0 && (
             <motion.div
               className='mt-6'
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}>
-              <p className='text-darker-black/60 mb-2'>جستجوهای اخیر:</p>
-              <div className='flex flex-wrap gap-2'>
-                {recentSearches.map((item, i) => (
-                  <motion.button
-                    key={i}
-                    onClick={() => setQuery(item)}
-                    className='bg-darker-black/10 hover:bg-darker-black/20 text-darker-black/80 px-3 py-1 rounded-full text-sm transition'
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + i * 0.1 }}>
-                    {item}
-                  </motion.button>
-                ))}
+              <div className='mt-6'>
+                <p className='text-darker-black/60 mb-2'>جستجوهای اخیر:</p>
+                <div
+                  className='hide-scrollbar w-full flex md:gap-16 gap-10 justify-center mx-auto overflow-x-auto whitespace-nowrap px-4'
+                  style={{ scrollBehavior: "smooth" }}>
+                  {recentSearches.map((item, i) => (
+                    <motion.button
+                      key={item._id || i}
+                      onClick={() => setQuery(item.title || "")}
+                      className='flex-shrink-0 flex md:w-20 w-16 flex-col items-center rounded-full text-center group'
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 + i * 0.1 }}>
+                      <Image
+                        src={
+                          item.imageUrl && item.imageUrl.length > 0
+                            ? item.imageUrl[0]
+                            : "/placeholder.png"
+                        }
+                        alt={item.title}
+                        width={80}
+                        height={80}
+                        className='object-cover rounded-md'
+                        loading='lazy'
+                      />
+                      <span className='truncate max-w-full text-center text-xs font-medium'>
+                        {item.title}
+                      </span>
+                    </motion.button>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}

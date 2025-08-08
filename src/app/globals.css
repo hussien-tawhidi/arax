@@ -6,6 +6,7 @@
 @import "./style/CustomCheckbox.css";
 @import "./style/categoryLoaderData.css";
 @import "./style/status-checkbox.css";
+@import "./style/react-slick-custome-pagenation.css";
 
 :root {
   --background: #ffffff;
@@ -47,9 +48,6 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-.slick-dots li.slick-active div {
-  @apply bg-light w-6 h-1.5 border border-light;
-}
 /* for search result srcoll UI */
 .scrollbar-thin {
   scrollbar-width: thin;
@@ -108,3 +106,5 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+

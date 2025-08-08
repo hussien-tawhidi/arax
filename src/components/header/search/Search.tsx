@@ -3,48 +3,23 @@ import { useEffect, useRef, useState } from "react";
 import SearchModal from "./SearchModal";
 import { useRouter } from "next/navigation";
 import { ProductResult, SearchProps } from "../../../../types/Search";
+export interface RecentSearchType {
+  _id?: string;
+  title: string;
+  imageUrl?: string[];
+}
 
 export default function Search({ onClose }: SearchProps) {
   const [query, setQuery] = useState("");
-  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [recentSearches, setRecentSearches] = useState<RecentSearchType[]>([]);
+  console.log("🚀 ~ Search ~ recentSearches:", recentSearches);
   const [results, setResults] = useState<ProductResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Fetch from your real Mongo-powered API
-  const fetchResults = async (term: string, pageNum = 1) => {
-    if (pageNum === 1) {
-      setResults([]);
-    }
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch(
-        `/api/search?query=${encodeURIComponent(term)}&page=${pageNum}&limit=10`
-      );
-      if (!res.ok) throw new Error("Server error");
-
-      const data = await res.json();
-      if (pageNum === 1) {
-        setResults(data.results);
-      } else {
-        setResults((prev) => [...prev, ...data.results]);
-      }
-
-    } catch (err) {
-      console.error(err);
-      setError("محصول دریافت نشد لطفا دوباره تلاش کنید");
-      if (pageNum === 1) setResults([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Load recent searches
+  // Load recent searches from localStorage on mount
   useEffect(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("recentSearches");
@@ -52,7 +27,7 @@ export default function Search({ onClose }: SearchProps) {
     }
   }, []);
 
-  // Lock body scroll
+  // Lock body scroll while modal is open
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -71,34 +46,85 @@ export default function Search({ onClose }: SearchProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  // Save recent searches
-  const saveToRecentSearches = (term: string) => {
+  // Fetch search results from API
+  const fetchResults = async (term: string, pageNum = 1) => {
+    if (pageNum === 1) {
+      setResults([]);
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch(
+        `/api/search?query=${encodeURIComponent(term)}&page=${pageNum}&limit=10`
+      );
+      if (!res.ok) throw new Error("Server error");
+
+      const data = await res.json();
+      if (pageNum === 1) {
+        setResults(data.results);
+      } else {
+        setResults((prev) => [...prev, ...data.results]);
+      }
+    } catch (err) {
+      console.error(err);
+      setError("محصول دریافت نشد لطفا دوباره تلاش کنید");
+      if (pageNum === 1) setResults([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Save term to recent searches and localStorage
+  const saveToRecentSearches = (
+    item: { title?: string; _id?: string; imageUrl?: string[] } | string
+  ) => {
+    if (typeof item === "string") {
+      item = { title: item };
+    }
+    if (!item?.title?.trim()) return;
+
     setRecentSearches((prev) => {
-      const updated = [term, ...prev.filter((q) => q !== term)].slice(0, 5);
+      // Filter out duplicates by _id or by title (case-insensitive)
+      const updated = [
+        item as { _id?: string; title: string; imageUrl?: string[] },
+        ...prev.filter((q) => {
+          if (item._id && q._id) return q._id !== item._id;
+          // fallback to title comparison if no _id
+          return q.title.toLowerCase() !== item.title!.toLowerCase();
+        }),
+      ].slice(0, 5);
+
       localStorage.setItem("recentSearches", JSON.stringify(updated));
       return updated;
     });
   };
 
-  // search
+  // Debounced search on query change
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
       return;
     }
-
     const handler = setTimeout(() => {
       fetchResults(query, 1);
     }, 300);
-
     return () => clearTimeout(handler);
   }, [query]);
 
+  // Handle search submit (e.g. press Enter)
   const handleSearchSubmit = (val: string) => {
     saveToRecentSearches(val);
     router.push(`/search?query=${encodeURIComponent(val)}`);
     onClose();
   };
+
+  // Handle clicking a search result
+  const handleSelectResult = (item: RecentSearchType) => {
+    saveToRecentSearches(item);
+    router.push(`/search?query=${encodeURIComponent(item.title)}`);
+    setTimeout(() => onClose(), 100);
+  };
+
   return (
     <SearchModal
       query={query}
@@ -109,10 +135,7 @@ export default function Search({ onClose }: SearchProps) {
       error={error}
       onClose={onClose}
       onSubmit={handleSearchSubmit}
-      onSelectResult={(term) => {
-        saveToRecentSearches(term);
-        onClose();
-      }}
+      onSelectResult={handleSelectResult}
       formRef={formRef}
     />
   );

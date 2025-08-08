@@ -61,7 +61,7 @@ export default function FilterPanel({
   };
 
   return (
-    <div className='relative flex-1'>
+    <div className='relative flex-1 z-10'>
       {/* mobile filter show */}
       <div className='flex items-center md:hidden'>
         <button

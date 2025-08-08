@@ -4,26 +4,41 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ProductResult } from "../../../../types/Search";
+import { RecentSearchType } from "./Search";
 
 interface SearchResultItemProps {
   item: ProductResult;
-  onSelect: (value: string) => void;
+  onSelect: (value: RecentSearchType) => void;
   index: number;
+  searchQuery?: string;
 }
 
 export default function SearchResultItem({
   item,
   onSelect,
   index,
+  searchQuery = "",
 }: SearchResultItemProps) {
   const router = useRouter();
+
+  const handleClick = () => {
+    // Create a RecentSearchType object matching your interface
+    const recentSearch: RecentSearchType = {
+      title: searchQuery.trim() || item.name, // Use either search query or product name
+      imageUrl: item.imageUrl, // Pass the product images if available
+    };
+
+    // Call the onSelect callback with properly typed object
+    onSelect(recentSearch);
+
+    // Navigate to product page
+    router.push(`/products/${item.productCode}`);
+  };
+
   return (
     <motion.button
       key={index}
-      onClick={() => {
-        onSelect(item.name);
-        router.push(`/products/${item.productCode}`);
-      }}
+      onClick={handleClick}
       className='flex items-center gap-4 w-full text-right transition p-3 border-b cursor-pointer border-darker-black/20 hover:bg-muted/30 active:scale-[0.98] rounded-md'
       variants={{
         hidden: { opacity: 0, y: 10 },

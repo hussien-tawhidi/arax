@@ -170,7 +170,7 @@ export default function Subcategory({
           <div className='loader'></div>
         </div>
       ) : (
-        <div className='flex flex-col md:flex-row gap-4 md:mt-10'>
+        <div className='flex flex-col md:flex-row gap-4 md:mt-10 mt-5'>
           <div className='w-full flex md:items-start mb-5 z-30 items-center md:border-0 border-b border-darker-black/30 justify-between md:w-1/4 md:rounded md:p-4'>
             {filteredProducts && filteredProducts.length > 0 && (
               <FilterPanel
@@ -218,7 +218,9 @@ export default function Subcategory({
             </div>
             <div className='grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4'>
               {loading
-                ? Array.from({ length: 8 }).map((_, i) => <SkeltonCard key={i}/>)
+                ? Array.from({ length: 8 }).map((_, i) => (
+                    <SkeltonCard key={i} />
+                  ))
                 : filteredProducts?.map((item) => (
                     <SubCategoryCard
                       key={item.productCode}

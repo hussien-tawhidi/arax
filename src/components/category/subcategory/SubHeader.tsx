@@ -18,27 +18,51 @@ export default function SubHeader({
   category,
   subCatefory,
 }: SubHeaderProps) {
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    arrows: false,
-    slidesToShow: 10,
-    slidesToScroll: 3,
-    responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 10 } },
-      { breakpoint: 1024, settings: { slidesToShow: 5 } },
-      { breakpoint: 768, settings: { slidesToShow: 4 } },
-    ],
-  };
+   const settings = {
+     dots: true,
+     infinite: true,
+     speed: 500,
+     arrows: false,
+     slidesToShow: 10,
+     slidesToScroll: 3,
+     dotsClass: "slick-dots floating-dots",
+     customPaging: () => (
+       <div className='dot-outer'>
+         <div className='dot-inner'></div>
+       </div>
+     ),
+     responsive: [
+       {
+         breakpoint: 1280,
+         settings: {
+           slidesToShow: 10,
+           dots: true,
+         },
+       },
+       {
+         breakpoint: 1024,
+         settings: {
+           slidesToShow: 5,
+           dots: true,
+         },
+       },
+       {
+         breakpoint: 768,
+         settings: {
+           slidesToShow: 4,
+           dots: true,
+         },
+       },
+     ],
+   };
   const router = useRouter();
 
   return (
-    <div className='relative p-2 overflow-hidden rounded-xl'>
+    <div className='relative p-5 overflow-hidden rounded-xl'>
       <Slider {...settings}>
         {header?.items.map((item, index) => (
-          <div key={index} className='px-1 p-8 h-full'>
-            <div className='shadow-xl text-darker-black/80 py-1 rounded-lg overflow-hidden'>
+          <div key={index} className='px-1 h-full'>
+            <div className='text-darker-black/80 py-1 rounded-lg overflow-hidden'>
               <Image
                 src={item.image}
                 alt={item.title}
@@ -47,9 +71,9 @@ export default function SubHeader({
                   router.push(`/${category}/${subCatefory}/${item.productType}`)
                 }
                 height={60}
-                className='object-cover w-full h-full mx-auto border bg-pink-300'
+                className='object-cover w-16 h-16 mx-auto border border-darker-black rounded-full'
               />
-              <p className='font-medium text-nowrap sm:text-[12px] text-[10px] pb-2 text-center'>
+              <p className='font-medium text-nowrap text-[14px] pb-2 text-center'>
                 {item.title}
               </p>
             </div>
