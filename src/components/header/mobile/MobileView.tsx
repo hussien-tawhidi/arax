@@ -3,26 +3,92 @@
 import Image from "next/image";
 import { menu } from "../data";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { LiaArrowLeftSolid } from "react-icons/lia";
+import Link from "next/link";
 
 export default function MobileView() {
   const router = useRouter();
+
+  // Animation variants
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className='grid grid-cols-2'>
+    <motion.div
+      className='flex flex-col gap-6 p-4'
+      variants={container}
+      initial='hidden'
+      animate='show'>
+      <div className='flex gap-2 items-end text-darker-black/70 text-2xl justify-center flex-col'>
+        <Link href={"/"}>
+          <LiaArrowLeftSolid className='' />
+        </Link>
+        <p className='font-semibold'>دسته‌بندی‌ها </p>
+      </div>
       {menu.map((m, i) => (
-        <div className='relative' key={i}>
+        <motion.div
+          key={i}
+          variants={item}
+          onClick={() => router.push(`/mobile-view/${m.category}`)}
+          className='relative w-full h-36 rounded-2xl overflow-hidden shadow-xl cursor-pointer group'
+          whileHover={{ scale: 0.98 }}
+          whileTap={{ scale: 0.95 }}>
+          {/* Banner Image with improved loading */}
           <Image
-            src={m.image || "/"}
-            alt={`${m.title}`}
-            width={400}
-            height={400}
-            className='object-cover w-full h-full'
-            onClick={() => router.push(`/mobile-view/${m.category}`)}
+            src={m.image || "/fallback.jpg"}
+            alt={m.title || "Category"}
+            fill
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            className='object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-110'
+            priority={i < 3}
+            quality={85}
+            placeholder='blur'
+            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
           />
-          <p className='absolute top-[15%] right-0 bg-light px-2 py-1'>
-            {m.title}
-          </p>
-        </div>
+
+          {/* Improved gradient overlay */}
+          <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent' />
+
+          {/* Enhanced text container */}
+          <div className='absolute bottom-0 left-0 right-0 p-5 text-white space-y-2'>
+            <motion.h2
+              className='text-xl md:text-2xl font-bold tracking-tight drop-shadow-lg'
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}>
+              {m.title || "Untitled"}
+            </motion.h2>
+
+            <motion.p
+              className='text-sm opacity-90 flex items-center gap-1'
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}>
+              جزییات بیشتر
+              <span className='inline-block transition-transform group-hover:translate-x-1'>
+                <HiOutlineArrowNarrowRight />
+              </span>
+            </motion.p>
+          </div>
+
+          {/* Pulse effect on hover */}
+          <div className='absolute inset-0 hidden group-hover:block animate-pulse opacity-10 bg-white pointer-events-none'></div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }

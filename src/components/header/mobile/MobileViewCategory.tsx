@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { GrView } from "react-icons/gr";
 
-interface menuItemTypes {
+interface MenuItemTypes {
   image: string;
   title: string;
   category?: string;
@@ -15,20 +17,52 @@ export default function MobileViewCategory({
   title,
   category,
   subcategory,
-}: menuItemTypes) {
+}: MenuItemTypes) {
   const router = useRouter();
 
+  const handleClick = () => {
+    if (category && subcategory) {
+      router.push(`/${category}/${subcategory}`);
+    }
+  };
+
   return (
-    <div className='relative'>
+    <motion.div
+      className='relative w-full aspect-square rounded-xl overflow-hidden shadow-md cursor-pointer'
+      whileHover={{ scale: 0.98 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={handleClick}>
+      {/* Background Image with improved loading */}
       <Image
-        src={image || "/"}
-        alt={`${title}`}
-        width={400}
-        height={400}
-        className='object-cover w-full h-full'
-        onClick={() => router.push(`/${category}/${subcategory}`)}
+        src={image || "/placeholder.jpg"}
+        alt={title || "Category"}
+        fill
+        sizes='(max-width: 768px) 100vw, 50vw'
+        className='object-cover transition-transform duration-500 hover:scale-105'
+        quality={85}
+        priority
+        placeholder='blur'
+        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
       />
-      <p className='absolute top-[15%] right-0 bg-light px-2 py-1'>{title}</p>
-    </div>
+
+      {/* Gradient overlay for better text visibility */}
+      <div className='absolute inset-0 bg-gradient-to-t from-darker-black/60 via-darker-black/20 to-transparent' />
+
+      {/* Category title with better styling */}
+      <div className='absolute bottom-4 left-4 right-4'>
+        <motion.p
+          className='text-light text-lg font-bold drop-shadow-lg px-3 py-2 bg-darker-black/30 backdrop-blur-sm rounded-lg'
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.3 }}>
+          {title}
+        </motion.p>
+      </div>
+
+      {/* Interactive indicator */}
+      <div className='absolute top-3 right-3 bg-light/90 text-darker-black text-xs font-medium px-2 py-1 rounded-full shadow-sm'>
+        <GrView />
+      </div>
+    </motion.div>
   );
 }

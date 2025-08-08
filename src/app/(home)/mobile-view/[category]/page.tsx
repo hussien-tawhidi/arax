@@ -10,7 +10,7 @@ export default async function page({ params }: any) {
   return (
     <div className='my-5 mx-auto'>
       <p className='font-semibold mr-5'>دسته بندی {menuItems?.title}</p>
-      <div className='grid grid-cols-2 w-[95%] mx-auto gap-5'>
+      <div className='grid grid-cols-2 w-[95%] mx-auto gap-5 mt-5'>
         {menuItems?.submenus.map((item, i) => (
           <MobileViewCategory
             key={i}

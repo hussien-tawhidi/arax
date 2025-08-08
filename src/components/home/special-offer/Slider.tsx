@@ -54,12 +54,6 @@ function Slide({ products, imageBg, banner, bg, discount, special,loading }: Pro
           slidesToShow: 3,
         },
       },
-      {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
     ],
   };
   if (loading) {
@@ -75,7 +69,7 @@ function Slide({ products, imageBg, banner, bg, discount, special,loading }: Pro
   }
   
   return (
-    <div className={`relative py-5 rounded-xl ${bg}`}>
+    <div className={`relative py-5 rounded-xl md:${bg}`}>
       <Slider {...settings}>
         {products?.map((item, index) => {
           const discountAmount = (item.price * item.discount) / 100;
@@ -105,7 +99,7 @@ function Slide({ products, imageBg, banner, bg, discount, special,loading }: Pro
                     alt={item.name}
                     width={300}
                     height={300}
-                    className='rounded-lg w-44 h-44 mx-auto object-cover'
+                    className='rounded-lg sm:w-44 sm:h-44 w-28 h-28 mx-auto object-cover'
                   />
                 </div>
 

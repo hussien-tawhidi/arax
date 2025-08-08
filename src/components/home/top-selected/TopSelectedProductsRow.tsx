@@ -56,7 +56,7 @@ export default function TopSelectedProductsRow({ data, loading }: props) {
                       }
                       width={300}
                       height={300}
-                      className='object-cover w-[70%] mx-auto cursor-pointer'
+                      className='object-cover sm:w-[70%] w-[60%] mx-auto cursor-pointer'
                     />
                   </div>
                   <span className='absolute top-0 left-0 text-sm bg-red text-light p-1.5 rounded-br-xl'>

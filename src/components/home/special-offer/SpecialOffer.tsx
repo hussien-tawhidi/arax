@@ -56,7 +56,6 @@ export default function SpecialOffer() {
         products={products}
         loading={loading}
         imageBg='bg-light'
-        // banner='/images/best-offs/poster.jpg'
         bg='bg-red'
         discount
       />
