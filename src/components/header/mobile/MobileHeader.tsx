@@ -40,7 +40,7 @@ export default function MobileHeader() {
 
       <ul className='flex justify-between sm:w-[90%] w-[95%] mx-auto py-3 relative'>
         <li
-          className='flex-1 flex items-center text-sm flex-col sm:text-xl text-light gap-1.5'
+          className='flex-1 flex items-center text-sm flex-col sm:text-xl text-darker-black/90 gap-1.5'
           onClick={() =>
             router.push(`/user/${session ? session.user?.id : "login"}`)
           }>
@@ -49,7 +49,7 @@ export default function MobileHeader() {
         </li>
 
         <li
-          className='flex-1 flex items-center text-sm flex-col sm:text-xl text-light gap-1.5'
+          className='flex-1 flex items-center text-sm flex-col sm:text-xl text-darker-black/90 gap-1.5'
           onClick={() => router.push("/mobile-view")}>
           <RiMenuSearchLine className='sm:text-[30px] text-[24px]' />
           <p>دسته‌بندی‌ها</p>
@@ -60,14 +60,14 @@ export default function MobileHeader() {
 
         <li
           onClick={() => router.push("/")}
-          className='flex-1 flex items-center text-sm flex-col sm:text-xl text-light gap-1.5'>
+          className='flex-1 flex items-center text-sm flex-col sm:text-xl text-darker-black/90 gap-1.5'>
           <BiHomeSmile className='sm:text-[30px] text-[24px]' />
           <p>خانه</p>
         </li>
 
         <li
           onClick={() => router.push("/cart")}
-          className='flex-1 flex items-center relative flex-col text-sm sm:text-xl text-light gap-1.5'>
+          className='flex-1 flex items-center relative flex-col text-sm sm:text-xl text-darker-black/90 gap-1.5'>
           <TfiShoppingCartFull className='sm:text-[30px] text-[24px]' />
           {mounted && (
             <span className='absolute -top-2 right-3 bg-darker-black sm:w-8 w-6 sm:h-8 h-6 rounded-full flex items-center justify-center text-light'>
@@ -84,7 +84,7 @@ export default function MobileHeader() {
         </div>
       )}
       {/* Floating Search Button */}
-      <div className='absolute sm:-top-4 -top-3 left-1/2 transform -translate-x-1/2'>
+      <div className='absolute -top-2 left-1/2 transform -translate-x-1/2'>
         <button
           onClick={() => setSearch((prev) => !prev)}
           className='bg-red text-light rounded-full sm:p-4 p-2.5 shadow-lg'>

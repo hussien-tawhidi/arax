@@ -61,22 +61,21 @@ body {
 .gradient-overlay-mobile-menu {
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.2) 10%,
-    rgba(18, 18, 18, 1) 100%
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 100%
   );
   background: -webkit-linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.2) 10%,
-    rgba(18, 18, 18, 1) 100%
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 100%
   );
   background: -moz-linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.2) 10%,
-    rgba(18, 18, 18, 1) 100%
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 1) 100%
   );
   -webkit-transform: translateZ(0); /* iOS fix */
 }
-
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
