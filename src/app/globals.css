@@ -7,8 +7,6 @@
 @import "./style/categoryLoaderData.css";
 @import "./style/status-checkbox.css";
 @import "./style/react-slick-custome-pagenation.css";
-@import "./style/discount-badge.css";
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -60,6 +58,25 @@ body {
   );
   -webkit-transform: translateZ(0); /* iOS fix */
 }
+.gradient-overlay-mobile-menu {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 10%,
+    rgba(18, 18, 18, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 10%,
+    rgba(18, 18, 18, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 10%,
+    rgba(18, 18, 18, 1) 100%
+  );
+  -webkit-transform: translateZ(0); /* iOS fix */
+}
+
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;

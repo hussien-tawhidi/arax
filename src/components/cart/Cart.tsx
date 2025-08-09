@@ -52,7 +52,7 @@ export default function Cart() {
         {/* Left side - Cart Items */}
         <div className='flex-[2]'>
           {cartItems.length === 0 ? (
-            <p className='text-center text-gray-500 text-sm'>
+            <p className='text-center text-darker-black/50 text-sm'>
               سبد خرید شما خالی است.
             </p>
           ) : (
@@ -60,7 +60,7 @@ export default function Cart() {
               {cartItems.map((item) => (
                 <div
                   key={item._id}
-                  className='flex flex-col sm:flex-row items-center gap-4 border-b pb-4'>
+                  className='flex items-center gap-4 border-b pb-4'>
                   <Image
                     src={item.image[0]}
                     alt={item.name}
@@ -73,25 +73,28 @@ export default function Cart() {
                     <div className='flex flex-wrap items-center gap-3 mt-2 justify-between'>
                       <div className='flex items-center gap-2'>
                         <button
-                          className='bg-gray-200 px-2 py-1 rounded text-sm'
+                          disabled={item.quantity <= 1}
+                          className='bg-darker-black/20 px-2 py-1 rounded text-sm disabled:cursor-not-allowed'
                           onClick={() => dispatch(decreaseQty(item._id))}>
                           −
                         </button>
                         <span className='w-6 text-center'>{item.quantity}</span>
                         <button
-                          className='bg-gray-200 px-2 py-1 rounded text-sm'
+                          className='bg-darker-black/20 px-2 py-1 rounded text-sm disabled:cursor-not-allowed'
                           onClick={() => dispatch(increaseQty(item._id))}>
                           +
                         </button>
                       </div>
-                      <span className='text-gray-600 text-sm'>
-                        {item.price.toLocaleString()} تومان
-                      </span>
-                      <button
-                        onClick={() => dispatch(removeFromCart(item._id))}
-                        className='bg-red text-light hover:bg-transparent hover:text-red transition p-2 rounded'>
-                        <RiDeleteBin6Line size={18} />
-                      </button>
+                      <div className='flex justify-center items-end flex-col-reverse gap-3'>
+                        <span className='text-darker-black/60 md:text-md text-sm'>
+                          {item.price.toLocaleString()} تومان
+                        </span>
+                        <button
+                          onClick={() => dispatch(removeFromCart(item._id))}
+                          className='bg-red text-light hover:bg-transparent hover:text-red transition p-2 rounded'>
+                          <RiDeleteBin6Line size={18} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

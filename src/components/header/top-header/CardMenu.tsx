@@ -13,6 +13,7 @@ import {
 } from "@/store/slice/cartSlice";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useRouter } from "next/navigation";
+import EmptyCart from "./EmptyCard";
 
 export default function CardMenu() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -45,7 +46,7 @@ export default function CardMenu() {
                 <span> مجموع: </span>
                 {cartItems
                   .reduce(
-                    (total, item) => total + item.price * (item.quantity || 1),
+                    (total:number, item) => total + item.price * (item.quantity || 1),
                     0
                   )
                   .toLocaleString("fa-IR")}{" "}
@@ -105,9 +106,7 @@ export default function CardMenu() {
               </div>
             </>
           ) : (
-            <div className='text-center max-h-60 text-darker-black/70 p-6 text-sm'>
-              🛒 سبد خرید شما خالی است
-            </div>
+            <EmptyCart/>
           )}
         </div>
       )}
