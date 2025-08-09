@@ -20,7 +20,7 @@ export default function Menu({ data }: Props) {
       <div className='pointer-events-none absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-light to-transparent z-10' />
 
       <ul
-        className='hide-scrollbar w-full flex md:gap-10 gap-5 justify-start overflow-x-auto whitespace-nowrap px-4 scroll-smooth snap-x snap-mandatory touch-pan-x'
+        className='hide-scrollbar w-full flex gap-10 justify-start overflow-x-auto whitespace-nowrap px-4 scroll-smooth snap-x snap-mandatory touch-pan-x'
         style={{
           WebkitOverflowScrolling: "touch", // iOS smooth scroll
           scrollBehavior: "smooth",
@@ -31,7 +31,7 @@ export default function Menu({ data }: Props) {
             className='flex-shrink-0 flex flex-col items-center rounded-full text-center group snap-start'>
             <Link
               href={`/${item.category}`}
-              className='relative w-16 h-16 sm:w-22 sm:h-22 md:w-22 md:h-22 rounded-full shadow-xl transform transition-transform duration-200 hover:scale-105 active:scale-95'>
+              className='relative w-20 h-20 sm:w-22 sm:h-22 md:w-22 md:h-22 rounded-full shadow-xl transform transition-transform duration-200 hover:scale-105 active:scale-95'>
               <Image
                 src={item.image || "/placeholder.jpg"}
                 alt={item.title}
@@ -40,7 +40,7 @@ export default function Menu({ data }: Props) {
               />
               <div className='absolute inset-0 bg-red z-10 rounded-full group-hover:opacity-0 transition-all duration-200' />
             </Link>
-            <p className='mt-2 text-center w-full sm:text-[14px] text-[12px] text-wrap font-medium text-darker-black/70'>
+            <p className='mt-2 text-center w-full text-[14px] text-wrap font-medium text-darker-black/70'>
               {item.title}
             </p>
           </li>

@@ -107,13 +107,6 @@ export default function Category({ category }: { category: string }) {
     [products]
   );
 
-  if (!currentData) {
-    return (
-      <div className='text-center text-red-600 py-10 font-bold'>
-        دسته‌بندی یافت نشد!
-      </div>
-    );
-  }
 
   return (
     <div className='pb-10'>
@@ -123,7 +116,7 @@ export default function Category({ category }: { category: string }) {
           دسته‌بندی {cate?.title}
         </h1>
 
-        <HeroSlider data={currentData.hero} />
+        <HeroSlider data={currentData?.hero} />
 
         <div className='lg:pt-32 pt-16 flex items-center justify-center'>
           <ul className='hide-scrollbar w-full flex md:gap-16 gap-10 justify-center mx-auto overflow-x-auto whitespace-nowrap px-4'>

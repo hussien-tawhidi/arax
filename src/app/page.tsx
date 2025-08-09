@@ -17,7 +17,7 @@ export default async function Home() {
   return (
     <main className=''>
       <HeroSlider data={heroSlides} />
-      <div className='lg:w-[80%] w-[95%] mx-auto'>
+      <div className='lg:w-[80%] mx-auto'>
         <Menu data={menu}/>
         <SpecialOffer />
         <BestOffs data={homeOffsPoste} />

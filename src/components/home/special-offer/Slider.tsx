@@ -62,6 +62,12 @@ function Slide({
           slidesToShow: 3,
         },
       },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
     ],
   };
   if (loading) {
@@ -77,24 +83,41 @@ function Slide({
   }
 
   return (
-    <div className={`relative sm:py-5 pb-5 pt-2 rounded-xl ${bg}`}>
+    <div className={`relative sm:py-5 pb-5 pt-2 rounded-xl sm:${bg}`}>
       <Slider {...settings}>
         {products?.map((item, index) => {
           const discountAmount = (item.price * item.discount) / 100;
           const finalPrice = item.price - discountAmount;
 
           return (
-            <div key={index} className='relative sm:px-3 px-1 py-8'>
+            <div key={index} className='relative sm:px-3 px-1 pb-8'>
               {/* Discount Badge */}
+
               {discount && item.discount > 0 && (
-                <span className='bg-red text-light p-1 rounded-br-xl text-xs absolute top-8 left-3 z-10'>
-                  %{toPersianDigits(item.discount.toLocaleString())} تخفیف
-                </span>
+                <div
+                  className='absolute top-0 left-3 z-10 flex items-center text-sm text-white font-bold uppercase text-center shadow-lg'
+                  style={{
+                    background: "linear-gradient(180deg, #9f1c32, #9f1c32)",
+                    clipPath:
+                      "polygon(51% 0, 100% 0, 100% 100%, 53% 80%, 0% 100%, 0 0)",
+                    padding: "0.4rem",
+                    width: "40px",
+                  }}>
+                  %{toPersianDigits(item.discount.toLocaleString())}
+                </div>
               )}
               {special && (
-                <span className='text-red font-extrabold sm:p-2 p-1 rounded-br-xl text-xs absolute top-8 left-3 z-10'>
-                  فروش ویژه
-                </span>
+                <div
+                  className='absolute top-0 left-3 text-xs z-10 flex items-center text-white font-bold uppercase text-center shadow-lg'
+                  style={{
+                    background: "linear-gradient(180deg, #9f1c32, #9f1c32)",
+                    clipPath:
+                      "polygon(51% 0, 100% 0, 100% 100%, 53% 90%, 0% 100%, 0 0)",
+                    padding: "0.4rem",
+                    width: "50px",
+                  }}>
+                  فروش <br /> ویژه
+                </div>
               )}
 
               {/* Product Card */}
@@ -125,13 +148,13 @@ function Slide({
                 <div className='sm:mt-2 text-sm text-right'>
                   {item.discount > 0 ? (
                     <>
-                      <div className='text-darker-black/40 flex justify-between line-through text-xs font-light'>
+                      <div className='text-darker-black/40 flex  gap-3 line-through text-xs font-light'>
                         <p>
                           {toPersianDigits(item.price.toLocaleString("fa-IR"))}
                         </p>
                         تومان
                       </div>
-                      <div className='text-darker-black/60 flex justify-between font-bold text-left'>
+                      <div className='text-darker-black/60 flex  gap-3 font-bold text-left'>
                         <p>
                           {" "}
                           {toPersianDigits(finalPrice.toLocaleString("fa-IR"))}
@@ -140,7 +163,7 @@ function Slide({
                       </div>
                     </>
                   ) : (
-                    <div className='text-darker-black flex justify-between font-medium'>
+                    <div className='text-darker-black flex  gap-3 font-medium'>
                       <p>
                         {toPersianDigits(item.price.toLocaleString("fa-IR"))}
                       </p>

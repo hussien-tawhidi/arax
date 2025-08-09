@@ -13,10 +13,9 @@ export default function ProductTypeComp({
   subcategoryMenu?: boolean;
 }) {
   const [data, setData] = useState<ProductType[]>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     const fetchProductDetails = async () => {
-      setLoading(true);
       try {
         const { data } = await axios.get("/api/products");
 

@@ -25,8 +25,6 @@ export default function SubCategoryCard({
   const finalPrice = price - discountAmount;
   const router = useRouter();
 
- 
-
   return (
     <>
       {loading ? (

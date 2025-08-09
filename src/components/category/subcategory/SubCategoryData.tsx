@@ -13,11 +13,10 @@ export default function SubCategoryData({
   subcategoryMenu: boolean;
 }) {
   const [data, setData] = useState<ProductType[]>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
-      setLoading(true);
       try {
         const { data } = await axios.get("/api/products");
 
@@ -32,7 +31,7 @@ export default function SubCategoryData({
     };
     fetchProductDetails();
   }, [subcategory]);
-  
+
   if (!data) {
     return (
       <div className='text-center text-red-600 py-10 font-bold'>

@@ -149,7 +149,7 @@ export default function Subcategory({
           subCatefory={segments[1]}
         />
       )}
-      {filteredProducts?.length === 0 ? (
+      {!loading && filteredProducts?.length === 0 ? (
         <div className='col-span-full flex flex-col items-center justify-center border border-darker-black/10 rounded-lg p-6 bg-light/50 text-darker-black/60'>
           <svg
             className='w-12 h-12 mb-3 text-red'
