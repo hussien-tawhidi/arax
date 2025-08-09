@@ -25,7 +25,7 @@ export default function SearchModal({
       <motion.div
         role='dialog'
         aria-modal='true'
-        className='fixed inset-0 w-screen h-screen bg-darker-black/50 z-[9999] flex items-start justify-center'
+        className='absolute inset-0 w-screen h-screen bg-darker-black/50 z-[9999] flex items-start justify-center'
         onClick={onClose}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

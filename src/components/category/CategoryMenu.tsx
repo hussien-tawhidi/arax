@@ -20,7 +20,7 @@ export default function CategoryMenu({
     <li className='flex-shrink-0 flex flex-col items-center rounded-full text-center group'>
       <Link
         href={`/${category}/${subcategory}`}
-        className='relative w-12 h-12 sm:w-22 sm:h-22 md:w-22 md:h-22 rounded-full shadow-xl'>
+        className='relative w-16 h-16 sm:w-22 sm:h-22 md:w-22 md:h-22 rounded-full shadow-xl'>
         <Image
           src={image || "/placeholder.jpg"}
           alt={title}

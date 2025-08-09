@@ -119,7 +119,7 @@ export default function Category({ category }: { category: string }) {
         <HeroSlider data={currentData?.hero} />
 
         <div className='lg:pt-32 pt-16 flex items-center justify-center'>
-          <ul className='hide-scrollbar w-full flex md:gap-16 gap-10 justify-center mx-auto overflow-x-auto whitespace-nowrap px-4'>
+          <ul className='hide-scrollbar w-full flex gap-10 justify-start overflow-x-auto whitespace-nowrap px-4 scroll-smooth snap-x snap-mandatory touch-pan-x'>
             {cate?.submenus.map((item, i) => (
               <CategoryMenu
                 key={i}

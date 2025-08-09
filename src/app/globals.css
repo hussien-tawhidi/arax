@@ -61,17 +61,17 @@ body {
 .gradient-overlay-mobile-menu {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 0%,
     rgba(255, 255, 255, 1) 100%
   );
   background: -webkit-linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 0%,
     rgba(255, 255, 255, 1) 100%
   );
   background: -moz-linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 0%,
     rgba(255, 255, 255, 1) 100%
   );
   -webkit-transform: translateZ(0); /* iOS fix */

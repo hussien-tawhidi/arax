@@ -71,9 +71,9 @@ export default function SubHeader({
                   router.push(`/${category}/${subCatefory}/${item.productType}`)
                 }
                 height={60}
-                className='object-cover sm:w-16 w-8 sm:h-16 h-8 mx-auto border border-darker-black rounded-full'
+                className='object-cover  mx-auto border border-darker-black rounded-full'
               />
-              <p className='font-medium text-nowrap text-[14px] pb-2 text-center'>
+              <p className='font-medium  text-[14px] pb-2 text-center'>
                 {item.title}
               </p>
             </div>
