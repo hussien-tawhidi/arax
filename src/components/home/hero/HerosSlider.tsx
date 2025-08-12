@@ -4,41 +4,56 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { BsArrowLeft } from "react-icons/bs";
 
-interface slider {
+interface Slider {
   id: number;
   title: string;
   image: string;
   imageSm: string;
 }
 
-interface props {
-  data: slider[];
+interface Props {
+  data: Slider[];
 }
 
-export default function HeroSlider({ data }: props) {
+export default function HeroSlider({ data }: Props) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1: next, -1: prev
 
   const nextSlide = () => {
     setDirection(1);
-    setIndex((prev) => (prev + 1) % data.length);
+    setIndex((prev) => (data.length > 0 ? (prev + 1) % data.length : 0));
   };
 
   const prevSlide = () => {
     setDirection(-1);
-    setIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
+    setIndex((prev) =>
+      data.length > 0 ? (prev === 0 ? data.length - 1 : prev - 1) : 0
+    );
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 7000);
-    return () => clearInterval(timer);
-  }, []);
+    if (data.length > 0) {
+      const timer = setInterval(nextSlide, 7000);
+      return () => clearInterval(timer);
+    }
+  }, [data?.length]);
+
+  // Prevent rendering if no slides
+  if (!data || data.length === 0) {
+    return (
+      <div className='relative w-full h-[120px] flex items-center justify-center bg-gray-200'>
+        <span className='text-gray-500'>No slides available</span>
+      </div>
+    );
+  }
+
+  const currentSlide = data[index];
 
   return (
     <div className='relative overflow-hidden w-full xl:h-[40vh] lg:h-[30vh] md:h-[30vh] sm:h-[25vh] h-[120px] shadow-lg'>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
-          key={data[index].id}
+          key={currentSlide.id}
           className='absolute inset-0 w-full h-full'
           custom={direction}
           initial={{
@@ -62,15 +77,15 @@ export default function HeroSlider({ data }: props) {
             damping: 20,
           }}>
           <Image
-            src={data[index].image}
-            alt={data[index].title}
+            src={currentSlide.image}
+            alt={currentSlide.title}
             fill
             className='object-cover sm:flex hidden'
             priority
           />
           <Image
-            src={data[index].imageSm}
-            alt={data[index].title}
+            src={currentSlide.imageSm}
+            alt={currentSlide.title}
             fill
             className='object-cover sm:hidden flex'
             priority
@@ -89,6 +104,7 @@ export default function HeroSlider({ data }: props) {
         className='absolute right-3 top-1/2 sm:flex hidden -translate-y-1/2 bg-light/70 hover:bg-light text-darker-black p-2 rounded-full shadow'>
         <BsArrowLeft className='rotate-180' />
       </button>
+
       {/* Pagination Dots */}
       <div className='absolute sm:bottom-4 bottom-1 w-full flex justify-center gap-2'>
         {data.map((_, i) => (

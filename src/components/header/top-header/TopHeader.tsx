@@ -33,7 +33,7 @@ export default function TopHeader() {
 
   return (
     <div className=''>
-      <div className='flex justify-between items-center md:px-10 sm:p-3 p-2 border-b border-darker-black/10'>
+      <div className='flex justify-between items-center md:px-10 sm:p-3 p-2 border-b border-black/10'>
         {/* right */}
         <div className='flex items-center gap-4'>
           <Image
@@ -48,8 +48,8 @@ export default function TopHeader() {
           <button
             aria-label='جستجو'
             onClick={() => setSearch((prev) => !prev)}
-            className='p-2 rounded border border-darker-black/20 transition hover:scale-105 active:scale-95 focus:outline-none'>
-            <CiSearch className='md:text-2xl sm:text-xl text-darker-black/80' />
+            className='p-2 rounded border border-black/20 transition hover:scale-105 active:scale-95 focus:outline-none'>
+            <CiSearch className='md:text-2xl sm:text-xl text-black/80' />
           </button>
         </div>
 
@@ -66,7 +66,7 @@ export default function TopHeader() {
             <UserMenu id={session?.user?.id} />
           )}
         </div>
-        <button className='md:hidden flex border border-darker-black/30 rounded-2xl py-2 px-5 text-darker-black/60'>
+        <button className='md:hidden flex border border-black/30 rounded-2xl py-2 px-5 text-black/60'>
           <p className='sm:text-sm text-[12px]'>تماس با تیم پشتیبانی</p>
           <LuPhone className='sm:text-2xl mr-3' />
         </button>
