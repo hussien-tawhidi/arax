@@ -6,7 +6,7 @@ import { useState } from "react";
 import ErrorMsg from "../admin/ErrorMsg";
 import SuccessMsg from "../admin/SuccessMsg";
 import Input from "../ui/Input";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import SubmitButton from "../admin/SubmitButton";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -20,8 +20,6 @@ export default function LoginForm() {
   const [success, setSuccess] = useState("");
   const [step, setStep] = useState(1);
 
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
   const router = useRouter();
 
   const handleSendOtp = async (e: React.FormEvent) => {
@@ -43,7 +41,6 @@ export default function LoginForm() {
         type: "login",
       });
       console.log("🚀 ~ handleSendOtp ~ res:", res);
-      router.push(`/user/${userId}`);
 
       setSuccess("کد تایید برای شما ارسال شد.");
       setStep(2);
@@ -79,6 +76,7 @@ export default function LoginForm() {
       setError(result.error || "خطایی رخ داده است.");
     } else {
       setSuccess("ورود موفقیت آمیز بود.");
+      router.back();
     }
 
     setLoading(false);
@@ -122,13 +120,14 @@ export default function LoginForm() {
                     <SubmitButton loading={loading} title='ورود' />
 
                     {/* Register link */}
-                    <p className='text-center text-sm text-darker-black/60'>
+                    <p
+                      className='text-center text-sm text-darker-black/60'
+                      onClick={() => router.push("/user/register")}>
                       حساب کاربری ندارید؟{" "}
                       <button
                         type='button'
-                        onClick={() => router.push("/user/register")}
                         className='text-red hover:underline font-semibold'>
-                        ثبت نام
+                        ثبت‌نام
                       </button>
                     </p>
                   </form>

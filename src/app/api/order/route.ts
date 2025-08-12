@@ -4,6 +4,7 @@ import Product from "@/models/Product";
 import { dbConnect } from "@/libs/db";
 import mongoose from "mongoose";
 import { auth } from "../../../../auth";
+import { sendEmail } from "@/utils/mail";
 
 export async function POST(request: NextRequest) {
   const session = await auth();
@@ -90,7 +91,11 @@ export async function POST(request: NextRequest) {
     });
 
     await newOrder.save();
-
+    await sendEmail(
+      session?.user?.email || "",
+      "ثبت سفارش",
+      "سفارش شما موفقانه ثبت شد"
+    );
     return NextResponse.json(
       {
         success: true,
@@ -122,7 +127,7 @@ export async function GET() {
     const orders = await Order.find({ user: userId }).populate("user");
     console.log("🚀 ~ GET ~ orders:", orders);
     return NextResponse.json(orders, { status: 200 });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("🚨 GET orders error:", error);
     return NextResponse.json(
