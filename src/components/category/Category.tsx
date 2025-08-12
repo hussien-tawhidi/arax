@@ -107,7 +107,6 @@ export default function Category({ category }: { category: string }) {
     [products]
   );
 
-
   return (
     <div className='pb-10'>
       <div className='lg:w-[80%] w-[95%] mx-auto'>
@@ -133,21 +132,21 @@ export default function Category({ category }: { category: string }) {
         </div>
 
         <Slide products={mostDiscount} discount loading={loading} />
-        <BestOffs data={currentData.offs} />
+        {currentData?.offs && <BestOffs data={currentData?.offs} />}
 
         <div className='my-10'>
           <Banner
-            imageSm={currentData.banners[0]?.imageSm}
-            imagelg={currentData.banners[0]?.imagelg}
+            imageSm={currentData?.banners[0]?.imageSm}
+            imagelg={currentData?.banners[0]?.imagelg}
           />
         </div>
 
         <Slide products={mostSales} loading={loading} special />
 
-        {currentData.banners[1] && (
+        {currentData?.banners[1] && (
           <Banner
-            imageSm={currentData.banners[1].imageSm}
-            imagelg={currentData.banners[1].imagelg}
+            imageSm={currentData?.banners[1].imageSm}
+            imagelg={currentData?.banners[1].imagelg}
           />
         )}
 
@@ -158,7 +157,7 @@ export default function Category({ category }: { category: string }) {
           special
         />
 
-        {currentData.brands && currentData?.brands?.length > 0 && (
+        {currentData?.brands && currentData?.brands?.length > 0 && (
           <div className='py-10'>
             <h4 className='text-cente my-3 py-2 md:text-xl font-bold relative text-darker-black/80'>
               <span className='absolute bottom-0 right-0 w-[70px] h-[5px] rounded-xl bg-red'></span>
